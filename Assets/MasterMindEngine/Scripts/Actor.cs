@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
-public class Actor : ScriptableObject {
+public class Actor : ScriptableObject, IBaseObject {
 
 	public string m_actorName = "Actor";
 
@@ -17,4 +17,8 @@ public class Actor : ScriptableObject {
 	public Texture
 	m_portrait_Compact,
 	m_portrait_Large;
+
+	private int m_id = -1;
+
+	public int id {get{ return m_id; } set{ m_id = value; }}
 }

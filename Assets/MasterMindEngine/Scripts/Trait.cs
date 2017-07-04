@@ -13,6 +13,7 @@ public class Trait : ScriptableObject {
 		Dynamic,
 		Status,
 		Resource,
+		Site,
 	}
 
 	public string m_name;
