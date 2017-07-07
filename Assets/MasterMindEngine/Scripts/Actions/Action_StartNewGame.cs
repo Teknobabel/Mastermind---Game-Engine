@@ -35,13 +35,36 @@ public class Action_StartNewGame : Action {
 
 		// add any starting floors
 
+		foreach (Floor f in director.m_startingFloors) {
+
+			Action_BuildNewFloor buildFloor = new Action_BuildNewFloor ();
+			buildFloor.m_player = newPlayer;
+			buildFloor.m_floor = f;
+			GameController.instance.ProcessAction (buildFloor);
+		}
+			
 		// add any starting assets
+
+		foreach (Asset a in director.m_startingAssets) {
+			Action_GainAsset gainAsset = new Action_GainAsset ();
+			gainAsset.m_player = newPlayer;
+			gainAsset.m_asset = a;
+
+			GameController.instance.ProcessAction (gainAsset);
+		}
 
 		// pick omega plan
 
-		ScriptableObject op = (ScriptableObject)GameEngine.instance.m_omegaPlans[Random.Range(0, GameEngine.instance.m_omegaPlans.Count)];
-		OmegaPlan newOmegaPlan = (OmegaPlan)Object.Instantiate (op);
-		newPlayer.AddOmegaPlan (newOmegaPlan);
+		Action_UnlockOmegaPlan unlockOP = new Action_UnlockOmegaPlan ();
+		unlockOP.m_player = newPlayer;
+
+		if (director.m_startingOmegaPlan != null) {
+			unlockOP.m_omegaPlans.Add (director.m_startingOmegaPlan);
+		} else {
+			unlockOP.m_omegaPlans = GameEngine.instance.m_omegaPlans;
+		}
+
+		GameController.instance.ProcessAction (unlockOP);
 
 		// instantiate regions
 
@@ -88,21 +111,37 @@ public class Action_StartNewGame : Action {
 			hiringPool.m_availableHenchmen.Add (newHenchmen);
 		}
 
+		newPlayer.AddHiringPool (hiringPool);
+
 		// populate empty hiring slots
 
-		foreach (Player.ActorSlot aSlot in hiringPool.m_hireSlots) {
+		for (int i = 0; i < hiringPool.m_hireSlots.Count; i++) {
+			
+			Action_MakeHireable makeHireable = new Action_MakeHireable ();
+			makeHireable.m_player = newPlayer;
 
-			if (hiringPool.m_availableHenchmen.Count > 0) {
+			int rand = Random.Range (0, hiringPool.m_availableHenchmen.Count);
+			Actor a = hiringPool.m_availableHenchmen [rand];
+			makeHireable.m_henchmen = a;
 
-				int rand = Random.Range (0, hiringPool.m_availableHenchmen.Count);
-
-				Actor a = hiringPool.m_availableHenchmen [rand];
-				hiringPool.m_availableHenchmen.RemoveAt (rand);
-				aSlot.SetHenchmen (a);
-			}
+			GameController.instance.ProcessAction (makeHireable);
 		}
 
-		newPlayer.AddHiringPool (hiringPool);
+		// instantiate henchmen pool
+
+		Player.HenchmenPool henchmenPool = new Player.HenchmenPool ();
+
+		for (int i = 0; i < director.m_startingHenchmenSlots; i++) {
+
+			Player.ActorSlot aSlot = new Player.ActorSlot ();
+			aSlot.m_state = Player.ActorSlot.ActorSlotState.Empty;
+			henchmenPool.m_henchmenSlots.Add (aSlot);
+		}
+
+		newPlayer.AddHenchmenPool (henchmenPool);
+
+
+		// add any starting henchmen from director
 
 
 		GameEngine.instance.AddNewGame (newGame);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player: IBaseObject {
+public class Player: IBaseObject, ISubject {
 
 	public class CommandPool
 	{
@@ -31,6 +31,18 @@ public class Player: IBaseObject {
 				m_state = ActorSlotState.Active;
 			}
 		}
+
+		public void RemoveHenchmen ()
+		{
+			m_actor = null;
+			m_new = false;
+			m_state = ActorSlotState.Empty;
+		}
+	}
+
+	public class HenchmenPool {
+
+		public List<ActorSlot> m_henchmenSlots = new List<ActorSlot>();
 	}
 
 	public class HiringPool
@@ -49,12 +61,21 @@ public class Player: IBaseObject {
 	private HiringPool m_hiringPool;
 
 	// current henchmen
+	private HenchmenPool m_henchmenPool;
 
 	// command pool
 	private CommandPool m_commandPool;
 
 	// omega plan
 	private OmegaPlan m_omegaPlan;
+
+	// assets
+	private List<Asset> m_assets = new List<Asset>();
+
+	public void SpendCommandPoints (int amt)
+	{
+		m_commandPool.m_currentPool = Mathf.Clamp (m_commandPool.m_currentPool - amt, 0, 99);
+	}
 
 	public void AddOmegaPlan (OmegaPlan newOP)
 	{
@@ -76,7 +97,33 @@ public class Player: IBaseObject {
 		m_hiringPool = hiringPool;
 	}
 
+	public void AddHenchmenPool (HenchmenPool henchmenPool)
+	{
+		m_henchmenPool = henchmenPool;
+	}
+
+	public void AddAsset (Asset newAsset)
+	{
+		m_assets.Add (newAsset);
+	}
+
+	
+
+	public void AddObserver (IObserver observer){}
+
+	public void RemoveObserver (IObserver observer){}
+
+	public void Notify (ISubject subject, GameEvent thisGameEvent){}
+
+	//
+
 	public OmegaPlan omegaPlan {get{return m_omegaPlan;}}
 
 	public int id {get{ return m_id; } set{ m_id = value; }}
+
+	public HiringPool hiringPool {get{return m_hiringPool;}}
+
+	public HenchmenPool henchmenPool {get{return m_henchmenPool;}}
+
+	public Lair lair {get{ return m_lair; }}
 }

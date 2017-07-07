@@ -5,36 +5,38 @@ using UnityEngine;
 [CreateAssetMenu]
 public class TurnPhase_PlayerPhase : TurnPhase {
 
-	public override IEnumerator StartTurnPhase ()
+//	public override IEnumerator StartTurnPhase ()
+//	{
+//		Debug.Log ("Starting Player Phase");
+//
+//		// refill command pool
+//
+//		// pay henchmen
+//
+//		// get turn summary
+//
+//		yield return null;
+//	}
+
+	public override void DoTurnPhase ()
 	{
 		Debug.Log ("Starting Player Phase");
 
-		// refill command pool
-
-		// pay henchmen
-
-		// get turn summary
-
-		yield return null;
-	}
-
-	public override IEnumerator DoTurnPhase ()
-	{
-		Debug.Log ("Do Player Phase");
-
 		// get player input
 
-		yield return null;
-	}
-
-	public override IEnumerator EndTurnPhase ()
-	{
+//		GameEngine.instance.NextTurnPhase ();
 		Debug.Log ("Ending Player Phase");
 
-		// refill empty henchmen hire slots
-
-		// update infamy
-
-		yield return null;
 	}
+
+//	public override IEnumerator EndTurnPhase ()
+//	{
+//		Debug.Log ("Ending Player Phase");
+//
+//		// refill empty henchmen hire slots
+//
+//		// update infamy
+//
+//		yield return null;
+//	}
 }

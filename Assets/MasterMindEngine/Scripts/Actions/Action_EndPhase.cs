@@ -6,6 +6,6 @@ public class Action_EndPhase : Action {
 
 	public override void ExecuteAction ()
 	{
-
+		GameEngine.instance.ProgressTurn ();
 	}
 }

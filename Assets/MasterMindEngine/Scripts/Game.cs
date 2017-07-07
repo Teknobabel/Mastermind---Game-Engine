@@ -64,4 +64,6 @@ public class Game  {
 			Debug.Log ("Henchmen with this id already exists!");
 		}
 	}
+
+	public Dictionary<int, Player> playerList {get{ return m_playerList; }}
 }

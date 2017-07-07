@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Floor : MonoBehaviour {
+[CreateAssetMenu]
+public class Floor : ScriptableObject {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public string m_name = "Null";
+
+	// list of missions that can be run from this floor
+
 }

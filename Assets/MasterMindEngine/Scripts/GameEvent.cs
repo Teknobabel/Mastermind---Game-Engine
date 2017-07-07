@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action {
+public enum GameEvent {
 
-	public virtual void ExecuteAction ()
-	{
-
-	}
+	Player_HiringPoolChanged,
+	Player_HenchmenPoolChanged,
 }
