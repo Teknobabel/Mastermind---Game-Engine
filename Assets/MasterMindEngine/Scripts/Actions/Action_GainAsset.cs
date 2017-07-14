@@ -12,5 +12,10 @@ public class Action_GainAsset : Action {
 	{
 		Debug.Log ("Player gaining asset: " + m_asset.m_name);
 		m_player.AddAsset (m_asset);
+
+		string title = "New Asset Acquired";
+		string message = m_asset.m_name + " is now under your control.";
+
+		m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 	}
 }

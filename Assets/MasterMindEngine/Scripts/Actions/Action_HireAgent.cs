@@ -9,38 +9,55 @@ public class Action_HireAgent : Action {
 
 	public override void ExecuteAction ()
 	{
+		Actor henchmen = GameController.instance.GetActor (m_henchmenID);
+
+		Debug.Log ("Hiring new Henchmen: " + henchmen.m_actorName);
+
 		if (GameEngine.instance.game.playerList.ContainsKey (m_playerNumber)) {
 
 			Player player = GameEngine.instance.game.playerList [m_playerNumber];
 
-			// find henchmen in hiring pool
+			// remove from available pool if present
+
+			if (player.hiringPool.m_availableHenchmen.Contains (henchmen)) {
+
+				player.hiringPool.m_availableHenchmen.Remove (henchmen);
+			}
+
+			// remove from hiring pool if present
 
 			foreach (Player.ActorSlot aSlot in player.hiringPool.m_hireSlots) {
 
 				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty && aSlot.m_actor.id == m_henchmenID) {
 
-					// remove from hiring pool
-
 					Actor thisHenchmen = aSlot.m_actor;
 
 					aSlot.RemoveHenchmen ();
 
-					// add to henchmen pool
+					break;
+				}
+			}
 
-					foreach (Player.ActorSlot newHenchmenSlot in player.henchmenPool.m_henchmenSlots) {
+			// add to henchmen pool
 
-						if (newHenchmenSlot.m_state == Player.ActorSlot.ActorSlotState.Empty) {
+			foreach (Player.ActorSlot newHenchmenSlot in player.henchmenPool.m_henchmenSlots) {
 
-							newHenchmenSlot.SetHenchmen (thisHenchmen);
+				if (newHenchmenSlot.m_state == Player.ActorSlot.ActorSlotState.Empty) {
+					
+					newHenchmenSlot.SetHenchmen (henchmen);
+					Debug.Log (newHenchmenSlot.m_state);
 
-							// notify UI for updating
+					string title = "New Henchmen Hired";
+					string message = henchmen.m_actorName + " has joined your organization.";
 
-							GameController.instance.Notify (player, GameEvent.Player_HiringPoolChanged);
-							GameController.instance.Notify (player, GameEvent.Player_HenchmenPoolChanged);
+					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+					henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 
-							break;
-						}
-					}
+
+					// notify UI for updating
+
+					GameController.instance.Notify (player, GameEvent.Player_HiringPoolChanged);
+					GameController.instance.Notify (player, GameEvent.Player_HenchmenPoolChanged);
 
 					break;
 				}

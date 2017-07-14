@@ -17,6 +17,9 @@ public class TurnPhase_BeginTurn : TurnPhase {
 
 		// increase turn number 
 
+		Action_IncrementTurnNumber incTurn = new Action_IncrementTurnNumber ();
+		GameController.instance.ProcessAction (incTurn);
+
 //		GameEngine.instance.NextTurnPhase ();
 		Debug.Log ("Ending Start Turn Phase");
 	}

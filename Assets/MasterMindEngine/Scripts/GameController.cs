@@ -54,6 +54,22 @@ public class GameController : MonoBehaviour, ISubject {
 		return hiringPool;
 	}
 
+	public Actor GetActor (int actorID)
+	{
+		Actor actor = null;
+
+		if (GameEngine.instance.game.henchmenList.ContainsKey (actorID)) {
+
+			actor = GameEngine.instance.game.henchmenList [actorID];
+
+		} else {
+
+			Debug.Log ("Actor ID not found");
+		}
+
+		return actor;
+	}
+
 	// get all hired henchmen
 
 	public List<Player.ActorSlot> GetHiredHenchmen (int playerNum)
@@ -76,6 +92,81 @@ public class GameController : MonoBehaviour, ISubject {
 		return hiredHenchmen;
 	}
 
+	// get omega plan
+
+	public OmegaPlan GetOmegaPlan (int playerNum)
+	{
+		OmegaPlan op = null;
+
+		if (GameEngine.instance.game.playerList.ContainsKey (playerNum)) {
+
+			Player player = GameEngine.instance.game.playerList [playerNum];
+			op = player.omegaPlan;
+
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+
+		return op;
+	}
+
+	public int GetTurnNumber ()
+	{
+		return GameEngine.instance.game.currentTurn;
+	}
+
+	public Dictionary<int, List<NotificationCenter.Notification>> GetPlayerNotifications (int playerNum)
+	{
+		Dictionary<int, List<NotificationCenter.Notification>> notifications = new Dictionary<int, List<NotificationCenter.Notification>> ();
+
+		if (GameEngine.instance.game.playerList.ContainsKey (playerNum)) {
+
+			Player player = GameEngine.instance.game.playerList [playerNum];
+			notifications = player.notifications.notifications;
+
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+
+		return notifications;
+	}
+
+	public Dictionary<int, List<NotificationCenter.Notification>> GetHenchmenNotifications (int actorID)
+	{
+		Dictionary<int, List<NotificationCenter.Notification>> notifications = new Dictionary<int, List<NotificationCenter.Notification>> ();
+
+		if (GameEngine.instance.game.henchmenList.ContainsKey (actorID)) {
+
+			Actor actor = GameEngine.instance.game.henchmenList [actorID];
+			notifications = actor.notifications.notifications;
+
+		} else {
+
+			Debug.Log ("Henchmen not found");
+		}
+
+		return notifications;
+	}
+
+	public Player.CommandPool GetCommandPool (int playerID)
+	{
+		Player.CommandPool cp = null;
+
+		if (GameEngine.instance.game.playerList.ContainsKey (playerID)) {
+
+			Player player = GameEngine.instance.game.playerList [playerID];
+			cp = player.commandPool;
+
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+
+		return cp;
+	}
+
 	public void AddObserver (IObserver observer)
 	{
 		m_observers.Add (observer);
@@ -96,4 +187,6 @@ public class GameController : MonoBehaviour, ISubject {
 			o.OnNotify (subject, thisGameEvent);
 		}
 	}
+
+
 }

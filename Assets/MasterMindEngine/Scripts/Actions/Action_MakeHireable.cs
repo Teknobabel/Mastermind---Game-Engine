@@ -22,6 +22,12 @@ public class Action_MakeHireable : Action {
 			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.Empty) {
 
 				aSlot.SetHenchmen (m_henchmen);
+
+				string title = "New Henchmen for Hire";
+				string message = m_henchmen.m_actorName + " is now available to Hire.";
+
+				m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+
 				break;
 			}
 		}

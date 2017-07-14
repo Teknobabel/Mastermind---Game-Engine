@@ -12,6 +12,8 @@ public class Game  {
 
 	private Dictionary<int, Actor> m_henchmenList = new Dictionary<int, Actor>();
 
+	private int m_currentTurn = 0;
+
 	public void AddPlayer (Player player)
 	{
 		if (!m_playerList.ContainsKey (player.id)) {
@@ -65,5 +67,12 @@ public class Game  {
 		}
 	}
 
+	public void IncrementTurn ()
+	{
+		m_currentTurn++;
+	}
+
 	public Dictionary<int, Player> playerList {get{ return m_playerList; }}
+	public Dictionary<int, Actor> henchmenList {get{ return m_henchmenList; }}
+	public int currentTurn {get{return m_currentTurn;}}
 }

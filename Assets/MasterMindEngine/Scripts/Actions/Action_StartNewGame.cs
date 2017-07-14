@@ -15,6 +15,7 @@ public class Action_StartNewGame : Action {
 		// create game
 
 		Game newGame = new Game ();
+		GameEngine.instance.AddNewGame (newGame);
 
 		// create player
 
@@ -102,30 +103,27 @@ public class Action_StartNewGame : Action {
 
 		// instantiate henchmen
 
+		List<int> startingHenchmen = new List<int> ();
+
 		for (int i = 0; i < GameEngine.instance.m_henchmenList.Length; i++) {
 
 			Actor a = GameEngine.instance.m_henchmenList [i];
 			Actor newHenchmen = (Actor)Object.Instantiate (a);
 			newHenchmen.id = i;
+			newHenchmen.Initialize ();
 			newGame.AddHenchmen (newHenchmen);
 			hiringPool.m_availableHenchmen.Add (newHenchmen);
+
+			foreach (Actor thisA in director.m_startingHenchmen) {
+
+				if (thisA == a) {
+					startingHenchmen.Add (newHenchmen.id);
+					break;
+				}
+			}
 		}
 
 		newPlayer.AddHiringPool (hiringPool);
-
-		// populate empty hiring slots
-
-		for (int i = 0; i < hiringPool.m_hireSlots.Count; i++) {
-			
-			Action_MakeHireable makeHireable = new Action_MakeHireable ();
-			makeHireable.m_player = newPlayer;
-
-			int rand = Random.Range (0, hiringPool.m_availableHenchmen.Count);
-			Actor a = hiringPool.m_availableHenchmen [rand];
-			makeHireable.m_henchmen = a;
-
-			GameController.instance.ProcessAction (makeHireable);
-		}
 
 		// instantiate henchmen pool
 
@@ -143,7 +141,29 @@ public class Action_StartNewGame : Action {
 
 		// add any starting henchmen from director
 
+		foreach (int thisID in startingHenchmen) {
 
-		GameEngine.instance.AddNewGame (newGame);
+			Action_HireAgent hireHenchmen = new Action_HireAgent ();
+			hireHenchmen.m_henchmenID = thisID;
+			hireHenchmen.m_playerNumber = newPlayer.id;
+			GameController.instance.ProcessAction (hireHenchmen);
+
+		}
+
+		// populate empty hiring slots
+
+		for (int i = 0; i < hiringPool.m_hireSlots.Count; i++) {
+
+			Action_MakeHireable makeHireable = new Action_MakeHireable ();
+			makeHireable.m_player = newPlayer;
+
+			int rand = Random.Range (0, hiringPool.m_availableHenchmen.Count);
+			Actor a = hiringPool.m_availableHenchmen [rand];
+			makeHireable.m_henchmen = a;
+
+			GameController.instance.ProcessAction (makeHireable);
+		}
+
+
 	}
 }

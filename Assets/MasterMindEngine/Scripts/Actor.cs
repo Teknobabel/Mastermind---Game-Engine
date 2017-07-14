@@ -18,7 +18,26 @@ public class Actor : ScriptableObject, IBaseObject {
 	m_portrait_Compact,
 	m_portrait_Large;
 
+	private List<Trait> m_traits = new List<Trait>();
+	private NotificationCenter m_notifications = new NotificationCenter();
+
+	public void AddTrait (Trait newTrait)
+	{
+		m_traits.Add (newTrait);
+	}
+
+	public void Initialize ()
+	{
+		foreach (Trait t in m_startingTraits) {
+
+			AddTrait (t);
+		}
+
+	}
+
 	private int m_id = -1;
 
 	public int id {get{ return m_id; } set{ m_id = value; }}
+	public List<Trait> traits {get{ return m_traits; }}
+	public NotificationCenter notifications {get{ return m_notifications;}}
 }

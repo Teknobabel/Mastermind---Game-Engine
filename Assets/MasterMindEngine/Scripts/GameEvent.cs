@@ -6,4 +6,6 @@ public enum GameEvent {
 
 	Player_HiringPoolChanged,
 	Player_HenchmenPoolChanged,
+	Player_CommandPoolChanged,
+	Turn_PlayerPhaseStarted,
 }

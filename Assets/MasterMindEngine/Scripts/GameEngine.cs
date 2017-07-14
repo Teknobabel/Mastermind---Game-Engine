@@ -29,11 +29,10 @@ public class GameEngine : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Action_StartNewGame newGameAction = new Action_StartNewGame ();
-
-		GameController.instance.ProcessAction (newGameAction);
-
-		ProgressTurn ();
+//		Action_StartNewGame newGameAction = new Action_StartNewGame ();
+//		GameController.instance.ProcessAction (newGameAction);
+//
+//		ProgressTurn ();
 
 //		StartCoroutine( DoGameLoop ());
 	}

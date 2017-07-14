@@ -15,6 +15,24 @@ public class TurnPhase_EndTurn : TurnPhase {
 	{
 		Debug.Log ("Starting End Turn Phase");
 
+		// refill empty henchmen hire slots
+
+		Player player = GameEngine.instance.game.playerList [0];
+
+		foreach (Player.ActorSlot aSlot in player.hiringPool.m_hireSlots) {
+
+			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.Empty && player.hiringPool.m_availableHenchmen.Count > 0) {
+
+				int rand = Random.Range (0, player.hiringPool.m_availableHenchmen.Count);
+				Actor randHenchmen = (Actor)player.hiringPool.m_availableHenchmen [rand];
+
+				Action_MakeHireable addToHiringPool = new Action_MakeHireable ();
+				addToHiringPool.m_player = player;
+				addToHiringPool.m_henchmen = randHenchmen;
+				GameController.instance.ProcessAction (addToHiringPool);
+			}
+		}
+
 		// evaluate any event triggers
 
 		// check if intel should be spawned

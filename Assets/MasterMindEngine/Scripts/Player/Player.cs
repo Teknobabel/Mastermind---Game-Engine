@@ -11,7 +11,7 @@ public class Player: IBaseObject, ISubject {
 		m_currentPool;
 	}
 
-	public struct ActorSlot
+	public class ActorSlot
 	{
 		public enum ActorSlotState
 		{
@@ -72,6 +72,9 @@ public class Player: IBaseObject, ISubject {
 	// assets
 	private List<Asset> m_assets = new List<Asset>();
 
+	// notifications
+	private NotificationCenter m_notifications = new NotificationCenter();
+
 	public void SpendCommandPoints (int amt)
 	{
 		m_commandPool.m_currentPool = Mathf.Clamp (m_commandPool.m_currentPool - amt, 0, 99);
@@ -126,4 +129,8 @@ public class Player: IBaseObject, ISubject {
 	public HenchmenPool henchmenPool {get{return m_henchmenPool;}}
 
 	public Lair lair {get{ return m_lair; }}
+
+	public NotificationCenter notifications {get{ return m_notifications;}}
+
+	public CommandPool commandPool {get{ return m_commandPool;}}
 }
