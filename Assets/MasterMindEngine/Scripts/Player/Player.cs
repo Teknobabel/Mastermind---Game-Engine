@@ -17,6 +17,7 @@ public class Player: IBaseObject, ISubject {
 		{
 			Empty,
 			Active,
+			OnMission,
 		}
 		public Actor m_actor;
 		public bool m_new;
@@ -75,6 +76,8 @@ public class Player: IBaseObject, ISubject {
 	// notifications
 	private NotificationCenter m_notifications = new NotificationCenter();
 
+	private List<MissionPlan> m_currentMissions = new List<MissionPlan> ();
+
 	public void SpendCommandPoints (int amt)
 	{
 		m_commandPool.m_currentPool = Mathf.Clamp (m_commandPool.m_currentPool - amt, 0, 99);
@@ -110,7 +113,17 @@ public class Player: IBaseObject, ISubject {
 		m_assets.Add (newAsset);
 	}
 
-	
+	public void AddMission (MissionPlan plan)
+	{
+		m_currentMissions.Add (plan);
+	}
+
+	public void RemoveMission (MissionPlan plan)
+	{
+		if (m_currentMissions.Contains (plan)) {
+			m_currentMissions.Remove (plan);
+		}
+	}
 
 	public void AddObserver (IObserver observer){}
 
@@ -133,4 +146,6 @@ public class Player: IBaseObject, ISubject {
 	public NotificationCenter notifications {get{ return m_notifications;}}
 
 	public CommandPool commandPool {get{ return m_commandPool;}}
+
+	public List<MissionPlan> currentMissions {get{ return m_currentMissions;}}
 }

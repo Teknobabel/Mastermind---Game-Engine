@@ -74,5 +74,6 @@ public class Game  {
 
 	public Dictionary<int, Player> playerList {get{ return m_playerList; }}
 	public Dictionary<int, Actor> henchmenList {get{ return m_henchmenList; }}
+	public Dictionary<int, Region> regionList {get{ return m_regionList; }}
 	public int currentTurn {get{return m_currentTurn;}}
 }

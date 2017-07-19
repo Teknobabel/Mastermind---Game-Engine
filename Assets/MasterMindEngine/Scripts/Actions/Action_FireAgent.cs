@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action_HireAgent : Action {
+public class Action_FireAgent : Action {
 
 	public int m_playerNumber = -1;
 	public int m_henchmenID = -1;
@@ -17,37 +17,16 @@ public class Action_HireAgent : Action {
 
 			Player player = GameEngine.instance.game.playerList [m_playerNumber];
 
-			// remove from available pool if present
-
-			if (player.hiringPool.m_availableHenchmen.Contains (henchmen)) {
-
-				player.hiringPool.m_availableHenchmen.Remove (henchmen);
-			}
-
-			// remove from hiring pool if present
-
-			foreach (Player.ActorSlot aSlot in player.hiringPool.m_hireSlots) {
-
-				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty && aSlot.m_actor.id == m_henchmenID) {
-
-					Actor thisHenchmen = aSlot.m_actor;
-
-					aSlot.RemoveHenchmen ();
-
-					break;
-				}
-			}
-
-			// add to henchmen pool
+			// remove from henchmen pool
 
 			foreach (Player.ActorSlot newHenchmenSlot in player.henchmenPool.m_henchmenSlots) {
 
-				if (newHenchmenSlot.m_state == Player.ActorSlot.ActorSlotState.Empty) {
-					
-					newHenchmenSlot.SetHenchmen (henchmen);
+				if (newHenchmenSlot.m_state != Player.ActorSlot.ActorSlotState.Empty && henchmen.id == m_henchmenID) {
 
-					string title = "New Henchmen Hired";
-					string message = henchmen.m_actorName + " has joined your organization.";
+					newHenchmenSlot.RemoveHenchmen ();
+
+					string title = "Henchmen Fired";
+					string message = henchmen.m_actorName + " has left your organization.";
 
 					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 					henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
@@ -55,12 +34,15 @@ public class Action_HireAgent : Action {
 
 					// notify UI for updating
 
-					GameController.instance.Notify (player, GameEvent.Player_HiringPoolChanged);
 					GameController.instance.Notify (player, GameEvent.Player_HenchmenPoolChanged);
 
 					break;
 				}
 			}
+
+			// add back to available pool
+
+			player.hiringPool.m_availableHenchmen.Add (henchmen);
 
 		} else {
 			Debug.Log ("Player ID not found");

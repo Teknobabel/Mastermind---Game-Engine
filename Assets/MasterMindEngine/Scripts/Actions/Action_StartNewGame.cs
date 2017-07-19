@@ -79,6 +79,7 @@ public class Action_StartNewGame : Action {
 			for (int j = 0; j < newRegion.m_sites.Count; j++) {
 
 				Site s = newRegion.m_sites [j];
+				s.Initialize ();
 				s.id = siteID;
 				siteID++;
 			}

@@ -7,6 +7,10 @@ public class Floor : ScriptableObject {
 
 	public string m_name = "Null";
 
-	// list of missions that can be run from this floor
+	public int m_startingHenchmenSlots = 1;
+
+	public List<Mission> m_missions = new List<Mission> ();
+
+
 
 }

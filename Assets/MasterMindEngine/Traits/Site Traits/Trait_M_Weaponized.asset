@@ -8,8 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d3afe077f2d4bd3bb3062dad4fb3af, type: 3}
+  m_Script: {fileID: 11500000, guid: 27a44fff8eeaa436b86589d516fd8904, type: 3}
   m_Name: Trait_M_Weaponized
   m_EditorClassIdentifier: 
   m_name: Weaponized
   m_type: 7
+  m_requiredTrait: {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}

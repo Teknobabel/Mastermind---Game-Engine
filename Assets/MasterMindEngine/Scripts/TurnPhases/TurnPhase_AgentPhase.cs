@@ -19,6 +19,40 @@ public class TurnPhase_AgentPhase : TurnPhase {
 
 		// resolve missions
 
+		List<MissionPlan> completedMissions = new List<MissionPlan> ();
+
+		foreach (KeyValuePair<int, Player> pair in GameEngine.instance.game.playerList) {
+
+			List<MissionPlan> missions = new List<MissionPlan> ();
+
+			foreach (MissionPlan mp in pair.Value.currentMissions) {
+
+				missions.Add (mp);
+			}
+
+			while (missions.Count > 0) {
+
+				MissionPlan thisMP = missions [0];
+				missions.RemoveAt (0);
+
+				Action_EvaluateMission evalMission = new Action_EvaluateMission ();
+				evalMission.m_missionPlan = thisMP;
+				evalMission.m_playerID = pair.Value.id;
+
+				GameController.instance.ProcessAction (evalMission);
+
+				if (thisMP.m_state == MissionPlan.State.Complete) {
+
+					completedMissions.Add (thisMP);
+				}
+			}
+
+			foreach (MissionPlan mp in completedMissions) {
+
+				pair.Value.RemoveMission (mp);
+			}
+		}
+
 		// spawn new agents if needed
 
 //		GameEngine.instance.ProgressTurn ();

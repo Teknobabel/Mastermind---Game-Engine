@@ -30,6 +30,18 @@ public class GameController : MonoBehaviour, ISubject {
 	{
 		action.ExecuteAction ();
 	}
+
+	public List<Region> GetWorld ()
+	{
+		List<Region> regionList = new List<Region> ();
+
+		foreach (KeyValuePair<int, Region> pair in GameEngine.instance.game.regionList) {
+
+			regionList.Add (pair.Value);
+		}
+
+		return regionList;
+	}
 	
 	// get hiring pool
 
@@ -167,6 +179,125 @@ public class GameController : MonoBehaviour, ISubject {
 		return cp;
 	}
 
+	public Lair GetLair (int playerID)
+	{
+		Lair lair = null;
+
+		if (GameEngine.instance.game.playerList.ContainsKey (playerID)) {
+
+			Player player = GameEngine.instance.game.playerList [playerID];
+			lair = player.lair;
+
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+
+		return lair;
+	}
+
+	public List<MissionPlan> GetMissions (int playerID)
+	{
+		List<MissionPlan> missions = new List<MissionPlan> ();
+
+		if (GameEngine.instance.game.playerList.ContainsKey (playerID)) {
+
+			Player player = GameEngine.instance.game.playerList [playerID];
+			missions = player.currentMissions;
+
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+
+		return missions;
+	}
+
+	public void CompileMission (MissionPlan plan)
+	{
+//		if (plan.m_missionSite == null || plan.m_currentMission == null) {
+//
+//			bool henchmenPresent = false;
+//
+//			foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
+//
+//				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+//
+//					henchmenPresent = true;
+//					break;
+//				}
+//			}
+//
+//			if (!henchmenPresent) {
+//
+//				plan.m_successChance = 0;
+//				plan.m_requiredTraits.Clear ();
+//				plan.m_matchingTraits.Clear ();
+//				return;
+//			}
+//		}
+
+		List<Trait> requiredTraits = new List<Trait> ();
+		List<Trait> presentTraits = new List<Trait> ();
+//		int successChance = 0;
+
+		// get traits from mission
+
+		foreach (Trait t in plan.m_currentMission.m_requiredTraits) {
+
+			if (!requiredTraits.Contains (t)) {
+				requiredTraits.Add (t);
+			}
+		}
+
+		// get traits in response to site traits
+
+		if (plan.m_missionSite != null) {
+			
+			foreach (SiteTrait st in plan.m_missionSite.traits) {
+
+				if (!requiredTraits.Contains (st.m_requiredTrait)) {
+					requiredTraits.Add (st.m_requiredTrait);
+				}
+			}
+		}
+
+		// get traits in response to site alert level
+
+		// get traits in response to selected asset, if applicable
+
+		if (plan.m_currentAsset != null) {
+
+		}
+
+		// collect all traits from participating henchmen
+
+		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
+
+			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+
+				foreach (Trait t in aSlot.m_actor.traits) {
+
+					if (!presentTraits.Contains (t) && requiredTraits.Contains(t)) {
+
+						presentTraits.Add (t);
+					}
+				}
+			}
+		}
+
+		// see how many matching traits there are and calculate success chance
+		// skills count for double
+
+		float totalTraits = (float)requiredTraits.Count;
+		float matchingTraits = (float)presentTraits.Count;
+		float success = matchingTraits / totalTraits * 100;
+
+		plan.m_requiredTraits = requiredTraits;
+		plan.m_matchingTraits = presentTraits;
+		plan.m_successChance = (int)success;
+	}
+
 	public void AddObserver (IObserver observer)
 	{
 		m_observers.Add (observer);
@@ -187,6 +318,7 @@ public class GameController : MonoBehaviour, ISubject {
 			o.OnNotify (subject, thisGameEvent);
 		}
 	}
+
 
 
 }
