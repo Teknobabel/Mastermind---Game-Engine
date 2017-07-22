@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef084dc3d4d644f5be195868698019b, type: 3}
+  m_Name: Mission_StealAsset
+  m_EditorClassIdentifier: 
+  m_name: Steal Asset
+  m_description: Null
+  m_targetType: 2
+  m_requiredTraits:
+  - {fileID: 11400000, guid: cc61c91c3717c45bd92a5453346da037, type: 2}
+  m_cost: 2
+  m_duration: 2

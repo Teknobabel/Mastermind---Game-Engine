@@ -28,6 +28,8 @@ public class Action_MakeHireable : Action {
 
 				m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 
+				GameController.instance.Notify (m_player, GameEvent.Player_HiringPoolChanged);
+
 				break;
 			}
 		}

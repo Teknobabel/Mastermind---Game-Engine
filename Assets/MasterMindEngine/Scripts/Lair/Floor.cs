@@ -11,6 +11,10 @@ public class Floor : ScriptableObject {
 
 	public List<Mission> m_missions = new List<Mission> ();
 
+	public virtual void Initialize (){
+	}
 
+	public virtual void Destroy (){
+	}
 
 }

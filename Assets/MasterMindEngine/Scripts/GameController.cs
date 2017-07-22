@@ -106,14 +106,14 @@ public class GameController : MonoBehaviour, ISubject {
 
 	// get omega plan
 
-	public OmegaPlan GetOmegaPlan (int playerNum)
+	public Player.OmegaPlanSlot GetOmegaPlan (int playerNum)
 	{
-		OmegaPlan op = null;
+		Player.OmegaPlanSlot op = null;
 
 		if (GameEngine.instance.game.playerList.ContainsKey (playerNum)) {
 
 			Player player = GameEngine.instance.game.playerList [playerNum];
-			op = player.omegaPlan;
+			op = player.omegaPlanSlot;
 
 		} else {
 
@@ -252,7 +252,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 		// get traits in response to site traits
 
-		if (plan.m_missionSite != null) {
+		if (plan.m_missionSite != null && plan.m_currentMission.m_targetType != Mission.TargetType.Lair) {
 			
 			foreach (SiteTrait st in plan.m_missionSite.traits) {
 
@@ -266,8 +266,14 @@ public class GameController : MonoBehaviour, ISubject {
 
 		// get traits in response to selected asset, if applicable
 
-		if (plan.m_currentAsset != null) {
+		if (plan.m_currentAsset != null && plan.m_currentMission.m_targetType == Mission.TargetType.Asset) {
 
+			foreach (Trait t in plan.m_currentAsset.m_asset.m_requiredTraits) {
+
+				if (!requiredTraits.Contains (t)) {
+					requiredTraits.Add (t);
+				}
+			}
 		}
 
 		// collect all traits from participating henchmen

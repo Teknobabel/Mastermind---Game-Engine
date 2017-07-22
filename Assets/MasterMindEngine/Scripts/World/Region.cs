@@ -9,7 +9,16 @@ public class Region : ScriptableObject, IBaseObject {
 
 	public string m_regionName = "Region";
 
-	public List<Site> m_sites = new List<Site>();
+	public List<Site> m_startingSites = new List<Site>();
 
 	public int id {get{ return m_id; } set{ m_id = value; }}
+
+	private List<Site> m_sites = new List<Site>();
+
+	public void AddSite (Site s)
+	{
+		m_sites.Add (s);
+	}
+
+	public List<Site> sites {get{ return m_sites;}}
 }

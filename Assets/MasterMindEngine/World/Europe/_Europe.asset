@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: _Europe
   m_EditorClassIdentifier: 
   m_regionName: Europe
-  m_sites:
+  m_startingSites:
   - {fileID: 11400000, guid: 48751fe8fc2214e348b0c7ed59061c90, type: 2}
   - {fileID: 11400000, guid: 5b36aef38c9cf4c75b950cd18cbcbfc3, type: 2}
   - {fileID: 11400000, guid: 34ec638e7f342424f9b25c1512ebab34, type: 2}

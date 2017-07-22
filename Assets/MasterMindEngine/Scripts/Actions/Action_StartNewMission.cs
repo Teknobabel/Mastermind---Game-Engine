@@ -14,18 +14,23 @@ public class Action_StartNewMission : Action {
 		player.AddMission (m_missionPlan);
 		m_missionPlan.m_state = MissionPlan.State.Active;
 		m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.MissionInProgress;
+		m_missionPlan.m_new = true;
 
-		string title = "New Mission Begins";
-		string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is now underway.";
+//		string title = "New Mission Begins";
+//		string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is now underway.";
+//
+//		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+//		foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
+//
+//			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+//
+//				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
+//			}
+//		}
 
-		foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
+		// notify UI for updating
 
-			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-
-				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
-			}
-		}
+		GameController.instance.Notify (player, GameEvent.Player_NewMissionStarted);
 	}
 }

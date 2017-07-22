@@ -7,4 +7,6 @@ public class Asset : ScriptableObject {
 
 	public string m_name = "Null";
 
+	public Trait[] m_requiredTraits;
+
 }

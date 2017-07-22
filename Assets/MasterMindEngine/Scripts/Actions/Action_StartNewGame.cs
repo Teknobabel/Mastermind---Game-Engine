@@ -76,12 +76,15 @@ public class Action_StartNewGame : Action {
 			Region newRegion = (Region)Object.Instantiate (GameEngine.instance.m_regions [i]);
 			newRegion.id = i;
 
-			for (int j = 0; j < newRegion.m_sites.Count; j++) {
+			for (int j = 0; j < newRegion.m_startingSites.Count; j++) {
 
-				Site s = newRegion.m_sites [j];
-				s.Initialize ();
+//				Site s = newRegion.m_sites [j];
+
+				Site s = (Site)Object.Instantiate (newRegion.m_startingSites [j]);
 				s.id = siteID;
 				siteID++;
+				s.Initialize ();
+				newRegion.AddSite (s);
 			}
 
 			newGame.AddRegion (newRegion);

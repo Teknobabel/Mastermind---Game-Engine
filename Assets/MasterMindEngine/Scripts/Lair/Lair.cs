@@ -19,6 +19,7 @@ public class Lair {
 		public int m_id = -1;
 		public List<Player.ActorSlot> m_actorSlots = new List<Player.ActorSlot> ();
 		public MissionPlan m_missionPlan = new MissionPlan();
+		public bool m_new = true;
 	}
 
 	private List<FloorSlot> m_floorSlots = new List<FloorSlot>();
@@ -43,6 +44,8 @@ public class Lair {
 		}
 
 		m_floorSlots.Add (newFloorSlot);
+
+		newFloor.Initialize ();
 
 	}
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: _China
   m_EditorClassIdentifier: 
   m_regionName: China
-  m_sites:
+  m_startingSites:
   - {fileID: 11400000, guid: f4c40953fd1c64a739a4fd74c3129f85, type: 2}
   - {fileID: 11400000, guid: 7a6fe6055576a4006b0fdf166eb35c1d, type: 2}
   - {fileID: 11400000, guid: 27f3be3fc095843dc800f3ec17011bdc, type: 2}

@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Name: Asset_Zombies
   m_EditorClassIdentifier: 
   m_name: Zombies
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 57ddbbd690c814688a07fbd31f408814, type: 2}

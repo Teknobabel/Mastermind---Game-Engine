@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Name: Asset_Soldiers
   m_EditorClassIdentifier: 
   m_name: Soldiers
+  m_requiredTraits:
+  - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}

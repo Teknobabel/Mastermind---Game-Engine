@@ -8,4 +8,8 @@ public enum GameEvent {
 	Player_HenchmenPoolChanged,
 	Player_CommandPoolChanged,
 	Turn_PlayerPhaseStarted,
+	Player_LairChanged,
+	Player_NewMissionStarted,
+	Player_MissionCompleted,
+	Player_OmegaPlanChanged,
 }

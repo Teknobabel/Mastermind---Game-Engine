@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: _Russia
   m_EditorClassIdentifier: 
   m_regionName: Russia
-  m_sites:
+  m_startingSites:
   - {fileID: 11400000, guid: b5e6feaf265bf413baef8b80f2cfef61, type: 2}
   - {fileID: 11400000, guid: 12317932ff237454387995340f017651, type: 2}
   - {fileID: 11400000, guid: 0e0b94cdd1cd64f41b199071415b0d15, type: 2}

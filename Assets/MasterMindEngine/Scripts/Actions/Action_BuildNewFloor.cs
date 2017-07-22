@@ -12,11 +12,16 @@ public class Action_BuildNewFloor : Action {
 	{
 		Debug.Log ("Player building floor: " + m_floor.m_name);
 
-		m_player.lair.AddFloor (m_floor);
-
 		string title = "New Floor Built";
 		string message = m_floor.m_name + " has been added to your Lair.";
 
 		m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+
+		Floor newFloor = (Floor)Object.Instantiate (m_floor);
+		m_player.lair.AddFloor (newFloor);
+
+		// notify UI for updating
+
+		GameController.instance.Notify (m_player, GameEvent.Player_LairChanged);
 	}
 }

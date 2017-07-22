@@ -57,6 +57,8 @@ public class Site : ScriptableObject, IBaseObject {
 
 	private int m_id = -1;
 
+	private int m_currentAlertLevel = 0;
+
 	public void Initialize ()
 	{
 		foreach (Asset a in m_startingAssets) {
@@ -85,13 +87,18 @@ public class Site : ScriptableObject, IBaseObject {
 
 				int rand = Random.Range (0, rtl.m_traits.Count);
 				SiteTrait t = rtl.m_traits [rand];
-				AddTrait (t);
+
+				if (!m_traits.Contains (t)) {
+					
+					AddTrait (t);
+				}
 			}
 		}
 	}
 
 	public void AddTrait (SiteTrait newTrait)
 	{
+//		Debug.Log ("Site " + m_id + " Adds " + newTrait.m_name);
 		m_traits.Add (newTrait);
 	}
 
@@ -104,7 +111,28 @@ public class Site : ScriptableObject, IBaseObject {
 		m_assets.Add (aSlot);
 	}
 
+	public void RemoveAsset (AssetSlot aSlot)
+	{
+		for (int i = 0; i < m_assets.Count; i++) {
+
+			AssetSlot a = m_assets [i];
+
+			if (aSlot == a) {
+
+				m_assets.RemoveAt (i);
+				aSlot.m_asset = null;
+				return;
+			}
+		}
+	}
+
+	public void UpdateAlert (int amount)
+	{
+		m_currentAlertLevel = Mathf.Clamp (m_currentAlertLevel + amount, 0, m_maxAlertLevel);
+	}
+
 	public int id {get{ return m_id; } set{ m_id = value; }}
+	public int currentAlertLevel {get{ return m_currentAlertLevel; }}
 	public List<SiteTrait> traits { get { return m_traits; } }
 	public List<AssetSlot> assets {get{ return m_assets; }}
 }

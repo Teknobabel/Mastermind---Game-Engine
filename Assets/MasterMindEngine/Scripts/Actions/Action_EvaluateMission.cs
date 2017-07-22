@@ -21,17 +21,30 @@ public class Action_EvaluateMission : Action {
 
 			m_missionPlan.m_state = MissionPlan.State.Complete;
 
-			string title = "Mission Completed";
-			string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is complete.";
+			// determine success or failure
 
-			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+			float successChance = (float)m_missionPlan.m_successChance;
+
+			if (Random.Range (1.0f, 100.0f) <= successChance) {
+
+				// mission successful
+
+				m_missionPlan.m_result = MissionPlan.Result.Success;
+
+			} else {
+				
+				// mission failure
+
+				m_missionPlan.m_result = MissionPlan.Result.Fail;
+			}
+
+			if (GameEngine.instance.m_forceMissionSuccess) {
+				m_missionPlan.m_result = MissionPlan.Result.Success;
+			}
+
+			m_missionPlan.m_currentMission.CompleteMission (m_missionPlan);
 
 			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
-	
-				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-	
-					aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
-				}
 
 				aSlot.RemoveHenchmen ();
 			}
@@ -39,12 +52,23 @@ public class Action_EvaluateMission : Action {
 			m_missionPlan.m_currentMission = null;
 			m_missionPlan.m_missionSite = null;
 			m_missionPlan.m_currentAsset = null;
+			m_missionPlan.m_new = false;
+			m_missionPlan.m_successChance = 0;
+			m_missionPlan.m_result = MissionPlan.Result.None;
 			m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.Idle;
+
+			GameController.instance.Notify (player, GameEvent.Player_MissionCompleted);
 
 		} else {
 
 			string title = "Mission Continues";
 			string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is in progress.";
+
+			if (m_missionPlan.m_turnNumber == 1) {
+				
+				title = "New Mission Begins";
+				message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is underway.";
+			}
 
 			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 

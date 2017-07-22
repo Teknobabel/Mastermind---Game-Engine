@@ -32,7 +32,7 @@ public class Game  {
 
 			m_regionList.Add (newRegion.id, newRegion);
 
-			foreach (Site newSite in newRegion.m_sites) {
+			foreach (Site newSite in newRegion.sites) {
 
 				AddSite (newSite);
 			}

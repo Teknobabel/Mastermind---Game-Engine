@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Name: Asset_Art
   m_EditorClassIdentifier: 
   m_name: Art
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 0b6bdd6cc41224b58b4dcf8b18e1cead, type: 2}

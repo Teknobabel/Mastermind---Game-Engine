@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: _MiddleEast
   m_EditorClassIdentifier: 
   m_regionName: MiddleEast
-  m_sites:
+  m_startingSites:
   - {fileID: 11400000, guid: 1ea31c147c05945ecb5f2b8d94da0356, type: 2}
   - {fileID: 11400000, guid: 107e5bbf3d28740c1ad60bd0a3d72826, type: 2}
   - {fileID: 11400000, guid: 295468033c3694498b563ebb0575eb17, type: 2}

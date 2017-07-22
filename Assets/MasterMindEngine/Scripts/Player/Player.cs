@@ -9,6 +9,11 @@ public class Player: IBaseObject, ISubject {
 		public int 
 		m_basePool,
 		m_currentPool;
+
+		public void UpdateBaseCommandPool (int amount)
+		{
+			m_basePool += amount;
+		}
 	}
 
 	public class ActorSlot
@@ -41,6 +46,18 @@ public class Player: IBaseObject, ISubject {
 		}
 	}
 
+	public class OmegaPlanSlot 
+	{
+		public enum State
+		{
+			None,
+			New,
+		}
+
+		public OmegaPlan m_omegaPlan;
+		public State m_state = State.None;
+	}
+
 	public class HenchmenPool {
 
 		public List<ActorSlot> m_henchmenSlots = new List<ActorSlot>();
@@ -68,7 +85,7 @@ public class Player: IBaseObject, ISubject {
 	private CommandPool m_commandPool;
 
 	// omega plan
-	private OmegaPlan m_omegaPlan;
+	private OmegaPlanSlot m_omegaPlanSlot;
 
 	// assets
 	private List<Asset> m_assets = new List<Asset>();
@@ -85,7 +102,11 @@ public class Player: IBaseObject, ISubject {
 
 	public void AddOmegaPlan (OmegaPlan newOP)
 	{
-		m_omegaPlan = newOP;
+		OmegaPlanSlot opSlot = new OmegaPlanSlot ();
+		opSlot.m_omegaPlan = newOP;
+		opSlot.m_state = OmegaPlanSlot.State.New;
+
+		m_omegaPlanSlot = opSlot;
 	}
 
 	public void AddCommandPool (CommandPool cp)
@@ -133,7 +154,7 @@ public class Player: IBaseObject, ISubject {
 
 	//
 
-	public OmegaPlan omegaPlan {get{return m_omegaPlan;}}
+	public OmegaPlanSlot omegaPlanSlot {get{return m_omegaPlanSlot;}}
 
 	public int id {get{ return m_id; } set{ m_id = value; }}
 

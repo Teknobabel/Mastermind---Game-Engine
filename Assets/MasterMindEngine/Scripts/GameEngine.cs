@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameEngine : MonoBehaviour {
 	public static GameEngine instance;
 
+	public bool m_forceMissionSuccess = false;
+
 	public List<TurnPhase> m_turnPhases = new List<TurnPhase>();
 
 	public List<Region> m_regions = new List<Region>();

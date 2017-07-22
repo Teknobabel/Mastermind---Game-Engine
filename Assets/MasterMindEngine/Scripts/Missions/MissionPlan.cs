@@ -10,17 +10,26 @@ public class MissionPlan {
 		Complete,
 	}
 
+	public enum Result
+	{
+		None,
+		Success,
+		Fail,
+	}
+
 	public Mission m_currentMission;
 
 	public List<Player.ActorSlot> m_actorSlots = new List<Player.ActorSlot>();
 
-	public Asset m_currentAsset;
+	public Site.AssetSlot m_currentAsset;
 
 	public Site m_missionSite;
 
 	public Lair.FloorSlot m_floorSlot;
 
 	public State m_state = State.Planning;
+
+	public bool m_new = true;
 
 	// info returned from compiling mission
 
@@ -29,4 +38,8 @@ public class MissionPlan {
 
 	public int m_successChance = -1;
 	public int m_turnNumber = 0;
+
+	// info returned from completing the mission
+
+	public Result m_result = Result.None;
 }
