@@ -8,11 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b48e963b717345f395243d44472b1cb, type: 3}
-  m_Name: TestMission01
+  m_Script: {fileID: 11500000, guid: 0d403849ea55e4b0c89d5268ba98e769, type: 3}
+  m_Name: Mission_GainTrait
   m_EditorClassIdentifier: 
-  m_name: Test Mission 01
+  m_name: 'Gain Trait: Leader'
+  m_description: Null
+  m_targetType: 4
   m_requiredTraits:
   - {fileID: 11400000, guid: cc61c91c3717c45bd92a5453346da037, type: 2}
   m_cost: 2
   m_duration: 1
+  m_trait: {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}

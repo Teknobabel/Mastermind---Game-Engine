@@ -88,7 +88,7 @@ public class Player: IBaseObject, ISubject {
 	private OmegaPlanSlot m_omegaPlanSlot;
 
 	// assets
-	private List<Asset> m_assets = new List<Asset>();
+	private List<Site.AssetSlot> m_assets = new List<Site.AssetSlot>();
 
 	// notifications
 	private NotificationCenter m_notifications = new NotificationCenter();
@@ -131,7 +131,43 @@ public class Player: IBaseObject, ISubject {
 
 	public void AddAsset (Asset newAsset)
 	{
-		m_assets.Add (newAsset);
+		Site.AssetSlot aSlot = new Site.AssetSlot ();
+		aSlot.m_asset = newAsset;
+		aSlot.m_state = Site.AssetSlot.State.Hidden;
+		aSlot.m_new = true;
+		m_assets.Add (aSlot);
+
+//		m_assets.Add (newAsset);
+	}
+
+	public void RemoveAsset (Asset oldAsset)
+	{
+		for (int i=0; i < m_assets.Count; i++) {
+
+			Site.AssetSlot aSlot = m_assets [i];
+
+			if (aSlot.m_asset == oldAsset) {
+
+				aSlot.m_asset = null;
+				m_assets.RemoveAt (i);
+				return;
+			}
+		}
+	}
+
+	public void RemoveAsset (Site.AssetSlot oldSlot)
+	{
+		for (int i=0; i < m_assets.Count; i++) {
+
+			Site.AssetSlot aSlot = m_assets [i];
+
+			if (aSlot == oldSlot) {
+
+				aSlot.m_asset = null;
+				m_assets.RemoveAt (i);
+				return;
+			}
+		}
 	}
 
 	public void AddMission (MissionPlan plan)
@@ -169,4 +205,6 @@ public class Player: IBaseObject, ISubject {
 	public CommandPool commandPool {get{ return m_commandPool;}}
 
 	public List<MissionPlan> currentMissions {get{ return m_currentMissions;}}
+
+	public List<Site.AssetSlot> assets {get{ return m_assets; }}
 }

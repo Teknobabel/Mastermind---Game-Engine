@@ -42,6 +42,26 @@ public class GameController : MonoBehaviour, ISubject {
 
 		return regionList;
 	}
+
+	public List<Site.AssetSlot> GetAssets (int playerNum)
+	{
+		List<Site.AssetSlot> assets = new List<Site.AssetSlot> ();
+
+		if (GameEngine.instance.game.playerList.ContainsKey (playerNum)) {
+
+			Player player = GameEngine.instance.game.playerList [playerNum];
+
+			foreach (Site.AssetSlot aSlot in player.assets) {
+
+				assets.Add (aSlot);
+			}
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+			
+		return assets;
+	}
 	
 	// get hiring pool
 

@@ -12,4 +12,5 @@ public enum GameEvent {
 	Player_NewMissionStarted,
 	Player_MissionCompleted,
 	Player_OmegaPlanChanged,
+	Player_AssetsChanged,
 }

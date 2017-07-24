@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mission_RevealAsset : Mission {
+public class Mission_GainTrait : Mission {
+
+	public Trait m_trait;
 
 	public override void CompleteMission (MissionPlan plan)
 	{
@@ -15,39 +17,11 @@ public class Mission_RevealAsset : Mission {
 
 		if (plan.m_result == MissionPlan.Result.Success) {
 
-			plan.m_missionSite.UpdateAlert (1);
-
 			message += " is a success!";
-
-			List<Site.AssetSlot> hiddenAssets = new List<Site.AssetSlot> ();
-
-			foreach (Site.AssetSlot aSlot in plan.m_missionSite.assets) {
-
-				if (aSlot.m_state == Site.AssetSlot.State.Hidden) {
-
-					hiddenAssets.Add (aSlot);
-				}
-			}
-
-			if (hiddenAssets.Count > 0) {
-
-				int rand = Random.Range (0, hiddenAssets.Count);
-
-				Site.AssetSlot aSlot = hiddenAssets [rand];
-				aSlot.m_state = Site.AssetSlot.State.Revealed;
-
-				message += "\n" + aSlot.m_asset.m_name + " is revealed in " + plan.m_missionSite.m_siteName + ".";
-
-			} else {
-
-				message += "\nThere are no hidden Assets to reveal";
-			}
 
 		} else if (plan.m_result == MissionPlan.Result.Fail) {
 
 			message += " is a failure.";
-
-			plan.m_missionSite.UpdateAlert (2);
 
 		}
 
@@ -59,6 +33,15 @@ public class Mission_RevealAsset : Mission {
 
 				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
 			}
+		}
+
+		if (plan.m_result == MissionPlan.Result.Success && plan.m_targetActor.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+
+			Action_GainTrait gainTrait = new Action_GainTrait ();
+			gainTrait.m_playerID = 0;
+			gainTrait.m_actor = plan.m_targetActor.m_actor;
+			gainTrait.m_newTrait = m_trait;
+			GameController.instance.ProcessAction (gainTrait);
 		}
 	}
 }

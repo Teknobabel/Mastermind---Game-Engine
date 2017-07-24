@@ -16,10 +16,12 @@ public class Mission_StealAsset : Mission {
 		if (plan.m_result == MissionPlan.Result.Success) {
 
 			message += " is a success!";
+			plan.m_missionSite.UpdateAlert (1);
 
 		} else if (plan.m_result == MissionPlan.Result.Fail) {
 
 			message += " is a failure.";
+			plan.m_missionSite.UpdateAlert (2);
 
 		}
 
@@ -41,6 +43,8 @@ public class Mission_StealAsset : Mission {
 			GameController.instance.ProcessAction (gainAsset);
 
 			plan.m_missionSite.RemoveAsset (plan.m_currentAsset);
+
+			plan.m_missionSite.UpdateAlert (1);
 
 		}
 	}

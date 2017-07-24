@@ -11,6 +11,7 @@ public class Mission : ScriptableObject {
 		Site,
 		Asset,
 		Lair,
+		Actor,
 	}
 
 	public string 

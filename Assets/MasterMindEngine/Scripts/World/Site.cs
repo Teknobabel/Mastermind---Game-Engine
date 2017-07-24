@@ -23,6 +23,7 @@ public class Site : ScriptableObject, IBaseObject {
 
 		public Asset m_asset;
 		public State m_state;
+		public bool m_new = false;
 	}
 
 	[System.Serializable]

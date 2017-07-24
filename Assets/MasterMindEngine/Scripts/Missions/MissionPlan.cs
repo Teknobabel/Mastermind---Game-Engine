@@ -27,6 +27,8 @@ public class MissionPlan {
 
 	public Lair.FloorSlot m_floorSlot;
 
+	public Player.ActorSlot m_targetActor;
+
 	public State m_state = State.Planning;
 
 	public bool m_new = true;

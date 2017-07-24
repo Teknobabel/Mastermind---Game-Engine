@@ -17,5 +17,7 @@ public class Action_GainAsset : Action {
 		string message = m_asset.m_name + " is now under your control.";
 
 		m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+
+		GameController.instance.Notify (m_player, GameEvent.Player_AssetsChanged);
 	}
 }
