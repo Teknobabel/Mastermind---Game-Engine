@@ -13,7 +13,13 @@ public class Action_StartNewMission : Action {
 		Player player = GameEngine.instance.game.playerList [m_playerID];
 		player.AddMission (m_missionPlan);
 		m_missionPlan.m_state = MissionPlan.State.Active;
-		m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.MissionInProgress;
+
+		if (m_missionPlan.m_floorSlot != null) {
+			m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.MissionInProgress;
+		} else if (m_missionPlan.m_goal != null) {
+			m_missionPlan.m_goal.m_state = OmegaPlan.OPGoal.State.InProgress;
+		}
+
 		m_missionPlan.m_new = true;
 
 //		string title = "New Mission Begins";

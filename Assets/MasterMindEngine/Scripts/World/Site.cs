@@ -23,6 +23,7 @@ public class Site : ScriptableObject, IBaseObject {
 
 		public Asset m_asset;
 		public State m_state;
+		public Site m_site;
 		public bool m_new = false;
 	}
 
@@ -59,6 +60,8 @@ public class Site : ScriptableObject, IBaseObject {
 	private int m_id = -1;
 
 	private int m_currentAlertLevel = 0;
+
+	private int m_regionID = -1;
 
 	public void Initialize ()
 	{
@@ -103,11 +106,20 @@ public class Site : ScriptableObject, IBaseObject {
 		m_traits.Add (newTrait);
 	}
 
+	public void RemoveTrait (SiteTrait oldTrait)
+	{
+		if (m_traits.Contains (oldTrait)) {
+
+			m_traits.Remove (oldTrait);
+		}
+	}
+
 	public void AddAsset (Asset newAsset)
 	{
 		AssetSlot aSlot = new AssetSlot ();
 		aSlot.m_asset = newAsset;
 		aSlot.m_state = AssetSlot.State.Hidden;
+		aSlot.m_site = this;
 
 		m_assets.Add (aSlot);
 	}
@@ -136,4 +148,5 @@ public class Site : ScriptableObject, IBaseObject {
 	public int currentAlertLevel {get{ return m_currentAlertLevel; }}
 	public List<SiteTrait> traits { get { return m_traits; } }
 	public List<AssetSlot> assets {get{ return m_assets; }}
+	public int regionID {get{ return m_regionID; }set{ m_regionID = value; }}
 }

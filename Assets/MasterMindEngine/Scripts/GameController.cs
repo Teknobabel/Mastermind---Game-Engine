@@ -43,6 +43,22 @@ public class GameController : MonoBehaviour, ISubject {
 		return regionList;
 	}
 
+	public Site GetSite (int siteID)
+	{
+		Site s = null;
+
+		if (GameEngine.instance.game.siteList.ContainsKey (siteID)) {
+
+			s = GameEngine.instance.game.siteList [siteID];
+
+		} else {
+
+			Debug.Log ("Site not found");
+		}
+
+		return s;
+	}
+
 	public List<Site.AssetSlot> GetAssets (int playerNum)
 	{
 		List<Site.AssetSlot> assets = new List<Site.AssetSlot> ();
@@ -235,31 +251,31 @@ public class GameController : MonoBehaviour, ISubject {
 
 	public void CompileMission (MissionPlan plan)
 	{
-//		if (plan.m_missionSite == null || plan.m_currentMission == null) {
-//
-//			bool henchmenPresent = false;
-//
-//			foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
-//
-//				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-//
-//					henchmenPresent = true;
-//					break;
-//				}
-//			}
-//
-//			if (!henchmenPresent) {
-//
-//				plan.m_successChance = 0;
-//				plan.m_requiredTraits.Clear ();
-//				plan.m_matchingTraits.Clear ();
-//				return;
-//			}
-//		}
+		//		if (plan.m_missionSite == null || plan.m_currentMission == null) {
+		//
+		//			bool henchmenPresent = false;
+		//
+		//			foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
+		//
+		//				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+		//
+		//					henchmenPresent = true;
+		//					break;
+		//				}
+		//			}
+		//
+		//			if (!henchmenPresent) {
+		//
+		//				plan.m_successChance = 0;
+		//				plan.m_requiredTraits.Clear ();
+		//				plan.m_matchingTraits.Clear ();
+		//				return;
+		//			}
+		//		}
 
 		List<Trait> requiredTraits = new List<Trait> ();
 		List<Trait> presentTraits = new List<Trait> ();
-//		int successChance = 0;
+		//		int successChance = 0;
 
 		// get traits from mission
 
@@ -273,7 +289,7 @@ public class GameController : MonoBehaviour, ISubject {
 		// get traits in response to site traits
 
 		if (plan.m_missionSite != null && plan.m_currentMission.m_targetType != Mission.TargetType.Lair) {
-			
+
 			foreach (SiteTrait st in plan.m_missionSite.traits) {
 
 				if (!requiredTraits.Contains (st.m_requiredTrait)) {
@@ -283,6 +299,30 @@ public class GameController : MonoBehaviour, ISubject {
 		}
 
 		// get traits in response to site alert level
+
+		if (plan.m_missionSite != null && plan.m_missionSite.currentAlertLevel > 0 && plan.m_currentMission.m_targetType != Mission.TargetType.Lair) {
+
+			foreach (Director.AlertData aData in GameEngine.instance.game.director.m_alertData) {
+
+				if (aData.m_siteType == plan.m_missionSite.m_type) {
+
+					for (int i = 0; i < aData.m_traitList.Length; i++) {
+
+						if (i < plan.m_missionSite.currentAlertLevel) {
+
+							Trait t = aData.m_traitList [i];
+
+							if (!requiredTraits.Contains (t)) {
+								requiredTraits.Add (t);
+							}
+						}
+					}
+
+					break;
+				}
+			}
+
+		}
 
 		// get traits in response to selected asset, if applicable
 

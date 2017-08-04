@@ -95,6 +95,8 @@ public class Player: IBaseObject, ISubject {
 
 	private List<MissionPlan> m_currentMissions = new List<MissionPlan> ();
 
+	private MessageCenter m_messageCenter = new MessageCenter();
+
 	public void SpendCommandPoints (int amt)
 	{
 		m_commandPool.m_currentPool = Mathf.Clamp (m_commandPool.m_currentPool - amt, 0, 99);
@@ -207,4 +209,6 @@ public class Player: IBaseObject, ISubject {
 	public List<MissionPlan> currentMissions {get{ return m_currentMissions;}}
 
 	public List<Site.AssetSlot> assets {get{ return m_assets; }}
+
+	public MessageCenter messageCenter {get{ return m_messageCenter; }}
 }

@@ -11,6 +11,7 @@ public class Action_GainAsset : Action {
 	public override void ExecuteAction ()
 	{
 		Debug.Log ("Player gaining asset: " + m_asset.m_name);
+
 		m_player.AddAsset (m_asset);
 
 		string title = "New Asset Acquired";

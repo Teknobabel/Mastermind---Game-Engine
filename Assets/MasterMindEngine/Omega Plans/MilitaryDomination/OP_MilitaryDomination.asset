@@ -12,19 +12,43 @@ MonoBehaviour:
   m_Name: OP_MilitaryDomination
   m_EditorClassIdentifier: 
   m_name: Military Domination
-  m_phases:
+  m_startingPhases:
   - m_goals:
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    m_mandatoryAssets: []
+    - m_mission: {fileID: 11400000, guid: 22b9289cfd2514ed7bf419cc64bab417, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 14d9a7f8b808e4b929673cfdf07dc8ab, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 6f92a9b801fec4ef08e519adab7e01f6, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
   - m_goals:
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    m_mandatoryAssets: []
+    - m_mission: {fileID: 11400000, guid: 22b9289cfd2514ed7bf419cc64bab417, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 14d9a7f8b808e4b929673cfdf07dc8ab, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 6f92a9b801fec4ef08e519adab7e01f6, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
   - m_goals:
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    - {fileID: 11400000, guid: fa64d22fc69f24b77913c0bd9462d8b2, type: 2}
-    m_mandatoryAssets: []
+    - m_mission: {fileID: 11400000, guid: 22b9289cfd2514ed7bf419cc64bab417, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 14d9a7f8b808e4b929673cfdf07dc8ab, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 6f92a9b801fec4ef08e519adab7e01f6, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0

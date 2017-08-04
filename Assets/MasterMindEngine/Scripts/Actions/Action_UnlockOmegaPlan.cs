@@ -24,6 +24,7 @@ public class Action_UnlockOmegaPlan : Action {
 
 			ScriptableObject op = plan;
 			OmegaPlan newOmegaPlan = (OmegaPlan)Object.Instantiate (op);
+			newOmegaPlan.Initialize ();
 			m_player.AddOmegaPlan (newOmegaPlan);
 
 			Debug.Log ("Unlocking Omega Plan: " + newOmegaPlan.m_name);

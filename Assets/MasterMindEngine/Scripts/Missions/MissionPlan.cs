@@ -29,7 +29,13 @@ public class MissionPlan {
 
 	public Player.ActorSlot m_targetActor;
 
+	public Region m_targetRegion;
+
+	public SiteTrait m_targetSiteTrait;
+
 	public State m_state = State.Planning;
+
+	public OmegaPlan.OPGoal m_goal;
 
 	public bool m_new = true;
 

@@ -8,14 +8,15 @@ public class Action_StartNewGame : Action {
 	{
 		Debug.Log ("Starting new game!");
 
-		// choose director
-
-		Director director = GameEngine.instance.m_directorList[Random.Range(0, GameEngine.instance.m_directorList.Length)];
-
 		// create game
 
 		Game newGame = new Game ();
 		GameEngine.instance.AddNewGame (newGame);
+
+		// choose director
+
+		Director director = GameEngine.instance.m_directorList[Random.Range(0, GameEngine.instance.m_directorList.Length)];
+		newGame.AddDirector (director);
 
 		// create player
 
@@ -83,6 +84,7 @@ public class Action_StartNewGame : Action {
 				Site s = (Site)Object.Instantiate (newRegion.m_startingSites [j]);
 				s.id = siteID;
 				siteID++;
+				s.regionID = newRegion.id;
 				s.Initialize ();
 				newRegion.AddSite (s);
 			}

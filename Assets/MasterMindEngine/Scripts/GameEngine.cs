@@ -19,7 +19,7 @@ public class GameEngine : MonoBehaviour {
 
 	private Game m_game;
 
-	private bool m_gameOver = false;
+//	private bool m_gameOver = false;
 
 	private int m_currentTurnPhase = 0;
 

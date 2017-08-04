@@ -18,6 +18,28 @@ MonoBehaviour:
   m_startingFloors:
   - {fileID: 11400000, guid: bb9ea54c29df04c05950c9624588c9ab, type: 2}
   - {fileID: 11400000, guid: 472285e26814a4ae180a8e27e4102ea4, type: 2}
+  m_alertData:
+  - m_siteType: 1
+    m_traitList:
+    - {fileID: 11400000, guid: c480c26f4276a4a288248aa212077f74, type: 2}
+    - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
+    - {fileID: 11400000, guid: 8ea12b34aecf546419deec32406a7f2d, type: 2}
+    - {fileID: 11400000, guid: 0bd423edde1ea4e9ab916c68cae28740, type: 2}
+    - {fileID: 11400000, guid: 148ce0687488f4a6bb6715fdf8d93900, type: 2}
+  - m_siteType: 2
+    m_traitList:
+    - {fileID: 11400000, guid: 9b56630c1046445faa9bb0e26e0250ad, type: 2}
+    - {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+    - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
+    - {fileID: 11400000, guid: 58e409cb8cce84636b65a3795186604b, type: 2}
+    - {fileID: 11400000, guid: 595887fcc02d949a88cf2fb468c9df99, type: 2}
+  - m_siteType: 3
+    m_traitList:
+    - {fileID: 11400000, guid: 4acf9e0be35cd4dbb9991d98430d605d, type: 2}
+    - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
+    - {fileID: 11400000, guid: 1e2b0cd761b294123a2ed74a09af1f42, type: 2}
+    - {fileID: 11400000, guid: 35ace737fef244e77b9d1ead709b16e4, type: 2}
+    - {fileID: 11400000, guid: 57ddbbd690c814688a07fbd31f408814, type: 2}
   m_startingHireSlots: 3
   m_startingHenchmenSlots: 3
   m_startingCommandPool: 10

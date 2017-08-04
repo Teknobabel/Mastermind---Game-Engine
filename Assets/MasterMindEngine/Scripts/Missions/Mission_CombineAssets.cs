@@ -12,31 +12,6 @@ public class Mission_CombineAssets : Mission {
 	{
 		base.CompleteMission (plan);
 
-		Player player = GameEngine.instance.game.playerList [0];
-
-		string title = "Mission Completed";
-		string message = "Mission: " + plan.m_currentMission.m_name;
-
-		if (plan.m_result == MissionPlan.Result.Success) {
-
-			message += " is a success!";
-
-		} else if (plan.m_result == MissionPlan.Result.Fail) {
-
-			message += " is a failure.";
-
-		}
-
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
-
-		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
-
-			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-
-				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
-			}
-		}
-
 		if (plan.m_result == MissionPlan.Result.Success) {
 			
 			List<Site.AssetSlot> assets = GameController.instance.GetAssets (0);
@@ -70,6 +45,8 @@ public class Mission_CombineAssets : Mission {
 
 				// grant new asset
 
+				Player player = GameEngine.instance.game.playerList [0];
+
 				Action_GainAsset gainAsset = new Action_GainAsset ();
 				gainAsset.m_asset = m_gainedAsset;
 				gainAsset.m_player = player;
@@ -77,8 +54,11 @@ public class Mission_CombineAssets : Mission {
 			} else {
 
 				// player doesn't have required assets
-				title = "Warning";
-				message = "You don't own all the required Assets for this Mission.";
+
+				Player player = GameEngine.instance.game.playerList [0];
+
+				string title = "Warning";
+				string message = "You don't own all the required Assets for this Mission.";
 				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 
 			}

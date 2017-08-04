@@ -30,7 +30,7 @@ public class Action_HireAgent : Action {
 
 				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty && aSlot.m_actor.id == m_henchmenID) {
 
-					Actor thisHenchmen = aSlot.m_actor;
+//					Actor thisHenchmen = aSlot.m_actor;
 
 					aSlot.RemoveHenchmen ();
 

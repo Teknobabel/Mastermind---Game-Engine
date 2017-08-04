@@ -13,4 +13,5 @@ public enum GameEvent {
 	Player_MissionCompleted,
 	Player_OmegaPlanChanged,
 	Player_AssetsChanged,
+	Player_OmegaPlanGoalCompleted,
 }

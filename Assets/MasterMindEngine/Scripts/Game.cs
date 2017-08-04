@@ -12,7 +12,14 @@ public class Game  {
 
 	private Dictionary<int, Actor> m_henchmenList = new Dictionary<int, Actor>();
 
+	private Director m_director;
+
 	private int m_currentTurn = 0;
+
+	public void AddDirector (Director director)
+	{
+		m_director = director;
+	}
 
 	public void AddPlayer (Player player)
 	{
@@ -75,5 +82,7 @@ public class Game  {
 	public Dictionary<int, Player> playerList {get{ return m_playerList; }}
 	public Dictionary<int, Actor> henchmenList {get{ return m_henchmenList; }}
 	public Dictionary<int, Region> regionList {get{ return m_regionList; }}
+	public Dictionary<int, Site> siteList {get{ return m_siteList; }}
 	public int currentTurn {get{return m_currentTurn;}}
+	public Director director {get{ return m_director;}}
 }

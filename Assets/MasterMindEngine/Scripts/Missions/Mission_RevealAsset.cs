@@ -10,14 +10,12 @@ public class Mission_RevealAsset : Mission {
 
 		Player player = GameEngine.instance.game.playerList [0];
 
-		string title = "Mission Completed";
-		string message = "Mission: " + plan.m_currentMission.m_name;
+//		string title = "";
+//		string message = "";
 
 		if (plan.m_result == MissionPlan.Result.Success) {
 
 			plan.m_missionSite.UpdateAlert (1);
-
-			message += " is a success!";
 
 			List<Site.AssetSlot> hiddenAssets = new List<Site.AssetSlot> ();
 
@@ -31,34 +29,47 @@ public class Mission_RevealAsset : Mission {
 
 			if (hiddenAssets.Count > 0) {
 
+//				title = "Asset Revealed";
+
 				int rand = Random.Range (0, hiddenAssets.Count);
 
 				Site.AssetSlot aSlot = hiddenAssets [rand];
-				aSlot.m_state = Site.AssetSlot.State.Revealed;
 
-				message += "\n" + aSlot.m_asset.m_name + " is revealed in " + plan.m_missionSite.m_siteName + ".";
+				Action_RevealAsset revealAsset = new Action_RevealAsset ();
+				revealAsset.m_playerID = 0;
+				revealAsset.m_assetSlot = aSlot;
+				GameController.instance.ProcessAction (revealAsset);
+
+//				aSlot.m_state = Site.AssetSlot.State.Revealed;
+
+//				message += "\n" + aSlot.m_asset.m_name + " is revealed in " + plan.m_missionSite.m_siteName + ".";
 
 			} else {
 
-				message += "\nThere are no hidden Assets to reveal";
+				string title = "No Assets Found";
+				string message = "\nThere are no hidden Assets to reveal";
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 			}
 
 		} else if (plan.m_result == MissionPlan.Result.Fail) {
-
-			message += " is a failure.";
-
-			plan.m_missionSite.UpdateAlert (2);
+			
+//			plan.m_missionSite.UpdateAlert (2);
+			Action_ChangeAlertLevel increaseAlertLevel = new Action_ChangeAlertLevel();
+			increaseAlertLevel.m_playerID = 0;
+			increaseAlertLevel.m_amount = 2;
+			increaseAlertLevel.m_siteID = plan.m_missionSite.id;
+			GameController.instance.ProcessAction (increaseAlertLevel);
 
 		}
 
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
-
-		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
-
-			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-
-				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
-			}
-		}
+//		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+//
+//		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
+//
+//			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+//
+//				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
+//			}
+//		}
 	}
 }
