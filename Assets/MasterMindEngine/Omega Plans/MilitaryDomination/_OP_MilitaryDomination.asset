@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8cfa2dc0e5874b58a49157929440686, type: 3}
+  m_Name: _OP_MilitaryDomination
+  m_EditorClassIdentifier: 
+  m_name: Military Domination
+  m_startingPhases:
+  - m_goals:
+    - m_mission: {fileID: 11400000, guid: 22b9289cfd2514ed7bf419cc64bab417, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 14d9a7f8b808e4b929673cfdf07dc8ab, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 6f92a9b801fec4ef08e519adab7e01f6, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+  - m_goals:
+    - m_mission: {fileID: 11400000, guid: 7d4ba90f632034ee7ada1e9d63539fe8, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 40ffaa0b569504454bd341260cf5c95d, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: ee8e3d4d26a314c05b28f4efd07f5f57, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+  - m_goals:
+    - m_mission: {fileID: 11400000, guid: 66f7db437316f4eaebb3fb2a264dbc76, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: f43c3685428094919b112d71eab1b159, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0
+    - m_mission: {fileID: 11400000, guid: 7409fd415de754d4da736294186ed831, type: 2}
+      m_mandatoryAssets: []
+      m_new: 1
+      m_state: 0

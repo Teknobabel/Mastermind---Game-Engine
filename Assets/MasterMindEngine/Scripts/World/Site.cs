@@ -76,7 +76,10 @@ public class Site : ScriptableObject, IBaseObject {
 
 				int rand = Random.Range (0, ral.m_assets.Count);
 				Asset a = ral.m_assets [rand];
-				AddAsset (a);
+
+				if (a.m_name != "Blank") {
+					AddAsset (a);
+				}
 			}
 		}
 
@@ -92,7 +95,7 @@ public class Site : ScriptableObject, IBaseObject {
 				int rand = Random.Range (0, rtl.m_traits.Count);
 				SiteTrait t = rtl.m_traits [rand];
 
-				if (!m_traits.Contains (t)) {
+				if (!m_traits.Contains (t) && t.m_name != "Blank") {
 					
 					AddTrait (t);
 				}

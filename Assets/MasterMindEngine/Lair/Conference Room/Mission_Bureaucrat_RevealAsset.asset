@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1437fc19b2e3d467b96125e1bd0c5984, type: 3}
+  m_Name: Mission_Bureaucrat_RevealAsset
+  m_EditorClassIdentifier: 
+  m_name: Grease Palms
+  m_description: Reveal a hidden Asset in the World
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 623d1d424d81f49f3b83c27c07649bbd, type: 2}
+  - {fileID: 11400000, guid: 8ea12b34aecf546419deec32406a7f2d, type: 2}
+  m_infamy: 0
+  m_cost: 3
+  m_duration: 2

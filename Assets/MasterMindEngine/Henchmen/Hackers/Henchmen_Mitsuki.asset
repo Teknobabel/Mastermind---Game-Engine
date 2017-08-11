@@ -14,6 +14,7 @@ MonoBehaviour:
   m_actorName: Mitsuki
   m_startingTraits:
   - {fileID: 11400000, guid: cc61c91c3717c45bd92a5453346da037, type: 2}
+  m_status: {fileID: 11400000, guid: c1981ce4abe2246b4bf9f500bc38fc34, type: 2}
   m_startingCost: 1
   m_turnCost: 1
   m_portrait_Compact: {fileID: 0}

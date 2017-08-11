@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Industrial
   m_type: 7
-  m_requiredTrait: {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  m_requiredTrait: {fileID: 11400000, guid: 35ace737fef244e77b9d1ead709b16e4, type: 2}

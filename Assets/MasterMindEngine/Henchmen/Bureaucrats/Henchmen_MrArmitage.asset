@@ -18,7 +18,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8ea12b34aecf546419deec32406a7f2d, type: 2}
   - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
   - {fileID: 11400000, guid: cb80c1c61635a4bdf978e94e823609f6, type: 2}
+  m_status: {fileID: 11400000, guid: c1981ce4abe2246b4bf9f500bc38fc34, type: 2}
   m_startingCost: 3
   m_turnCost: 2
+  m_rank: 2
   m_portrait_Compact: {fileID: 0}
   m_portrait_Large: {fileID: 0}

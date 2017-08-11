@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6972a9ca53d4585a51e0d44f9e59f0, type: 3}
+  m_Name: Floor_ConferenceRoom
+  m_EditorClassIdentifier: 
+  m_name: Conference Room
+  m_startingHenchmenSlots: 1
+  m_missions:
+  - {fileID: 11400000, guid: 108e5b3fa45524eee908d6173a0c1272, type: 2}
+  - {fileID: 11400000, guid: 35a33f494859c4a96bf00506d16ca498, type: 2}
+  - {fileID: 11400000, guid: 3f24195a4f27d4c369e29c476b8a79b6, type: 2}
+  - {fileID: 11400000, guid: f057c46c91c464c96be1644682052529, type: 2}
+  - {fileID: 11400000, guid: 1a74c75fd1374437da14cf00360fb366, type: 2}

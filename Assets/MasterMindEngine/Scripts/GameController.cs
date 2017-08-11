@@ -275,6 +275,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 		List<Trait> requiredTraits = new List<Trait> ();
 		List<Trait> presentTraits = new List<Trait> ();
+		float successModifier = 0;
 		//		int successChance = 0;
 
 		// get traits from mission
@@ -342,6 +343,10 @@ public class GameController : MonoBehaviour, ISubject {
 
 			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
 
+				// check status
+
+				successModifier += (float)aSlot.m_actor.m_status.m_successModifier;
+
 				foreach (Trait t in aSlot.m_actor.traits) {
 
 					if (!presentTraits.Contains (t) && requiredTraits.Contains(t)) {
@@ -357,7 +362,8 @@ public class GameController : MonoBehaviour, ISubject {
 
 		float totalTraits = (float)requiredTraits.Count;
 		float matchingTraits = (float)presentTraits.Count;
-		float success = matchingTraits / totalTraits * 100;
+		float success = Mathf.Clamp( (matchingTraits / totalTraits * 100) + successModifier, 0.0f, 100.0f);
+
 
 		plan.m_requiredTraits = requiredTraits;
 		plan.m_matchingTraits = presentTraits;

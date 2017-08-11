@@ -16,6 +16,13 @@ public class Mission : ScriptableObject {
 		SiteTrait,
 	}
 
+	public enum InfamyLevel
+	{
+		Low,
+		Medium,
+		High,
+	}
+
 	public string 
 	m_name = "Null",
 	m_description = "Null";
@@ -23,6 +30,9 @@ public class Mission : ScriptableObject {
 	public TargetType m_targetType = TargetType.Site;
 
 	public Trait[] m_requiredTraits;
+	public Asset[] m_requiredAssets;
+
+	public InfamyLevel m_infamy = InfamyLevel.Low;
 
 	public int 
 	m_cost = 1,
@@ -60,5 +70,25 @@ public class Mission : ScriptableObject {
 				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
 			}
 		}
+
+		// update infamy
+
+		Action_GainInfamy gainInfamy = new Action_GainInfamy ();
+		gainInfamy.m_playerID = 0;
+
+		switch (plan.m_currentMission.m_infamy) {
+
+		case InfamyLevel.Low:
+			gainInfamy.m_amount = 1;
+			break;
+		case InfamyLevel.Medium:
+			gainInfamy.m_amount = 2;
+			break;
+		case InfamyLevel.High:
+			gainInfamy.m_amount = 3;
+			break;
+		}
+
+		GameController.instance.ProcessAction (gainInfamy);
 	}
 }

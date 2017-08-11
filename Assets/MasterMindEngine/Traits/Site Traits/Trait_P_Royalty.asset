@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Royalty
   m_type: 7
-  m_requiredTrait: {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  m_requiredTrait: {fileID: 11400000, guid: 0bd423edde1ea4e9ab916c68cae28740, type: 2}

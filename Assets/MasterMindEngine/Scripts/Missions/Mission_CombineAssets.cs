@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mission_CombineAssets : Mission {
 
-	public Asset[] m_requiredAssets;
+//	public Asset[] m_requiredAssets;
 
 	public Asset m_gainedAsset;
 

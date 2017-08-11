@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Corruption
   m_type: 7
-  m_requiredTrait: {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  m_requiredTrait: {fileID: 11400000, guid: 148ce0687488f4a6bb6715fdf8d93900, type: 2}

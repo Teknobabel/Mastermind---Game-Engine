@@ -14,6 +14,7 @@ MonoBehaviour:
   m_actorName: King
   m_startingTraits:
   - {fileID: 11400000, guid: 3e9e65fa5e5de47c89b6caf3433efa07, type: 2}
+  m_status: {fileID: 11400000, guid: c1981ce4abe2246b4bf9f500bc38fc34, type: 2}
   m_startingCost: 1
   m_turnCost: 1
   m_portrait_Compact: {fileID: 0}

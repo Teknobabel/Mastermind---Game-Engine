@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6972a9ca53d4585a51e0d44f9e59f0, type: 3}
+  m_Name: Floor_BlackMarket
+  m_EditorClassIdentifier: 
+  m_name: Black Market
+  m_startingHenchmenSlots: 1
+  m_missions:
+  - {fileID: 11400000, guid: 80a745673b4204d8482a121f4459e183, type: 2}
+  - {fileID: 11400000, guid: b5a45e870238a4fd8b216c5f8c59ba61, type: 2}
+  - {fileID: 11400000, guid: 10b6407dc29d54ee195bb8190cb90a0a, type: 2}
+  - {fileID: 11400000, guid: fd5c3ad4b0ec74e4fb9319db13978a01, type: 2}
+  - {fileID: 11400000, guid: a1af63798309d4d43bf2e7b1e3d0ef2a, type: 2}

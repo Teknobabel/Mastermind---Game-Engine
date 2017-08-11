@@ -55,6 +55,13 @@ public class TurnPhase_PlayerPhase : TurnPhase {
 			GameController.instance.ProcessAction (payUpkeep);
 		}
 
+		// gain infamy
+
+		Action_GainInfamy gainInfamy = new Action_GainInfamy ();
+		gainInfamy.m_playerID = 0;
+		gainInfamy.m_amount = 1;
+		GameController.instance.ProcessAction (gainInfamy);
+
 		GameController.instance.Notify (player, GameEvent.Turn_PlayerPhaseStarted);
 
 //		GameEngine.instance.NextTurnPhase ();

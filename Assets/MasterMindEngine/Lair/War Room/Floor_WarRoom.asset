@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6972a9ca53d4585a51e0d44f9e59f0, type: 3}
+  m_Name: Floor_WarRoom
+  m_EditorClassIdentifier: 
+  m_name: War Room
+  m_startingHenchmenSlots: 1
+  m_missions:
+  - {fileID: 11400000, guid: aae0de5df7e27431fbc28cdc3b8d8ce2, type: 2}
+  - {fileID: 11400000, guid: 47d80f963807641ad8f41d9760de8ba2, type: 2}
+  - {fileID: 11400000, guid: 67883a7b3a5b9438a942298a1866ea6b, type: 2}
+  - {fileID: 11400000, guid: ef0ada82841884d86b240bc442b01782, type: 2}
+  - {fileID: 11400000, guid: a4ac1832795c94dee9e006c7b1e4c8a5, type: 2}

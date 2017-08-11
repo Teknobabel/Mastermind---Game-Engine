@@ -110,6 +110,7 @@ public class Action_StartNewGame : Action {
 		// instantiate henchmen
 
 		List<int> startingHenchmen = new List<int> ();
+		List<int> startingHireableHenchmen = new List<int> ();
 
 		for (int i = 0; i < GameEngine.instance.m_henchmenList.Length; i++) {
 
@@ -124,6 +125,14 @@ public class Action_StartNewGame : Action {
 
 				if (thisA == a) {
 					startingHenchmen.Add (newHenchmen.id);
+					break;
+				}
+			}
+
+			foreach (Actor thisA in director.m_startingHireableHenchmen) {
+
+				if (thisA == a) {
+					startingHireableHenchmen.Add (newHenchmen.id);
 					break;
 				}
 			}
@@ -156,18 +165,34 @@ public class Action_StartNewGame : Action {
 
 		}
 
+		// add any starting hireable henchmen from director
+
+		foreach (int thisID in startingHireableHenchmen) {
+
+			Actor henchmen = newGame.henchmenList [thisID];
+			Action_MakeHireable makeHireable = new Action_MakeHireable ();
+			makeHireable.m_player = newPlayer;
+			makeHireable.m_henchmen = henchmen;
+			GameController.instance.ProcessAction (makeHireable);
+		}
+
 		// populate empty hiring slots
 
 		for (int i = 0; i < hiringPool.m_hireSlots.Count; i++) {
 
-			Action_MakeHireable makeHireable = new Action_MakeHireable ();
-			makeHireable.m_player = newPlayer;
+			Player.ActorSlot aSlot = hiringPool.m_hireSlots [i];
 
-			int rand = Random.Range (0, hiringPool.m_availableHenchmen.Count);
-			Actor a = hiringPool.m_availableHenchmen [rand];
-			makeHireable.m_henchmen = a;
+			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.Empty) {
 
-			GameController.instance.ProcessAction (makeHireable);
+				Actor henchmen = newPlayer.hiringPool.GetHenchmenToHire (newPlayer.infamy);
+
+				if (henchmen != null) {
+					Action_MakeHireable addToHiringPool = new Action_MakeHireable ();
+					addToHiringPool.m_player = newPlayer;
+					addToHiringPool.m_henchmen = henchmen;
+					GameController.instance.ProcessAction (addToHiringPool);
+				}
+			}
 		}
 
 

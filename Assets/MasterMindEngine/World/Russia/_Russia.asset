@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_regionName: Russia
   m_startingSites:
-  - {fileID: 11400000, guid: b5e6feaf265bf413baef8b80f2cfef61, type: 2}
-  - {fileID: 11400000, guid: 12317932ff237454387995340f017651, type: 2}
-  - {fileID: 11400000, guid: 0e0b94cdd1cd64f41b199071415b0d15, type: 2}
-  - {fileID: 11400000, guid: 4a1622cd5c10d48cd95c1171f228c9ae, type: 2}
-  - {fileID: 11400000, guid: f2f5415b96df54e1387968dca162ec07, type: 2}
-  - {fileID: 11400000, guid: 630425551c48348b7917b2c06e40a0d1, type: 2}
-  - {fileID: 11400000, guid: 4549461fc48b54dc1802fd577e73761b, type: 2}
-  - {fileID: 11400000, guid: 14a2476c703a74e3ab1f7a0a94b7d2b3, type: 2}
-  - {fileID: 11400000, guid: 80f51534c5cc64dd6b8f7c042cda78e0, type: 2}
+  - {fileID: 11400000, guid: aa5208dca81ba4d52842bc3e87a6cf58, type: 2}
+  - {fileID: 11400000, guid: 2fe9c747875074b198538db02ba2f735, type: 2}
+  - {fileID: 11400000, guid: b2992ab824c12493dba8774c8ba97fd6, type: 2}
+  - {fileID: 11400000, guid: 85934b5fd2090417ca3f9df00e64906a, type: 2}
+  - {fileID: 11400000, guid: f83deebdcc40747d4a690f5aed7cecf3, type: 2}
+  - {fileID: 11400000, guid: 7a5572e0be58041328693bbce58cf076, type: 2}
+  - {fileID: 11400000, guid: 884ad9c6b848d4f9caf1fe85f390d0d9, type: 2}
+  - {fileID: 11400000, guid: 1e1a151cf097c49b58bb13cf85762599, type: 2}
+  - {fileID: 11400000, guid: e79647e68b2e1467691c848997b31e46, type: 2}

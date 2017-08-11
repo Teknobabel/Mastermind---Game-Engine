@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_regionName: MiddleEast
   m_startingSites:
-  - {fileID: 11400000, guid: 1ea31c147c05945ecb5f2b8d94da0356, type: 2}
-  - {fileID: 11400000, guid: 107e5bbf3d28740c1ad60bd0a3d72826, type: 2}
-  - {fileID: 11400000, guid: 295468033c3694498b563ebb0575eb17, type: 2}
-  - {fileID: 11400000, guid: 0c76aa61e2a4b40c4b032d799a1e1dc3, type: 2}
-  - {fileID: 11400000, guid: e516e755d130c426f9111763971f81f2, type: 2}
-  - {fileID: 11400000, guid: bad93884b573b47138e88a6b68faa9af, type: 2}
-  - {fileID: 11400000, guid: d256a40c640954b56857421a22d7e67e, type: 2}
-  - {fileID: 11400000, guid: 219b2bf6dbc514f3591c8a056aa8bdd1, type: 2}
-  - {fileID: 11400000, guid: 60792ed329fad4c80867ddbb5d26516f, type: 2}
+  - {fileID: 11400000, guid: 117fcb9014fc541ef88d76571ead31ae, type: 2}
+  - {fileID: 11400000, guid: 37eae208e44cb48f8a5cfa6ff10fe1f0, type: 2}
+  - {fileID: 11400000, guid: 977d85d9e9ae64881b5f301e5fb74433, type: 2}
+  - {fileID: 11400000, guid: a66c82203bcd74b4b9bdebf82079a66f, type: 2}
+  - {fileID: 11400000, guid: c12d2c55e809644648c50898e66e45f7, type: 2}
+  - {fileID: 11400000, guid: 876ba828908aa4e128ec6d8aa1611cb4, type: 2}
+  - {fileID: 11400000, guid: fe3cb555194b146aaa332cd9ce85322b, type: 2}
+  - {fileID: 11400000, guid: a300f8bbd275d407c83713b76db6ca18, type: 2}
+  - {fileID: 11400000, guid: 66b25e09d6341423988cc7e13107c4a9, type: 2}

@@ -15,6 +15,7 @@ MonoBehaviour:
   m_startingTraits:
   - {fileID: 11400000, guid: 8f84ae1514a0d47c1bae40000ab37336, type: 2}
   - {fileID: 11400000, guid: 9b56630c1046445faa9bb0e26e0250ad, type: 2}
+  m_status: {fileID: 11400000, guid: c1981ce4abe2246b4bf9f500bc38fc34, type: 2}
   m_startingCost: 2
   m_turnCost: 1
   m_portrait_Compact: {fileID: 0}

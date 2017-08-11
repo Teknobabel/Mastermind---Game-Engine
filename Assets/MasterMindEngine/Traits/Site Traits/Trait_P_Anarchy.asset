@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Anarchy
   m_type: 7
-  m_requiredTrait: {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  m_requiredTrait: {fileID: 11400000, guid: 695271dd948864a24aa3140cd8b5b181, type: 2}

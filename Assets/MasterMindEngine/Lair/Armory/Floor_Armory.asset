@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6972a9ca53d4585a51e0d44f9e59f0, type: 3}
+  m_Name: Floor_Armory
+  m_EditorClassIdentifier: 
+  m_name: Infirmary
+  m_startingHenchmenSlots: 1
+  m_missions:
+  - {fileID: 11400000, guid: 78295eeb04f444e71ae042a831cf254d, type: 2}
+  - {fileID: 11400000, guid: 7c1fc41b50d24475f8e32e1b28f2f275, type: 2}
+  - {fileID: 11400000, guid: 20d6abf4269cf4217bc047759b19f9b4, type: 2}
+  - {fileID: 11400000, guid: 5577c856a4a634e9985f103f233f1b94, type: 2}
+  - {fileID: 11400000, guid: f5a930485613c4585a21b15d2388d71b, type: 2}

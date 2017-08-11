@@ -10,9 +10,12 @@ public class Actor : ScriptableObject, IBaseObject {
 
 	public Trait[] m_startingTraits;
 
+	public StatusTrait m_status;
+
 	public int
 	m_startingCost = 1,
-	m_turnCost = 1;
+	m_turnCost = 1,
+	m_rank = 1;
 
 	public Texture
 	m_portrait_Compact,

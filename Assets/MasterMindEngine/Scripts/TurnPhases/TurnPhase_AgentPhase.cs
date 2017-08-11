@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class TurnPhase_AgentPhase : TurnPhase {
 
-//	public override IEnumerator StartTurnPhase ()
-//	{
-//		Debug.Log ("Starting Agent Phase");
-//		yield return null;
-//	}
+	//	public override IEnumerator StartTurnPhase ()
+	//	{
+	//		Debug.Log ("Starting Agent Phase");
+	//		yield return null;
+	//	}
 
 	public override void DoTurnPhase ()
 	{
@@ -44,6 +44,7 @@ public class TurnPhase_AgentPhase : TurnPhase {
 				if (thisMP.m_state == MissionPlan.State.Complete) {
 
 					completedMissions.Add (thisMP);
+					thisMP.m_state = MissionPlan.State.Planning;
 				}
 			}
 
@@ -55,13 +56,13 @@ public class TurnPhase_AgentPhase : TurnPhase {
 
 		// spawn new agents if needed
 
-//		GameEngine.instance.ProgressTurn ();
+		//		GameEngine.instance.ProgressTurn ();
 		Debug.Log ("Ending Agent Phase");
 	}
 
-//	public override IEnumerator EndTurnPhase ()
-//	{
-//		Debug.Log ("Ending Agent Phase");
-//		yield return null;
-//	}
+	//	public override IEnumerator EndTurnPhase ()
+	//	{
+	//		Debug.Log ("Ending Agent Phase");
+	//		yield return null;
+	//	}
 }

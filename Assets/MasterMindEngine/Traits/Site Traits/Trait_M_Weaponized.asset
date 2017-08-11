@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Weaponized
   m_type: 7
-  m_requiredTrait: {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  m_requiredTrait: {fileID: 11400000, guid: 595887fcc02d949a88cf2fb468c9df99, type: 2}

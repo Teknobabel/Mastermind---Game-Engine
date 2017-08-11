@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8cd1710c35d4d749fe6f3fcbba3fd7, type: 3}
+  m_Name: OPMission_2_1_CreateStormTroopers
+  m_EditorClassIdentifier: 
+  m_name: Create Storm Troopers
+  m_description: Null
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 7d51e0fd373854f98baae47297cd2fc5, type: 2}
+  - {fileID: 11400000, guid: 57ddbbd690c814688a07fbd31f408814, type: 2}
+  m_requiredAssets:
+  - {fileID: 11400000, guid: 5c7864cb4e332491f990d7eb967eb402, type: 2}
+  - {fileID: 11400000, guid: 595f40f21ddce46e5a8f8d839365da07, type: 2}
+  m_infamy: 1
+  m_cost: 4
+  m_duration: 4
+  m_asset: {fileID: 11400000, guid: 3c6fed5cdf05c429b8abe097be71f1c8, type: 2}

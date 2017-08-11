@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_regionName: Europe
   m_startingSites:
-  - {fileID: 11400000, guid: 48751fe8fc2214e348b0c7ed59061c90, type: 2}
-  - {fileID: 11400000, guid: 5b36aef38c9cf4c75b950cd18cbcbfc3, type: 2}
-  - {fileID: 11400000, guid: 34ec638e7f342424f9b25c1512ebab34, type: 2}
-  - {fileID: 11400000, guid: 721a612cde0154933a14e8f594942713, type: 2}
-  - {fileID: 11400000, guid: ec8bb9be33ceb47478bb3de80954f0bb, type: 2}
-  - {fileID: 11400000, guid: ef36641b088e84db8aefd468b762c4b7, type: 2}
-  - {fileID: 11400000, guid: 9046bf59834214867902e82abd263f80, type: 2}
-  - {fileID: 11400000, guid: 8499ceee9b508470899c2ca87232136d, type: 2}
-  - {fileID: 11400000, guid: 8a21b73128cac429c8f49f731ef59c35, type: 2}
+  - {fileID: 11400000, guid: 4109dc965693a4c889b4b73cec9c1cb7, type: 2}
+  - {fileID: 11400000, guid: bd23bb459860047099a20072a436490e, type: 2}
+  - {fileID: 11400000, guid: 190ee15925d464135aa6405da1661224, type: 2}
+  - {fileID: 11400000, guid: 2731e2886c61748e2949f2b114ab1255, type: 2}
+  - {fileID: 11400000, guid: 430a4c85568f3486fb67eeb821a7114a, type: 2}
+  - {fileID: 11400000, guid: 9eb3e3f256b6841a49316d46b4f01fb6, type: 2}
+  - {fileID: 11400000, guid: d13a3e428f9634a79a2c96a75255fcb1, type: 2}
+  - {fileID: 11400000, guid: 5d517a59863b84d1f83b2b3038995f7b, type: 2}
+  - {fileID: 11400000, guid: 688bc9a88c71941868097d74262c4a8d, type: 2}

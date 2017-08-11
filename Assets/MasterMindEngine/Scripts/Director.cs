@@ -14,6 +14,8 @@ public class Director : ScriptableObject {
 
 	public Actor[] m_startingHenchmen;
 
+	public Actor[] m_startingHireableHenchmen;
+
 	public OmegaPlan m_startingOmegaPlan;
 
 	public Asset[] m_startingAssets;

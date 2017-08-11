@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Name: Director
   m_EditorClassIdentifier: 
   m_startingHenchmen: []
-  m_startingOmegaPlan: {fileID: 0}
-  m_startingAssets:
-  - {fileID: 11400000, guid: 595f40f21ddce46e5a8f8d839365da07, type: 2}
+  m_startingHireableHenchmen:
+  - {fileID: 11400000, guid: 6e9eed4faed404bc8b12d48f284ce0d1, type: 2}
+  m_startingOmegaPlan: {fileID: 11400000, guid: e9c7fe830d84644beb8e82e55a378f4a,
+    type: 2}
+  m_startingAssets: []
   m_startingFloors:
   - {fileID: 11400000, guid: bb9ea54c29df04c05950c9624588c9ab, type: 2}
   - {fileID: 11400000, guid: 472285e26814a4ae180a8e27e4102ea4, type: 2}

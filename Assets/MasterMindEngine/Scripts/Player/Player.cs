@@ -67,6 +67,45 @@ public class Player: IBaseObject, ISubject {
 	{
 		public List<Actor> m_availableHenchmen = new List<Actor>();
 		public List<ActorSlot> m_hireSlots = new List<ActorSlot>();
+
+		public Actor GetHenchmenToHire (int infamy)
+		{
+			Actor actor = null;
+
+			int rank2Threshold = 20;
+			int rank3Threshold = 50;
+			int rank4Threshold = 10;
+
+			int maxRank = 1;
+
+			if (infamy >= rank4Threshold) {
+
+				maxRank = 4;
+			} else if (infamy >= rank3Threshold) {
+				maxRank = 3;
+			}
+			else if (infamy >= rank2Threshold) {
+				maxRank = 2;
+			}
+
+			List<Actor> validHenchmen = new List<Actor> ();
+
+			foreach (Actor a in m_availableHenchmen) {
+
+				if (a.m_rank <= maxRank) {
+
+					validHenchmen.Add (a);
+				}
+			}
+
+			if (validHenchmen.Count > 0) {
+
+				int rand = Random.Range (0, validHenchmen.Count);
+				actor = (Actor)validHenchmen [rand];
+			}
+
+			return actor;
+		}
 	}
 
 	private int m_id = -1;
@@ -96,6 +135,8 @@ public class Player: IBaseObject, ISubject {
 	private List<MissionPlan> m_currentMissions = new List<MissionPlan> ();
 
 	private MessageCenter m_messageCenter = new MessageCenter();
+
+	private int m_infamy = 0;
 
 	public void SpendCommandPoints (int amt)
 	{
@@ -184,6 +225,11 @@ public class Player: IBaseObject, ISubject {
 		}
 	}
 
+	public void GainInfamy (int amount)
+	{
+		m_infamy += amount;
+	}
+
 	public void AddObserver (IObserver observer){}
 
 	public void RemoveObserver (IObserver observer){}
@@ -211,4 +257,6 @@ public class Player: IBaseObject, ISubject {
 	public List<Site.AssetSlot> assets {get{ return m_assets; }}
 
 	public MessageCenter messageCenter {get{ return m_messageCenter; }}
+
+	public int infamy {get{return m_infamy;}}
 }

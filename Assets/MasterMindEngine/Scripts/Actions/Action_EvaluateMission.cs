@@ -56,7 +56,7 @@ public class Action_EvaluateMission : Action {
 			m_missionPlan.m_successChance = 0;
 			m_missionPlan.m_turnNumber = 0;
 			m_missionPlan.m_result = MissionPlan.Result.None;
-			m_missionPlan.m_state = MissionPlan.State.Planning;
+//			m_missionPlan.m_state = MissionPlan.State.Planning;
 			m_missionPlan.m_requiredTraits.Clear ();
 			m_missionPlan.m_matchingTraits.Clear ();
 

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
+  m_Name: Mission_BuildFLoor_WarRoom
+  m_EditorClassIdentifier: 
+  m_name: 'Build Floor: War Room'
+  m_description: Allows Mercenaries to plan missions for raiding Sites.
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
+  m_requiredAssets: []
+  m_infamy: 0
+  m_cost: 3
+  m_duration: 3
+  m_floor: {fileID: 11400000, guid: 06bb0bbbee0104092a633b4a5283e613, type: 2}

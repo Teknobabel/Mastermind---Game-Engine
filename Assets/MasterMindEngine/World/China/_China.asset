@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_regionName: China
   m_startingSites:
-  - {fileID: 11400000, guid: f4c40953fd1c64a739a4fd74c3129f85, type: 2}
-  - {fileID: 11400000, guid: 7a6fe6055576a4006b0fdf166eb35c1d, type: 2}
-  - {fileID: 11400000, guid: 27f3be3fc095843dc800f3ec17011bdc, type: 2}
-  - {fileID: 11400000, guid: b4b7a932a11484a16a907b6299f2029b, type: 2}
-  - {fileID: 11400000, guid: 1802ffd4f400b41998dfcdce61169db1, type: 2}
-  - {fileID: 11400000, guid: 46a4b6cc41fe64134823081f2dead2a8, type: 2}
-  - {fileID: 11400000, guid: 43a809be36d5f4df2aff32c53fd9a744, type: 2}
-  - {fileID: 11400000, guid: eb70887238df94f258bb51c7a86d8321, type: 2}
-  - {fileID: 11400000, guid: 8dd476b9355e5472b83560b4351890f0, type: 2}
+  - {fileID: 11400000, guid: 920614425d0494b53b9f5fa3aff31a2a, type: 2}
+  - {fileID: 11400000, guid: 2235b1a0fc039484ea86efeab4862362, type: 2}
+  - {fileID: 11400000, guid: c30f91dc2d58d4dac8db657cf1b85e31, type: 2}
+  - {fileID: 11400000, guid: 0d4d0a4e012af416e95cfb26e9e5e4f3, type: 2}
+  - {fileID: 11400000, guid: 84ab2179582ed4c82ab5b77a148caf19, type: 2}
+  - {fileID: 11400000, guid: 4275a2cbb412e416cb44937151501096, type: 2}
+  - {fileID: 11400000, guid: 8569f71c32ed14a559273222755fd141, type: 2}
+  - {fileID: 11400000, guid: 62061abce31c1499d94bae3833d543df, type: 2}
+  - {fileID: 11400000, guid: db1d9e59a025040679579a5f78cf29a9, type: 2}
