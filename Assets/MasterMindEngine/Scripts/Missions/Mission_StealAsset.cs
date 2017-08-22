@@ -25,11 +25,11 @@ public class Mission_StealAsset : Mission {
 //			plan.m_missionSite.RemoveAsset (plan.m_currentAsset);
 
 //			plan.m_missionSite.UpdateAlert (1);
-			Action_ChangeAlertLevel increaseAlertLevel = new Action_ChangeAlertLevel();
-			increaseAlertLevel.m_playerID = 0;
-			increaseAlertLevel.m_amount = 1;
-			increaseAlertLevel.m_siteID = plan.m_missionSite.id;
-			GameController.instance.ProcessAction (increaseAlertLevel);
+//			Action_ChangeAlertLevel increaseAlertLevel = new Action_ChangeAlertLevel();
+//			increaseAlertLevel.m_playerID = 0;
+//			increaseAlertLevel.m_amount = 1;
+//			increaseAlertLevel.m_siteID = plan.m_missionSite.id;
+//			GameController.instance.ProcessAction (increaseAlertLevel);
 
 		}
 	}

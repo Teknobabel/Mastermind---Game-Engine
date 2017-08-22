@@ -51,16 +51,17 @@ public class Mission_RevealAsset : Mission {
 				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 			}
 
-		} else if (plan.m_result == MissionPlan.Result.Fail) {
-			
-//			plan.m_missionSite.UpdateAlert (2);
-			Action_ChangeAlertLevel increaseAlertLevel = new Action_ChangeAlertLevel();
-			increaseAlertLevel.m_playerID = 0;
-			increaseAlertLevel.m_amount = 2;
-			increaseAlertLevel.m_siteID = plan.m_missionSite.id;
-			GameController.instance.ProcessAction (increaseAlertLevel);
-
-		}
+		} 
+//		else if (plan.m_result == MissionPlan.Result.Fail) {
+//			
+////			plan.m_missionSite.UpdateAlert (2);
+//			Action_ChangeAlertLevel increaseAlertLevel = new Action_ChangeAlertLevel();
+//			increaseAlertLevel.m_playerID = 0;
+//			increaseAlertLevel.m_amount = 2;
+//			increaseAlertLevel.m_siteID = plan.m_missionSite.id;
+//			GameController.instance.ProcessAction (increaseAlertLevel);
+//
+//		}
 
 //		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 //

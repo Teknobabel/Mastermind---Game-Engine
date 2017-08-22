@@ -78,6 +78,22 @@ public class GameController : MonoBehaviour, ISubject {
 			
 		return assets;
 	}
+
+	public int GetNumAssetSlots (int playerNum)
+	{
+		if (GameEngine.instance.game.playerList.ContainsKey (playerNum)) {
+
+			Player player = GameEngine.instance.game.playerList [playerNum];
+
+			return player.NumAssetSlots ();
+
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+
+		return 0;
+	}
 	
 	// get hiring pool
 
@@ -275,6 +291,11 @@ public class GameController : MonoBehaviour, ISubject {
 
 		List<Trait> requiredTraits = new List<Trait> ();
 		List<Trait> presentTraits = new List<Trait> ();
+
+		List<Asset> requiredAssets = new List<Asset> ();
+//		List<Asset> presentAssets = new List<Asset> ();
+
+		int numTraitsModified = 0;
 		float successModifier = 0;
 		//		int successChance = 0;
 
@@ -284,7 +305,20 @@ public class GameController : MonoBehaviour, ISubject {
 
 			if (!requiredTraits.Contains (t)) {
 				requiredTraits.Add (t);
+
+				if (t.m_type == Trait.Type.Skill) {
+					numTraitsModified += 2;
+				} else {
+					numTraitsModified++;
+				}
 			}
+		}
+
+		// get assets from mission
+
+		foreach (Asset a in plan.m_currentMission.m_requiredAssets) {
+
+			requiredAssets.Add (a);
 		}
 
 		// get traits in response to site traits
@@ -294,7 +328,14 @@ public class GameController : MonoBehaviour, ISubject {
 			foreach (SiteTrait st in plan.m_missionSite.traits) {
 
 				if (!requiredTraits.Contains (st.m_requiredTrait)) {
+					
 					requiredTraits.Add (st.m_requiredTrait);
+
+					if (st.m_requiredTrait.m_type == Trait.Type.Skill) {
+						numTraitsModified += 2;
+					} else {
+						numTraitsModified++;
+					}
 				}
 			}
 		}
@@ -315,6 +356,12 @@ public class GameController : MonoBehaviour, ISubject {
 
 							if (!requiredTraits.Contains (t)) {
 								requiredTraits.Add (t);
+
+								if (t.m_type == Trait.Type.Skill) {
+									numTraitsModified += 2;
+								} else {
+									numTraitsModified++;
+								}
 							}
 						}
 					}
@@ -332,12 +379,21 @@ public class GameController : MonoBehaviour, ISubject {
 			foreach (Trait t in plan.m_currentAsset.m_asset.m_requiredTraits) {
 
 				if (!requiredTraits.Contains (t)) {
+					
 					requiredTraits.Add (t);
+
+					if (t.m_type == Trait.Type.Skill) {
+						numTraitsModified += 2;
+					} else {
+						numTraitsModified++;
+					}
 				}
 			}
 		}
 
 		// collect all traits from participating henchmen
+
+		int numTraitsPresentModified = 0;
 
 		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
 
@@ -352,6 +408,12 @@ public class GameController : MonoBehaviour, ISubject {
 					if (!presentTraits.Contains (t) && requiredTraits.Contains(t)) {
 
 						presentTraits.Add (t);
+
+						if (t.m_type == Trait.Type.Skill) {
+							numTraitsPresentModified += 2;
+						} else {
+							numTraitsPresentModified++;
+						}
 					}
 				}
 			}
@@ -360,11 +422,13 @@ public class GameController : MonoBehaviour, ISubject {
 		// see how many matching traits there are and calculate success chance
 		// skills count for double
 
-		float totalTraits = (float)requiredTraits.Count;
-		float matchingTraits = (float)presentTraits.Count;
+//		float totalTraits = (float)requiredTraits.Count;
+//		float matchingTraits = (float)presentTraits.Count;
+		float totalTraits = (float)numTraitsModified;
+		float matchingTraits = (float)numTraitsPresentModified;
 		float success = Mathf.Clamp( (matchingTraits / totalTraits * 100) + successModifier, 0.0f, 100.0f);
 
-
+		plan.m_requiredAssets = requiredAssets;
 		plan.m_requiredTraits = requiredTraits;
 		plan.m_matchingTraits = presentTraits;
 		plan.m_successChance = (int)success;

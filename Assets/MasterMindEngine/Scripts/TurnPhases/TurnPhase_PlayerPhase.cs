@@ -55,6 +55,33 @@ public class TurnPhase_PlayerPhase : TurnPhase {
 			GameController.instance.ProcessAction (payUpkeep);
 		}
 
+		// pay for any extra Assets over limit
+
+		int numAssetSlots = player.NumAssetSlots ();
+		int numAssets = 0;
+
+		foreach (Site.AssetSlot aSlot in player.assets) {
+
+			if (aSlot.m_state != Site.AssetSlot.State.None) {
+				numAssets++;
+			}
+		}
+
+		int overage = numAssets - numAssetSlots;
+
+		if (overage > 0) {
+
+			string title = "Too Many Assets";
+			string message = "You have more Assets than available space. 1 CP must be paid for each additional Asset.";
+			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+
+			Action_SpendCommandPoints payOverage = new Action_SpendCommandPoints ();
+			payOverage.m_amount = overage;
+			payOverage.m_playerID = 0;
+			GameController.instance.ProcessAction (payOverage);
+
+		}
+
 		// gain infamy
 
 		Action_GainInfamy gainInfamy = new Action_GainInfamy ();

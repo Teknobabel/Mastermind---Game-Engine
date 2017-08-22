@@ -10,5 +10,8 @@ public class Action_SetActorNewState : Action {
 	public override void ExecuteAction ()
 	{
 		m_actorSlot.m_new = m_newState;
+
+		Player player = GameEngine.instance.game.playerList [0];
+		GameController.instance.Notify (player, GameEvent.Henchmen_NewStateChanged);
 	}
 }

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Asset_Blackmail
   m_EditorClassIdentifier: 
   m_name: Blackmail
+  m_rank: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: 4acf9e0be35cd4dbb9991d98430d605d, type: 2}

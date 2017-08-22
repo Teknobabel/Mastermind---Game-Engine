@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Asset_Workers
   m_EditorClassIdentifier: 
   m_name: Workers
+  m_rank: 1
   m_requiredTraits:
   - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}

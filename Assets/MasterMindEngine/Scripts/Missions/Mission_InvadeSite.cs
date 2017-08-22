@@ -77,16 +77,14 @@ public class Mission_InvadeSite : Mission {
 
 			foreach (Site s in region.sites) {
 
-				Action_ChangeAlertLevel increaseAlertLevel = new Action_ChangeAlertLevel();
-				increaseAlertLevel.m_playerID = 0;
-
-				if (s.id == site.id) {
-					increaseAlertLevel.m_amount = 3;
-				} else {
+				if (s.id != site.id) {
+					
+					Action_ChangeAlertLevel increaseAlertLevel = new Action_ChangeAlertLevel ();
+					increaseAlertLevel.m_playerID = 0;
 					increaseAlertLevel.m_amount = 2;
+					increaseAlertLevel.m_siteID = s.id;
+					GameController.instance.ProcessAction (increaseAlertLevel);
 				}
-				increaseAlertLevel.m_siteID = s.id;
-				GameController.instance.ProcessAction (increaseAlertLevel);
 			}
 
 		}

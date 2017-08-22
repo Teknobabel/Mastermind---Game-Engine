@@ -27,6 +27,7 @@ public class Player: IBaseObject, ISubject {
 		public Actor m_actor;
 		public bool m_new;
 		public ActorSlotState m_state;
+		public int m_turnsPresent = 0;
 
 		public void SetHenchmen (Actor a)
 		{
@@ -43,6 +44,7 @@ public class Player: IBaseObject, ISubject {
 			m_actor = null;
 			m_new = false;
 			m_state = ActorSlotState.Empty;
+			m_turnsPresent = 0;
 		}
 	}
 
@@ -66,6 +68,7 @@ public class Player: IBaseObject, ISubject {
 	public class HiringPool
 	{
 		public List<Actor> m_availableHenchmen = new List<Actor>();
+		public List<Actor> m_tempBank = new List<Actor>(); // makes sure any actors fired / left don't immediate get added back in
 		public List<ActorSlot> m_hireSlots = new List<ActorSlot>();
 
 		public Actor GetHenchmenToHire (int infamy)
@@ -136,7 +139,8 @@ public class Player: IBaseObject, ISubject {
 
 	private MessageCenter m_messageCenter = new MessageCenter();
 
-	private int m_infamy = 0;
+	private int m_infamy = 0,
+	m_baseAssetSlots = 0;
 
 	public void SpendCommandPoints (int amt)
 	{
@@ -180,7 +184,20 @@ public class Player: IBaseObject, ISubject {
 		aSlot.m_new = true;
 		m_assets.Add (aSlot);
 
-//		m_assets.Add (newAsset);
+		//		m_assets.Add (newAsset);
+	}
+
+	public bool HasAsset (Asset asset)
+	{
+
+		foreach (Site.AssetSlot aSlot in m_assets) {
+
+			if (aSlot.m_asset.m_name == asset.m_name) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public void RemoveAsset (Asset oldAsset)
@@ -211,6 +228,12 @@ public class Player: IBaseObject, ISubject {
 				return;
 			}
 		}
+	}
+
+	public int NumAssetSlots ()
+	{
+		int numSlots = GameEngine.instance.game.director.m_startingAssetSlots + m_baseAssetSlots;
+		return numSlots;
 	}
 
 	public void AddMission (MissionPlan plan)
@@ -259,4 +282,7 @@ public class Player: IBaseObject, ISubject {
 	public MessageCenter messageCenter {get{ return m_messageCenter; }}
 
 	public int infamy {get{return m_infamy;}}
+
+	public int baseAssetSlots {get{ return m_baseAssetSlots; } set{ m_baseAssetSlots = value; }}
+
 }

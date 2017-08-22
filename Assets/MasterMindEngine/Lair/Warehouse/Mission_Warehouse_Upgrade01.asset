@@ -8,15 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1437fc19b2e3d467b96125e1bd0c5984, type: 3}
-  m_Name: Mission_Bureaucrat_RevealAsset
+  m_Script: {fileID: 11500000, guid: 07dd07c144d2e4b9fb6a9dbe3fe2d34b, type: 3}
+  m_Name: Mission_Warehouse_Upgrade01
   m_EditorClassIdentifier: 
-  m_name: Grease Palms
-  m_description: Reveal a hidden Asset in the World
+  m_name: Upgrade Alpha
+  m_description: Increase the number of Assets your Lair can hold.
   m_targetType: 3
   m_requiredTraits:
-  - {fileID: 11400000, guid: 623d1d424d81f49f3b83c27c07649bbd, type: 2}
+  - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
   m_requiredAssets: []
   m_infamy: 0
-  m_cost: 3
+  m_cost: 4
   m_duration: 3

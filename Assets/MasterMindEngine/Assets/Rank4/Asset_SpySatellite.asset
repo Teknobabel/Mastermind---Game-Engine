@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Asset_SpySatellite
   m_EditorClassIdentifier: 
   m_name: Spy Satellite
+  m_rank: 4
   m_requiredTraits:
   - {fileID: 11400000, guid: 1e2b0cd761b294123a2ed74a09af1f42, type: 2}

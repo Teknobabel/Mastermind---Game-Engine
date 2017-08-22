@@ -68,6 +68,24 @@ public class Action_StartNewGame : Action {
 
 		GameController.instance.ProcessAction (unlockOP);
 
+		// gather any mandatory assets from omega plan
+
+		List<Asset> mandatoryAssets = new List<Asset> ();
+
+		foreach (OmegaPlan.Phase thisPhase in newPlayer.omegaPlanSlot.m_omegaPlan.phases) {
+
+			foreach (OmegaPlan.OPGoal thisGoal in thisPhase.m_goals) {
+
+				if (thisGoal.m_mandatoryAssets.Length > 0) {
+
+					foreach (Asset a in thisGoal.m_mandatoryAssets) {
+
+						mandatoryAssets.Add (a);
+					}
+				}
+			}
+		}
+
 		// instantiate regions
 
 		int siteID = 0;
@@ -92,8 +110,38 @@ public class Action_StartNewGame : Action {
 			newGame.AddRegion (newRegion);
 		}
 
-		// add mandatory assets from OP to regions
+		// disperse mandatory assets from OP to sites
 
+		if (mandatoryAssets.Count > 0) {
+
+			while (mandatoryAssets.Count > 0) {
+
+				Asset a = mandatoryAssets [0];
+				mandatoryAssets.RemoveAt (0);
+
+				// gather a list of valid regions based on asset rank vs site max alert level
+
+				List<Site> validSites = new List<Site> ();
+
+				foreach (KeyValuePair<int, Site> pair in newGame.siteList) {
+
+					if (pair.Value.m_maxAlertLevel >= a.m_rank) {
+
+						validSites.Add (pair.Value);
+					}
+				}
+
+				if (validSites.Count > 0) {
+
+					Site s = validSites [Random.Range (0, validSites.Count)];
+					s.AddAsset (a);
+
+				} else {
+
+					Debug.Log ("No valid sites found for asset: " + a.m_name + " rank: " + a.m_rank);
+				}
+			}
+		}
 
 
 		// initialize hiring pool

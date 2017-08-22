@@ -76,6 +76,7 @@ public class OmegaPlan : ScriptableObject, IObserver {
 				}
 
 				newPhase.m_goals.Add (newGoal);
+				GameController.instance.CompileMission (newGoal.plan);
 			}
 
 			m_phases.Add (newPhase);

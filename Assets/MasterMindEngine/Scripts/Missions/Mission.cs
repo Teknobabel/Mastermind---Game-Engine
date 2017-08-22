@@ -71,24 +71,82 @@ public class Mission : ScriptableObject {
 			}
 		}
 
-		// update infamy
+		// update infamy and site alert level
 
-		Action_GainInfamy gainInfamy = new Action_GainInfamy ();
-		gainInfamy.m_playerID = 0;
+		int alertGain = 0;
+		int infamyGain = 0;
 
 		switch (plan.m_currentMission.m_infamy) {
 
 		case InfamyLevel.Low:
-			gainInfamy.m_amount = 1;
+
+			if (plan.m_result == MissionPlan.Result.Fail) {
+				alertGain += 1;
+			} else {
+				infamyGain += 1;
+			}
+
 			break;
+
 		case InfamyLevel.Medium:
-			gainInfamy.m_amount = 2;
+
+			alertGain += 1;
+			infamyGain += 1;
+
+			if (plan.m_result == MissionPlan.Result.Fail) {
+				alertGain += 2;
+			} else {
+				infamyGain += 2;
+			}
+
 			break;
 		case InfamyLevel.High:
-			gainInfamy.m_amount = 3;
+
+			alertGain += 2;
+			infamyGain += 2;
+
+			if (plan.m_result == MissionPlan.Result.Fail) {
+				alertGain += 3;
+			} else {
+				infamyGain += 3;
+			}
+
 			break;
 		}
 
-		GameController.instance.ProcessAction (gainInfamy);
+		if (alertGain > 0 && plan.m_missionSite != null) {
+		
+			Action_ChangeAlertLevel alertLevel = new Action_ChangeAlertLevel ();
+			alertLevel.m_playerID = 0;
+			alertLevel.m_siteID = plan.m_missionSite.id;
+			alertLevel.m_amount = alertGain;
+			GameController.instance.ProcessAction (alertLevel);
+		}
+
+		if (infamyGain > 0) {
+
+			Action_GainInfamy gainInfamy = new Action_GainInfamy ();
+			gainInfamy.m_playerID = 0;
+			gainInfamy.m_amount = infamyGain;
+			GameController.instance.ProcessAction (gainInfamy);
+		}
+
+
+		// consume any required assets
+
+		if (plan.m_result == MissionPlan.Result.Success && plan.m_requiredAssets.Count > 0) {
+
+			foreach (Asset a in plan.m_requiredAssets) {
+
+				if (player.HasAsset (a)) {
+
+					Action_RemoveAsset removeAsset = new Action_RemoveAsset ();
+					removeAsset.m_playerID = 0;
+					removeAsset.m_asset = a;
+					GameController.instance.ProcessAction (removeAsset);
+				}
+
+			}
+		}
 	}
 }

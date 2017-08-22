@@ -23,45 +23,6 @@ public class TurnPhase_EndTurn : TurnPhase {
 
 			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.Empty && player.hiringPool.m_availableHenchmen.Count > 0) {
 
-				// build list of henchmen that fit Infamy criteria
-
-//				int rank2Threshold = 20;
-//				int rank3Threshold = 50;
-//				int rank4Threshold = 10;
-//
-//				int maxRank = 1;
-//
-//				if (player.infamy >= rank4Threshold) {
-//
-//					maxRank = 4;
-//				} else if (player.infamy >= rank3Threshold) {
-//					maxRank = 3;
-//				}
-//				else if (player.infamy >= rank2Threshold) {
-//					maxRank = 2;
-//				}
-//
-//				List<Actor> validHenchmen = new List<Actor> ();
-//
-//				foreach (Actor a in player.hiringPool.m_availableHenchmen) {
-//
-//					if (a.m_rank <= maxRank) {
-//
-//						validHenchmen.Add (a);
-//					}
-//				}
-//
-//				if (validHenchmen.Count > 0) {
-//
-//					int rand = Random.Range (0, validHenchmen.Count);
-//					Actor randHenchmen = (Actor)validHenchmen [rand];
-//
-//					Action_MakeHireable addToHiringPool = new Action_MakeHireable ();
-//					addToHiringPool.m_player = player;
-//					addToHiringPool.m_henchmen = randHenchmen;
-//					GameController.instance.ProcessAction (addToHiringPool);
-//				}
-
 				Actor henchmen = player.hiringPool.GetHenchmenToHire (player.infamy);
 
 				if (henchmen != null) {
@@ -70,7 +31,32 @@ public class TurnPhase_EndTurn : TurnPhase {
 					addToHiringPool.m_henchmen = henchmen;
 					GameController.instance.ProcessAction (addToHiringPool);
 				}
+			} else if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+
+				// waiting henchmen have a chance to leave after a while
+
+				int numTurnsToWait = 4;
+				float leaveChance = 0.3f;
+
+				aSlot.m_turnsPresent++;
+
+				if (aSlot.m_turnsPresent >= numTurnsToWait && Random.Range (0.0f, 1.0f) <= leaveChance) {
+
+					Action_RemoveHireable removeHenchmen = new Action_RemoveHireable ();
+					removeHenchmen.m_playerID = 0;
+					removeHenchmen.m_actorID = aSlot.m_actor.id;
+					GameController.instance.ProcessAction (removeHenchmen);
+				}
 			}
+		}
+
+		// if there are any henchmen in the temp bank, add them to available henchmen pool
+
+		while (player.hiringPool.m_tempBank.Count > 0) {
+
+			Actor a = player.hiringPool.m_tempBank [0];
+			player.hiringPool.m_tempBank.RemoveAt (0);
+			player.hiringPool.m_availableHenchmen.Add (a);
 		}
 
 		// evaluate any event triggers

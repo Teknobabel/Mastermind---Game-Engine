@@ -16,7 +16,7 @@ MonoBehaviour:
   m_targetType: 2
   m_requiredTraits:
   - {fileID: 11400000, guid: 3e9e65fa5e5de47c89b6caf3433efa07, type: 2}
-  - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
-  m_infamy: 0
+  m_requiredAssets: []
+  m_infamy: 1
   m_cost: 5
-  m_duration: 1
+  m_duration: 3

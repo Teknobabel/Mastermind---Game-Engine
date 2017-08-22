@@ -44,6 +44,9 @@ public class MissionPlan {
 	public List<Trait> m_requiredTraits = new List<Trait> ();
 	public List<Trait> m_matchingTraits = new List<Trait> ();
 
+	public List<Asset> m_requiredAssets = new List<Asset> ();
+//	public List<Asset> m_matchingAssets = new List<Asset> ();
+
 	public int m_successChance = -1;
 	public int m_turnNumber = 0;
 

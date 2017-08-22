@@ -14,4 +14,7 @@ public enum GameEvent {
 	Player_OmegaPlanChanged,
 	Player_AssetsChanged,
 	Player_OmegaPlanGoalCompleted,
+	Henchmen_NewStateChanged,
+	Player_MissionCancelled,
+	Henchmen_RemovedFromHireable,
 }

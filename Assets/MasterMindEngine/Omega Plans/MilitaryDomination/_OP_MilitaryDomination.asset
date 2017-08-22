@@ -15,28 +15,41 @@ MonoBehaviour:
   m_startingPhases:
   - m_goals:
     - m_mission: {fileID: 11400000, guid: 22b9289cfd2514ed7bf419cc64bab417, type: 2}
-      m_mandatoryAssets: []
+      m_mandatoryAssets:
+      - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+      - {fileID: 11400000, guid: dc00e00df2bb54a4396a5b482ad83684, type: 2}
       m_new: 1
       m_state: 0
     - m_mission: {fileID: 11400000, guid: 14d9a7f8b808e4b929673cfdf07dc8ab, type: 2}
-      m_mandatoryAssets: []
+      m_mandatoryAssets:
+      - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+      - {fileID: 11400000, guid: dc00e00df2bb54a4396a5b482ad83684, type: 2}
+      - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
       m_new: 1
       m_state: 0
     - m_mission: {fileID: 11400000, guid: 6f92a9b801fec4ef08e519adab7e01f6, type: 2}
-      m_mandatoryAssets: []
+      m_mandatoryAssets:
+      - {fileID: 11400000, guid: ee692495e52ad43318c06f0c9d311453, type: 2}
+      - {fileID: 11400000, guid: 76ccdbf62fcf54b69a62322c51f6228c, type: 2}
+      - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
       m_new: 1
       m_state: 0
   - m_goals:
     - m_mission: {fileID: 11400000, guid: 7d4ba90f632034ee7ada1e9d63539fe8, type: 2}
-      m_mandatoryAssets: []
+      m_mandatoryAssets:
+      - {fileID: 11400000, guid: 595f40f21ddce46e5a8f8d839365da07, type: 2}
       m_new: 1
       m_state: 0
     - m_mission: {fileID: 11400000, guid: 40ffaa0b569504454bd341260cf5c95d, type: 2}
-      m_mandatoryAssets: []
+      m_mandatoryAssets:
+      - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
+      - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
       m_new: 1
       m_state: 0
     - m_mission: {fileID: 11400000, guid: ee8e3d4d26a314c05b28f4efd07f5f57, type: 2}
-      m_mandatoryAssets: []
+      m_mandatoryAssets:
+      - {fileID: 11400000, guid: ee692495e52ad43318c06f0c9d311453, type: 2}
+      - {fileID: 11400000, guid: 4b9ecc3be09bc4d438b85cda668149fe, type: 2}
       m_new: 1
       m_state: 0
   - m_goals:

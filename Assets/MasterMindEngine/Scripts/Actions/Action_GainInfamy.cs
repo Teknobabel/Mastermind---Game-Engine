@@ -12,8 +12,8 @@ public class Action_GainInfamy : Action {
 		Player player = GameEngine.instance.game.playerList [m_playerID];
 		player.GainInfamy (m_amount);
 
-		string title = "Infamy Increased";
-		string message = "Your organization has gained " + m_amount.ToString() + " Infamy.";
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+//		string title = "Infamy Increased";
+//		string message = "Your organization has gained " + m_amount.ToString() + " Infamy.";
+//		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
 	}
 }
