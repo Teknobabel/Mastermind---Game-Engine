@@ -46,9 +46,10 @@ public class Action_EvaluateMission : Action {
 
 			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
 
-				aSlot.RemoveHenchmen ();
+				aSlot.m_state = Player.ActorSlot.ActorSlotState.Active;
 			}
 
+			m_missionPlan.m_actorSlots.Clear ();
 			m_missionPlan.m_currentMission = null;
 			m_missionPlan.m_missionSite = null;
 			m_missionPlan.m_currentAsset = null;

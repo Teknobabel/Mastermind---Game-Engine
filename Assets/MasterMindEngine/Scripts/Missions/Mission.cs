@@ -38,6 +38,11 @@ public class Mission : ScriptableObject {
 	m_cost = 1,
 	m_duration = 1;
 
+	public virtual bool IsValid (MissionPlan plan)
+	{
+		return true;
+	}
+
 	public virtual void CompleteMission (MissionPlan plan)
 	{
 		Player player = GameEngine.instance.game.playerList [0];
@@ -132,21 +137,39 @@ public class Mission : ScriptableObject {
 		}
 
 
-		// consume any required assets
+		// consume any required assets if mission success, or free them up if mission fail
 
-		if (plan.m_result == MissionPlan.Result.Success && plan.m_requiredAssets.Count > 0) {
+		while (plan.m_linkedPlayerAssets.Count > 0) {
 
-			foreach (Asset a in plan.m_requiredAssets) {
+			Site.AssetSlot aSlot = plan.m_linkedPlayerAssets [0];
+			plan.m_linkedPlayerAssets.RemoveAt (0);
 
-				if (player.HasAsset (a)) {
+			if (plan.m_result == MissionPlan.Result.Success) {
 
-					Action_RemoveAsset removeAsset = new Action_RemoveAsset ();
-					removeAsset.m_playerID = 0;
-					removeAsset.m_asset = a;
-					GameController.instance.ProcessAction (removeAsset);
-				}
+				Action_RemoveAsset removeAsset = new Action_RemoveAsset ();
+				removeAsset.m_playerID = 0;
+				removeAsset.m_assetSlot = aSlot;
+				GameController.instance.ProcessAction (removeAsset);
 
+			} else {
+
+				aSlot.m_state = Site.AssetSlot.State.Revealed;
 			}
 		}
+
+//		if (plan.m_result == MissionPlan.Result.Success && plan.m_requiredAssets.Count > 0) {
+//
+//			foreach (Asset a in plan.m_requiredAssets) {
+//
+//				if (player.HasAsset (a)) {
+//
+//					Action_RemoveAsset removeAsset = new Action_RemoveAsset ();
+//					removeAsset.m_playerID = 0;
+//					removeAsset.m_asset = a;
+//					GameController.instance.ProcessAction (removeAsset);
+//				}
+//
+//			}
+//		}
 	}
 }

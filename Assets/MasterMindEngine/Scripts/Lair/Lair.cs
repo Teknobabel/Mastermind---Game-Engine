@@ -17,6 +17,7 @@ public class Lair {
 		public Floor m_floor;
 		public FloorState m_state;
 		public int m_id = -1;
+		public int m_numActorSlots = 1;
 		public List<Player.ActorSlot> m_actorSlots = new List<Player.ActorSlot> ();
 		public MissionPlan m_missionPlan = new MissionPlan();
 		public bool m_new = true;
@@ -31,17 +32,18 @@ public class Lair {
 		FloorSlot newFloorSlot = new FloorSlot ();
 		newFloorSlot.m_id = m_floorID;
 		m_floorID++;
+		newFloorSlot.m_numActorSlots = newFloor.m_startingHenchmenSlots;
 		newFloorSlot.m_floor = newFloor;
 		newFloorSlot.m_state = FloorSlot.FloorState.Idle;
 		newFloorSlot.m_missionPlan.m_floorSlot = newFloorSlot;
 
-		for (int i = 0; i < newFloor.m_startingHenchmenSlots; i++) {
-		
-			Player.ActorSlot aSlot = new Player.ActorSlot ();
-			aSlot.m_state = Player.ActorSlot.ActorSlotState.Empty;
-			aSlot.m_new = false;
-			newFloorSlot.m_actorSlots.Add (aSlot);
-		}
+//		for (int i = 0; i < newFloor.m_startingHenchmenSlots; i++) {
+//		
+//			Player.ActorSlot aSlot = new Player.ActorSlot ();
+//			aSlot.m_state = Player.ActorSlot.ActorSlotState.Empty;
+//			aSlot.m_new = false;
+//			newFloorSlot.m_actorSlots.Add (aSlot);
+//		}
 
 		m_floorSlots.Add (newFloorSlot);
 

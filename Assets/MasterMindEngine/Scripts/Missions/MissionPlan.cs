@@ -45,7 +45,7 @@ public class MissionPlan {
 	public List<Trait> m_matchingTraits = new List<Trait> ();
 
 	public List<Asset> m_requiredAssets = new List<Asset> ();
-//	public List<Asset> m_matchingAssets = new List<Asset> ();
+	public List<Site.AssetSlot> m_linkedPlayerAssets = new List<Site.AssetSlot> (); // keeps a ref to assets used so other missions don't use them
 
 	public int m_successChance = -1;
 	public int m_turnNumber = 0;

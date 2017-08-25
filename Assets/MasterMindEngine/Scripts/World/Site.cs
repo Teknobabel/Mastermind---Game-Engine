@@ -19,6 +19,7 @@ public class Site : ScriptableObject, IBaseObject {
 			None,
 			Hidden,
 			Revealed,
+			InUse,
 		}
 
 		public Asset m_asset;

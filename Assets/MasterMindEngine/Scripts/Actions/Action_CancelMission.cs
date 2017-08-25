@@ -34,8 +34,19 @@ public class Action_CancelMission : Action {
 
 			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
 
-				aSlot.RemoveHenchmen ();
+				aSlot.m_state = Player.ActorSlot.ActorSlotState.Active;
 			}
+		}
+
+		m_missionPlan.m_actorSlots.Clear ();
+
+		// free up any assets in use
+
+		while (m_missionPlan.m_linkedPlayerAssets.Count > 0) {
+
+			Site.AssetSlot aSlot = m_missionPlan.m_linkedPlayerAssets [0];
+			m_missionPlan.m_linkedPlayerAssets.RemoveAt (0);
+			aSlot.m_state = Site.AssetSlot.State.Revealed;
 		}
 
 		// remove from player active mission list
@@ -56,6 +67,7 @@ public class Action_CancelMission : Action {
 			m_missionPlan.m_state = MissionPlan.State.Planning;
 			m_missionPlan.m_requiredTraits.Clear ();
 			m_missionPlan.m_matchingTraits.Clear ();
+			m_missionPlan.m_floorSlot.m_actorSlots.Clear ();
 
 			m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.Idle;
 		}

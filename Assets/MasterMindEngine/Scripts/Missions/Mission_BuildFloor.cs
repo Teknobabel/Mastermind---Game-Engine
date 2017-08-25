@@ -6,6 +6,21 @@ public class Mission_BuildFloor : Mission {
 
 	public Floor m_floor;
 
+	public override bool IsValid (MissionPlan plan)
+	{
+		Lair l = GameController.instance.GetLair (0);
+
+		foreach (Lair.FloorSlot fSlot in l.floorSlots) {
+
+			if (fSlot.m_state != Lair.FloorSlot.FloorState.Empty && fSlot.m_floor.m_name == m_floor.m_name) {
+
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public override void CompleteMission (MissionPlan plan)
 	{
 		base.CompleteMission (plan);

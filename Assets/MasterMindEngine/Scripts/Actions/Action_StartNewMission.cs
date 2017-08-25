@@ -20,6 +20,29 @@ public class Action_StartNewMission : Action {
 			m_missionPlan.m_goal.m_state = OmegaPlan.OPGoal.State.InProgress;
 		}
 
+		foreach (Site.AssetSlot aSlot in m_missionPlan.m_linkedPlayerAssets) {
+
+			if (aSlot.m_state != Site.AssetSlot.State.InUse) {
+				aSlot.m_state = Site.AssetSlot.State.InUse;
+			} else {
+				Debug.Log("Asset: " + aSlot.m_asset.m_name + " already in use");
+			}
+		}
+
+		if (m_missionPlan.m_floorSlot != null) {
+			
+			foreach (Player.ActorSlot aSlot in m_missionPlan.m_floorSlot.m_actorSlots) {
+
+				aSlot.m_state = Player.ActorSlot.ActorSlotState.OnMission;
+			}
+		} else {
+
+			foreach (Player.ActorSlot aSlot in m_missionPlan.m_goal.plan.m_actorSlots) {
+
+				aSlot.m_state = Player.ActorSlot.ActorSlotState.OnMission;
+			}
+		}
+
 		m_missionPlan.m_new = true;
 
 //		string title = "New Mission Begins";

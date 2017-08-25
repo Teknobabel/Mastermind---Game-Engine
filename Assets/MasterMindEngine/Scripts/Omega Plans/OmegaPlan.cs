@@ -18,6 +18,8 @@ public class OmegaPlan : ScriptableObject, IObserver {
 
 		public Mission m_mission;
 
+		public int m_numActorSlots = 3;
+
 		private MissionPlan m_plan;
 
 		public Asset[] m_mandatoryAssets;
@@ -33,9 +35,9 @@ public class OmegaPlan : ScriptableObject, IObserver {
 	public class Phase {
 
 		public List<OPGoal> m_goals = new List<OPGoal>();
-//		public List<Mission> m_goals;
+		//		public List<Mission> m_goals;
 
-//		public List<Asset> m_mandatoryAssets;
+		//		public List<Asset> m_mandatoryAssets;
 	}
 
 	public string m_name;
@@ -49,7 +51,7 @@ public class OmegaPlan : ScriptableObject, IObserver {
 	public void Initialize ()
 	{
 		for (int i = 0; i < m_startingPhases.Length; i++) {
-			
+
 			Phase p = m_startingPhases [i];
 			Phase newPhase = new Phase ();
 
@@ -61,12 +63,12 @@ public class OmegaPlan : ScriptableObject, IObserver {
 				newGoal.plan = new MissionPlan ();
 				newGoal.plan.m_goal = newGoal;
 
-				for (int j = 0; j < 3; j++) {
-
-					Player.ActorSlot aSlot = new Player.ActorSlot ();
-					aSlot.m_state = Player.ActorSlot.ActorSlotState.Empty;
-					newGoal.plan.m_actorSlots.Add (aSlot);
-				}
+				//				for (int j = 0; j < 3; j++) {
+				//
+				//					Player.ActorSlot aSlot = new Player.ActorSlot ();
+				//					aSlot.m_state = Player.ActorSlot.ActorSlotState.Empty;
+				//					newGoal.plan.m_actorSlots.Add (aSlot);
+				//				}
 
 				newGoal.plan.m_currentMission = goal.m_mission;
 

@@ -25,9 +25,9 @@ public class Action_RemoveAsset : Action {
 
 			} else if (m_assetSlot != null) {
 
-				player.RemoveAsset (m_assetSlot);
-
 				message = m_assetSlot.m_asset.m_name + " has been removed.";
+
+				player.RemoveAsset (m_assetSlot);
 			}
 
 			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);

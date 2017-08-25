@@ -15,16 +15,16 @@ public class GameController : MonoBehaviour, ISubject {
 	}
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 
-//	void Update () {
-//
-//		if (Input.GetKeyUp (KeyCode.Space)) {
-//
-//			GameEngine.instance.ProgressTurn ();
-//		}
-//	}
+	//	void Update () {
+	//
+	//		if (Input.GetKeyUp (KeyCode.Space)) {
+	//
+	//			GameEngine.instance.ProgressTurn ();
+	//		}
+	//	}
 
 	public void ProcessAction (Action action)
 	{
@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 			Debug.Log ("Player not found");
 		}
-			
+
 		return assets;
 	}
 
@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 		return 0;
 	}
-	
+
 	// get hiring pool
 
 	public List<Player.ActorSlot> GetHiringPool (int playerNum)
@@ -289,13 +289,20 @@ public class GameController : MonoBehaviour, ISubject {
 		//			}
 		//		}
 
+		if (plan.m_currentMission == null) {
+
+			return;
+		}
+
 		List<Trait> requiredTraits = new List<Trait> ();
 		List<Trait> presentTraits = new List<Trait> ();
 
 		List<Asset> requiredAssets = new List<Asset> ();
-//		List<Asset> presentAssets = new List<Asset> ();
+
+		int skillWeight = 3; // higher=more weight in determining overal mission success % 
 
 		int numTraitsModified = 0;
+		int numAssetsModified = 0;
 		float successModifier = 0;
 		//		int successChance = 0;
 
@@ -307,7 +314,7 @@ public class GameController : MonoBehaviour, ISubject {
 				requiredTraits.Add (t);
 
 				if (t.m_type == Trait.Type.Skill) {
-					numTraitsModified += 2;
+					numTraitsModified += skillWeight;
 				} else {
 					numTraitsModified++;
 				}
@@ -319,6 +326,7 @@ public class GameController : MonoBehaviour, ISubject {
 		foreach (Asset a in plan.m_currentMission.m_requiredAssets) {
 
 			requiredAssets.Add (a);
+			numAssetsModified += a.m_rank;
 		}
 
 		// get traits in response to site traits
@@ -328,11 +336,11 @@ public class GameController : MonoBehaviour, ISubject {
 			foreach (SiteTrait st in plan.m_missionSite.traits) {
 
 				if (!requiredTraits.Contains (st.m_requiredTrait)) {
-					
+
 					requiredTraits.Add (st.m_requiredTrait);
 
 					if (st.m_requiredTrait.m_type == Trait.Type.Skill) {
-						numTraitsModified += 2;
+						numTraitsModified += skillWeight;
 					} else {
 						numTraitsModified++;
 					}
@@ -358,7 +366,7 @@ public class GameController : MonoBehaviour, ISubject {
 								requiredTraits.Add (t);
 
 								if (t.m_type == Trait.Type.Skill) {
-									numTraitsModified += 2;
+									numTraitsModified += skillWeight;
 								} else {
 									numTraitsModified++;
 								}
@@ -379,11 +387,11 @@ public class GameController : MonoBehaviour, ISubject {
 			foreach (Trait t in plan.m_currentAsset.m_asset.m_requiredTraits) {
 
 				if (!requiredTraits.Contains (t)) {
-					
+
 					requiredTraits.Add (t);
 
 					if (t.m_type == Trait.Type.Skill) {
-						numTraitsModified += 2;
+						numTraitsModified += skillWeight;
 					} else {
 						numTraitsModified++;
 					}
@@ -394,6 +402,20 @@ public class GameController : MonoBehaviour, ISubject {
 		// collect all traits from participating henchmen
 
 		int numTraitsPresentModified = 0;
+		int numAssetsPresentModified = 0;
+
+		// make sure all participating henchmen are free
+
+		for (int i = 0; i < plan.m_actorSlots.Count; i++) {
+
+			Player.ActorSlot aSlot = plan.m_actorSlots [i];
+
+			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.OnMission) {
+
+				plan.m_actorSlots.RemoveAt (i);
+				i = 0;
+			}
+		}
 
 		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
 
@@ -410,7 +432,7 @@ public class GameController : MonoBehaviour, ISubject {
 						presentTraits.Add (t);
 
 						if (t.m_type == Trait.Type.Skill) {
-							numTraitsPresentModified += 2;
+							numTraitsPresentModified += skillWeight;
 						} else {
 							numTraitsPresentModified++;
 						}
@@ -419,18 +441,43 @@ public class GameController : MonoBehaviour, ISubject {
 			}
 		}
 
-		// see how many matching traits there are and calculate success chance
-		// skills count for double
+		// check for matching assets
 
-//		float totalTraits = (float)requiredTraits.Count;
-//		float matchingTraits = (float)presentTraits.Count;
-		float totalTraits = (float)numTraitsModified;
-		float matchingTraits = (float)numTraitsPresentModified;
-		float success = Mathf.Clamp( (matchingTraits / totalTraits * 100) + successModifier, 0.0f, 100.0f);
+		List<Site.AssetSlot> playerAssets = GetAssets (0);
+		List<Site.AssetSlot> matchingAssets = new List<Site.AssetSlot> ();
+
+		foreach (Asset a in requiredAssets) {
+
+			for (int i=0; i < playerAssets.Count; i++)
+			{
+				Site.AssetSlot aSlot = playerAssets [i];
+
+				if (aSlot.m_state != Site.AssetSlot.State.None && aSlot.m_state != Site.AssetSlot.State.InUse && aSlot.m_asset == a) {
+
+					numAssetsPresentModified += a.m_rank;
+					matchingAssets.Add (aSlot);
+//					aSlot.m_state = Site.AssetSlot.State.InUse;
+					playerAssets.RemoveAt (i);
+					i = 99;
+					break;
+				}
+			}
+		}
+
+
+
+		// see how many matching traits and assets there are and calculate success chance
+
+		//		float totalTraits = (float)requiredTraits.Count;
+		//		float matchingTraits = (float)presentTraits.Count;
+		float total = (float)numTraitsModified + (float)numAssetsModified;
+		float matching = (float)numTraitsPresentModified + (float)numAssetsPresentModified;
+		float success = Mathf.Clamp( (matching / total * 100) + successModifier, 0.0f, 100.0f);
 
 		plan.m_requiredAssets = requiredAssets;
 		plan.m_requiredTraits = requiredTraits;
 		plan.m_matchingTraits = presentTraits;
+		plan.m_linkedPlayerAssets = matchingAssets;
 		plan.m_successChance = (int)success;
 	}
 
@@ -455,6 +502,6 @@ public class GameController : MonoBehaviour, ISubject {
 		}
 	}
 
-
+	public Game game {get{ return GameEngine.instance.game; }}
 
 }
