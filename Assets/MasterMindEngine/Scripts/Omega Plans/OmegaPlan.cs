@@ -115,7 +115,7 @@ public class OmegaPlan : ScriptableObject, IObserver {
 
 				string title = "Phase Completed";
 				string message = "Omega Plan Phase " + (m_currentPhase+1).ToString() + " Completed!";
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.OmegaPlan);
 
 				if (m_currentPhase + 1 < m_phases.Count) {
 
@@ -130,7 +130,9 @@ public class OmegaPlan : ScriptableObject, IObserver {
 
 					title = "Phase Unlocked";
 					message = "Omega Plan Phase " + (m_currentPhase+1).ToString() + " has been unlocked.";
-					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.OmegaPlan);
+
+					GameController.instance.Notify (player, GameEvent.Player_OmegaPlanChanged);
 
 				} else {
 

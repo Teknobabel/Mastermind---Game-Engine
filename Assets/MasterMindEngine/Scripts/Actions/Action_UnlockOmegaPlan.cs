@@ -32,7 +32,7 @@ public class Action_UnlockOmegaPlan : Action {
 			string title = "New Omega Plan Unlocked";
 			string message = "Omega Plan: " + newOmegaPlan.m_name + " has been unlocked";
 
-			m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+			m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.OmegaPlan);
 		}
 	}
 }

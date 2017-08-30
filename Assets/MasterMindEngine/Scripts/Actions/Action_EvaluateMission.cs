@@ -17,6 +17,8 @@ public class Action_EvaluateMission : Action {
 
 		if (m_missionPlan.m_turnNumber >= m_missionPlan.m_currentMission.m_duration) {
 
+			Debug.Log ("Mission Complete");
+
 			// complete mission
 
 			m_missionPlan.m_state = MissionPlan.State.Complete;
@@ -44,26 +46,114 @@ public class Action_EvaluateMission : Action {
 
 			m_missionPlan.m_currentMission.CompleteMission (m_missionPlan);
 
-			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
+			// clear / reset mission parameters
 
+			// update infamy and site alert level
+
+			int alertGain = 0;
+			int infamyGain = 0;
+
+			switch (m_missionPlan.m_currentMission.m_infamy) {
+
+			case Mission.InfamyLevel.Low:
+
+				if (m_missionPlan.m_result == MissionPlan.Result.Fail) {
+					alertGain += 1;
+				} else {
+					infamyGain += 1;
+				}
+
+				break;
+
+			case Mission.InfamyLevel.Medium:
+
+				alertGain += 1;
+				infamyGain += 1;
+
+				if (m_missionPlan.m_result == MissionPlan.Result.Fail) {
+					alertGain += 2;
+				} else {
+					infamyGain += 2;
+				}
+
+				break;
+			case Mission.InfamyLevel.High:
+
+				alertGain += 2;
+				infamyGain += 2;
+
+				if (m_missionPlan.m_result == MissionPlan.Result.Fail) {
+					alertGain += 3;
+				} else {
+					infamyGain += 3;
+				}
+
+				break;
+			}
+
+			if (alertGain > 0 && m_missionPlan.m_missionSite != null) {
+
+				Action_ChangeAlertLevel alertLevel = new Action_ChangeAlertLevel ();
+				alertLevel.m_playerID = 0;
+				alertLevel.m_siteID = m_missionPlan.m_missionSite.id;
+				alertLevel.m_amount = alertGain;
+				GameController.instance.ProcessAction (alertLevel);
+			}
+
+			if (infamyGain > 0) {
+
+				Action_GainInfamy gainInfamy = new Action_GainInfamy ();
+				gainInfamy.m_playerID = 0;
+				gainInfamy.m_amount = infamyGain;
+				GameController.instance.ProcessAction (gainInfamy);
+			}
+
+			// consume any required assets if mission success, or free them up if mission fail
+
+			while (m_missionPlan.m_linkedPlayerAssets.Count > 0) {
+
+				Site.AssetSlot aSlot = m_missionPlan.m_linkedPlayerAssets [0];
+				m_missionPlan.m_linkedPlayerAssets.RemoveAt (0);
+
+				if (m_missionPlan.m_result == MissionPlan.Result.Success) {
+
+					Action_RemoveAsset removeAsset = new Action_RemoveAsset ();
+					removeAsset.m_playerID = 0;
+					removeAsset.m_assetSlot = aSlot;
+					GameController.instance.ProcessAction (removeAsset);
+
+				} else {
+
+					aSlot.m_state = Site.AssetSlot.State.Revealed;
+				}
+			}
+
+			// free up participating henchmen
+
+			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
+				
 				aSlot.m_state = Player.ActorSlot.ActorSlotState.Active;
 			}
 
+			// free up floor slot in lair
+
+			if (m_missionPlan.m_floorSlot != null) {
+
+				m_missionPlan.m_currentMission = null;
+				m_missionPlan.m_result = MissionPlan.Result.None;
+				m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.Idle;
+			}
+
+			// reset plan to default values
+
 			m_missionPlan.m_actorSlots.Clear ();
-			m_missionPlan.m_currentMission = null;
 			m_missionPlan.m_missionSite = null;
 			m_missionPlan.m_currentAsset = null;
 			m_missionPlan.m_new = false;
 			m_missionPlan.m_successChance = 0;
 			m_missionPlan.m_turnNumber = 0;
-			m_missionPlan.m_result = MissionPlan.Result.None;
-//			m_missionPlan.m_state = MissionPlan.State.Planning;
 			m_missionPlan.m_requiredTraits.Clear ();
 			m_missionPlan.m_matchingTraits.Clear ();
-
-			if (m_missionPlan.m_floorSlot != null) {
-				m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.Idle;
-			}
 
 			GameController.instance.Notify (player, GameEvent.Player_MissionCompleted);
 
@@ -78,31 +168,15 @@ public class Action_EvaluateMission : Action {
 				message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is underway.";
 			}
 
-			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions);
 
 			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
 
 				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
 
-					aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
+					aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions);
 				}
 			}
 		}
-
-		//		Player player = GameEngine.instance.game.playerList [m_playerID];
-		//		player.AddMission (m_missionPlan);
-		//
-		//		string title = "New Mission Begins";
-		//		string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is now underway.";
-		//
-		//		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
-		//
-		//		foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
-		//
-		//			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-		//
-		//				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
-		//			}
-		//		}
 	}
 }

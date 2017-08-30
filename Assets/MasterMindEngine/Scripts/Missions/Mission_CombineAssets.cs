@@ -59,7 +59,7 @@ public class Mission_CombineAssets : Mission {
 
 				string title = "Warning";
 				string message = "You don't own all the required Assets for this Mission.";
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Assets);
 
 			}
 		}

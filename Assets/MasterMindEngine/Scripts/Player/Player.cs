@@ -70,6 +70,7 @@ public class Player: IBaseObject, ISubject {
 		public List<Actor> m_availableHenchmen = new List<Actor>();
 		public List<Actor> m_tempBank = new List<Actor>(); // makes sure any actors fired / left don't immediate get added back in
 		public List<ActorSlot> m_hireSlots = new List<ActorSlot>();
+		public List<Trait> m_seekingSkills = new List<Trait> ();
 
 		public Actor GetHenchmenToHire (int infamy)
 		{
@@ -98,6 +99,17 @@ public class Player: IBaseObject, ISubject {
 				if (a.m_rank <= maxRank) {
 
 					validHenchmen.Add (a);
+
+					foreach (Trait t in m_seekingSkills) {
+						
+						if (a.traits.Contains (t)) {
+
+							validHenchmen.Add (a);
+							validHenchmen.Add (a);
+							validHenchmen.Add (a);
+							break;
+						}
+					}
 				}
 			}
 

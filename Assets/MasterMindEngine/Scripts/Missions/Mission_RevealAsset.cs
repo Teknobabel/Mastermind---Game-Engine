@@ -48,7 +48,7 @@ public class Mission_RevealAsset : Mission {
 
 				string title = "No Assets Found";
 				string message = "There are no hidden Assets to reveal";
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.World);
 			}
 
 		} 

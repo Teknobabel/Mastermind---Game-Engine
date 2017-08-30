@@ -17,13 +17,13 @@ public class Action_CancelMission : Action {
 			string title = "Mission Cancelled";
 			string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " has been cancelled.";
 
-			player.notifications.AddNotification (GameController.instance.GetTurnNumber (), title, message);
+			player.notifications.AddNotification (GameController.instance.GetTurnNumber (), title, message, EventLocation.Missions);
 
 			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
 
 				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
 
-					aSlot.m_actor.notifications.AddNotification (GameController.instance.GetTurnNumber (), title, message);
+					aSlot.m_actor.notifications.AddNotification (GameController.instance.GetTurnNumber (), title, message, EventLocation.Missions);
 				}
 			}
 		}

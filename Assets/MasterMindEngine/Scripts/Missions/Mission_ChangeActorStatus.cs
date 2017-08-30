@@ -20,8 +20,8 @@ public class Mission_ChangeActorStatus : Mission {
 				string title = "Status Change";
 				string message = plan.m_targetActor.m_actor.m_actorName + "'s Status is now " + m_newStatus.m_name;
 				Player player = GameEngine.instance.game.playerList [0];
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
-				plan.m_targetActor.m_actor.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts);
+				plan.m_targetActor.m_actor.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts);
 			}
 		
 		}

@@ -49,8 +49,8 @@ public class Action_HireAgent : Action {
 					string title = "New Henchmen Hired";
 					string message = henchmen.m_actorName + " has joined your organization.";
 
-					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
-					henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts);
+					henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts);
 
 
 					// notify UI for updating

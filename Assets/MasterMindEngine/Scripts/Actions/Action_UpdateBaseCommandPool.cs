@@ -18,6 +18,6 @@ public class Action_UpdateBaseCommandPool : Action {
 		string title = "Command Pool Increase";
 		string message = "Your maximum Command Pool has increased by " + m_amount.ToString() + ".";
 
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.None);
 	}
 }

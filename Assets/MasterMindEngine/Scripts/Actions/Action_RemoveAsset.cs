@@ -30,7 +30,7 @@ public class Action_RemoveAsset : Action {
 				player.RemoveAsset (m_assetSlot);
 			}
 
-			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Assets);
 
 		} else {
 			Debug.Log ("Player ID not found");

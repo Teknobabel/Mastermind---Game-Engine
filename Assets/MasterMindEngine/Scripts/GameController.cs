@@ -95,7 +95,28 @@ public class GameController : MonoBehaviour, ISubject {
 		return 0;
 	}
 
-	// get hiring pool
+	public int GetAssetUpkeep (int playerNum)
+	{
+		int upkeep = 0;
+
+		int numAssetSlots = GameController.instance.GetNumAssetSlots (playerNum);
+		int numAssets = 0;
+		List<Site.AssetSlot> assets = GameController.instance.GetAssets (playerNum);
+
+		foreach (Site.AssetSlot aSlot in assets) {
+
+			if (aSlot.m_state != Site.AssetSlot.State.None) {
+				numAssets++;
+			}
+		}
+
+		if (numAssets > numAssetSlots) {
+
+			upkeep = numAssets - numAssetSlots;
+		}
+
+		return upkeep;
+	}
 
 	public List<Player.ActorSlot> GetHiringPool (int playerNum)
 	{

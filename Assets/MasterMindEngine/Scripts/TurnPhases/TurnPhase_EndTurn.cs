@@ -19,9 +19,14 @@ public class TurnPhase_EndTurn : TurnPhase {
 
 		Player player = GameEngine.instance.game.playerList [0];
 
+		float newHenchmenAppearanceChance = 0.35f;
+		float henchmenForHireLeaveChance = 0.3f;
+		float turnsToWaitBeforeLeaveChance = 4;
+
 		foreach (Player.ActorSlot aSlot in player.hiringPool.m_hireSlots) {
 
-			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.Empty && player.hiringPool.m_availableHenchmen.Count > 0) {
+			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.Empty && player.hiringPool.m_availableHenchmen.Count > 0 &&
+				Random.Range(0.0f, 1.0f) <= newHenchmenAppearanceChance) {
 
 				Actor henchmen = player.hiringPool.GetHenchmenToHire (player.infamy);
 
@@ -35,12 +40,9 @@ public class TurnPhase_EndTurn : TurnPhase {
 
 				// waiting henchmen have a chance to leave after a while
 
-				int numTurnsToWait = 4;
-				float leaveChance = 0.3f;
-
 				aSlot.m_turnsPresent++;
 
-				if (aSlot.m_turnsPresent >= numTurnsToWait && Random.Range (0.0f, 1.0f) <= leaveChance) {
+				if (aSlot.m_turnsPresent >= turnsToWaitBeforeLeaveChance && Random.Range (0.0f, 1.0f) <= henchmenForHireLeaveChance) {
 
 					Action_RemoveHireable removeHenchmen = new Action_RemoveHireable ();
 					removeHenchmen.m_playerID = 0;

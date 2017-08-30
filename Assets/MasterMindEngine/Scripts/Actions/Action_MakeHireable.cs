@@ -26,7 +26,7 @@ public class Action_MakeHireable : Action {
 				string title = "New Henchmen for Hire";
 				string message = m_henchmen.m_actorName + " is now available to Hire.";
 
-				m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+				m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Hire);
 
 				GameController.instance.Notify (m_player, GameEvent.Player_HiringPoolChanged);
 

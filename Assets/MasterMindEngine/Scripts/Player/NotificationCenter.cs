@@ -8,15 +8,17 @@ public class NotificationCenter {
 
 		public string m_title = "null";
 		public string m_message = "null";
+		public EventLocation m_location = EventLocation.None;
 	}
 
 	private Dictionary<int, List<Notification>> m_notifications = new Dictionary<int, List<Notification>>();
 
-	public void AddNotification (int turnNumber, string title, string message)
+	public void AddNotification (int turnNumber, string title, string message, EventLocation location)
 	{
 		Notification n = new Notification ();
 		n.m_title = title;
 		n.m_message = message;
+		n.m_location = location;
 
 		if (m_notifications.ContainsKey (turnNumber)) {
 

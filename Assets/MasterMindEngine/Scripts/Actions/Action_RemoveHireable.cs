@@ -22,7 +22,7 @@ public class Action_RemoveHireable : Action {
 
 				string title = a.m_actorName + " Left";
 				string message = a.m_actorName + " is no longer available for hire.";
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Hire);
 
 				GameController.instance.Notify (player, GameEvent.Henchmen_RemovedFromHireable);
 
