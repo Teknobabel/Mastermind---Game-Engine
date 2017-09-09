@@ -28,8 +28,8 @@ public class Action_FireAgent : Action {
 					string title = "Henchmen Fired";
 					string message = henchmen.m_actorName + " has left your organization.";
 
-					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts);
-					henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts);
+					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts, true, m_missionID);
+					henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts, false, m_missionID);
 
 
 					// notify UI for updating

@@ -17,4 +17,5 @@ public enum GameEvent {
 	Henchmen_NewStateChanged,
 	Player_MissionCancelled,
 	Henchmen_RemovedFromHireable,
+	Player_NotificationReceived,
 }

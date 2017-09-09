@@ -63,7 +63,7 @@ public class TurnPhase_PlayerPhase : TurnPhase {
 
 			string title = "Too Many Assets";
 			string message = "You have more Assets than available space. 1 CP must be paid for each additional Asset.";
-			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Assets);
+			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Assets, false, -1);
 
 			Action_SpendCommandPoints payOverage = new Action_SpendCommandPoints ();
 			payOverage.m_amount = overage;

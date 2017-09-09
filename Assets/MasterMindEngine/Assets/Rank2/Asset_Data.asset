@@ -14,4 +14,4 @@ MonoBehaviour:
   m_name: Data
   m_rank: 2
   m_requiredTraits:
-  - {fileID: 11400000, guid: 0b6bdd6cc41224b58b4dcf8b18e1cead, type: 2}
+  - {fileID: 11400000, guid: dc6ba3273859c4d4d99f44f5ccac3eb8, type: 2}

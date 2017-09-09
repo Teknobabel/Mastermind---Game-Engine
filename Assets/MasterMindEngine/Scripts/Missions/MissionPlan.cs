@@ -21,6 +21,10 @@ public class MissionPlan {
 
 	public List<Player.ActorSlot> m_actorSlots = new List<Player.ActorSlot>();
 
+	public List<Mission> m_missionOptions = new List<Mission>();
+
+	public int m_maxActorSlots = 1;
+
 	public Site.AssetSlot m_currentAsset;
 
 	public Site m_missionSite;
@@ -37,7 +41,12 @@ public class MissionPlan {
 
 	public OmegaPlan.OPGoal m_goal;
 
-	public bool m_new = true;
+	public int m_missionID = -1;
+
+	public bool 
+	m_new = true,
+	m_allowRepeat = true,
+	m_doRepeat = false;
 
 	// info returned from compiling mission
 

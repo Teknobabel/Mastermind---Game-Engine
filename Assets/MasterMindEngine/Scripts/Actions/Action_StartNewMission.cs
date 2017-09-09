@@ -10,6 +10,7 @@ public class Action_StartNewMission : Action {
 
 	public override void ExecuteAction ()
 	{
+		m_missionPlan.m_missionID = GameEngine.instance.game.GetMissionID ();
 		Player player = GameEngine.instance.game.playerList [m_playerID];
 		player.AddMission (m_missionPlan);
 		m_missionPlan.m_state = MissionPlan.State.Active;
@@ -45,18 +46,18 @@ public class Action_StartNewMission : Action {
 
 		m_missionPlan.m_new = true;
 
-//		string title = "New Mission Begins";
-//		string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is now underway.";
-//
-//		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message);
+		string title = "New Mission Begins";
+		string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is now underway.";
 
-//		foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
-//
-//			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-//
-//				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message);
-//			}
-//		}
+		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, true, m_missionPlan.m_missionID);
+
+		foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
+
+			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+
+				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, false, m_missionPlan.m_missionID);
+			}
+		}
 
 		// notify UI for updating
 

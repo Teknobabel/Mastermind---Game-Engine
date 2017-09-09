@@ -36,11 +36,18 @@ public class Mission : ScriptableObject {
 
 	public int 
 	m_cost = 1,
-	m_duration = 1;
+	m_duration = 1,
+	m_minFloorLevel = 1;
 
 	public virtual bool IsValid (MissionPlan plan)
 	{
-		return true;
+		if (plan.m_floorSlot != null && plan.m_floorSlot.m_floor.level >= m_minFloorLevel) {
+			return true;
+		} else if (plan.m_goal != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public virtual void CompleteMission (MissionPlan plan)
@@ -70,13 +77,13 @@ public class Mission : ScriptableObject {
 			}
 		}
 
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions);
+		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, false, plan.m_missionID);
 
 		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
 
 			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
 
-				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions);
+				aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, false, plan.m_missionID);
 			}
 		}
 	}

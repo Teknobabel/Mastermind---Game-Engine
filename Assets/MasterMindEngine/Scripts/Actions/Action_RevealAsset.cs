@@ -14,6 +14,6 @@ public class Action_RevealAsset : Action {
 
 		string title = "Asset Revealed";
 		string message = m_assetSlot.m_asset.m_name + " is revealed in " + m_assetSlot.m_site.m_siteName + ".";
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.World);
+		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.World, false, m_missionID);
 	}
 }

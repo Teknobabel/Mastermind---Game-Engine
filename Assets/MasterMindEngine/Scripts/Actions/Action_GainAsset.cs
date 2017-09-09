@@ -17,7 +17,7 @@ public class Action_GainAsset : Action {
 		string title = "New Asset Acquired";
 		string message = m_asset.m_name + " is now under your control.";
 
-		m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Assets);
+		m_player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Assets, false, m_missionID);
 
 		GameController.instance.Notify (m_player, GameEvent.Player_AssetsChanged);
 	}

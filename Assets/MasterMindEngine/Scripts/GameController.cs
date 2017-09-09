@@ -95,6 +95,22 @@ public class GameController : MonoBehaviour, ISubject {
 		return 0;
 	}
 
+	public int GetNumFloorSlots (int playerNum)
+	{
+		if (GameEngine.instance.game.playerList.ContainsKey (playerNum)) {
+
+			Player player = GameEngine.instance.game.playerList [playerNum];
+
+			return player.NumFloorSlots ();
+
+		} else {
+
+			Debug.Log ("Player not found");
+		}
+
+		return 0;
+	}
+
 	public int GetAssetUpkeep (int playerNum)
 	{
 		int upkeep = 0;
@@ -230,6 +246,30 @@ public class GameController : MonoBehaviour, ISubject {
 		} else {
 
 			Debug.Log ("Henchmen not found");
+		}
+
+		return notifications;
+	}
+
+	public List<NotificationCenter.Notification> GetMissionNotifications (int playerNum, int missionID)
+	{
+		List<NotificationCenter.Notification> notifications = new List<NotificationCenter.Notification> ();
+
+		if (GameEngine.instance.game.playerList.ContainsKey (playerNum)) {
+
+			Player player = GameEngine.instance.game.playerList [playerNum];
+
+			if (player.notifications.notificationsByMissionID.ContainsKey (missionID)) {
+				
+				notifications = player.notifications.notificationsByMissionID [missionID];
+
+			} else {
+				Debug.Log ("Mission ID not found");
+			}
+
+		} else {
+
+			Debug.Log ("Player not found");
 		}
 
 		return notifications;

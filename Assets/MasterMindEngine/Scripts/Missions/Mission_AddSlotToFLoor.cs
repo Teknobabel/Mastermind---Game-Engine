@@ -18,7 +18,8 @@ public class Mission_AddSlotToFLoor : Mission {
 			}
 		}
 
-		return true;
+		bool meetsLevelReq = base.IsValid (plan);
+		return meetsLevelReq;
 	}
 
 	public override void CompleteMission (MissionPlan plan)
@@ -35,6 +36,7 @@ public class Mission_AddSlotToFLoor : Mission {
 //			plan.m_floorSlot.m_actorSlots.Add (aSlot);
 
 			plan.m_floorSlot.m_numActorSlots++;
+			plan.m_floorSlot.m_floor.level++;
 
 			plan.m_floorSlot.m_floor.completedUpgrades.Add (this);
 		}

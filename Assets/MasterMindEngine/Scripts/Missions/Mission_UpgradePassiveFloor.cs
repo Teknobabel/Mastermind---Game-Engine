@@ -17,7 +17,8 @@ public class Mission_UpgradePassiveFloor : Mission {
 			}
 		}
 
-		return true;
+		bool meetsLevelReq = base.IsValid (plan);
+		return meetsLevelReq;
 	}
 
 	public override void CompleteMission (MissionPlan plan)
@@ -29,6 +30,7 @@ public class Mission_UpgradePassiveFloor : Mission {
 		if (plan.m_result == MissionPlan.Result.Success) {
 
 			plan.m_floorSlot.m_floor.Initialize ();
+			plan.m_floorSlot.m_floor.level++;
 			plan.m_floorSlot.m_floor.completedUpgrades.Add (this);
 
 		}

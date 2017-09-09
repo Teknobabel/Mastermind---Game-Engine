@@ -22,5 +22,6 @@ MonoBehaviour:
   m_infamy: 1
   m_cost: 4
   m_duration: 3
+  m_minFloorLevel: 2
   m_numAssets: 3
   m_revealChance: 0.6

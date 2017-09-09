@@ -28,5 +28,6 @@ public class Director : ScriptableObject {
 	m_startingHireSlots = 3,
 	m_startingHenchmenSlots = 3,
 	m_startingCommandPool = 10,
-	m_startingAssetSlots = 5;
+	m_startingAssetSlots = 5,
+	m_startingFloorSlots = 6;
 }

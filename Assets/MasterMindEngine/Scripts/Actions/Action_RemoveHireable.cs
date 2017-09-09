@@ -6,6 +6,7 @@ public class Action_RemoveHireable : Action {
 
 	public int m_playerID = 0;
 	public int m_actorID = -1;
+	public bool m_wasDismissed = false;
 
 	public override void ExecuteAction ()
 	{
@@ -17,12 +18,20 @@ public class Action_RemoveHireable : Action {
 
 				Actor a = aSlot.m_actor;
 				aSlot.RemoveHenchmen ();
-//				player.hiringPool.m_availableHenchmen.Add (a);
+				//				player.hiringPool.m_availableHenchmen.Add (a);
 				player.hiringPool.m_tempBank.Add(a);
 
-				string title = a.m_actorName + " Left";
+				string title = "Henchmen Left";
+				bool alert = false;
+
+				if (m_wasDismissed) {
+
+					title = "Henchmen Dismissed";
+					alert = true;
+				}
+
 				string message = a.m_actorName + " is no longer available for hire.";
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Hire);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Hire, alert, m_missionID);
 
 				GameController.instance.Notify (player, GameEvent.Henchmen_RemovedFromHireable);
 

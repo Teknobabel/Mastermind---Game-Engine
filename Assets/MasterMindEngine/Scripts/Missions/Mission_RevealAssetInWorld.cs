@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Mission_RevealAssetInWorld : Mission {
 
+	public int m_numAssets = 1;
+	public float m_revealChance = 1.0f;
+
 	public override void CompleteMission (MissionPlan plan)
 	{
 		base.CompleteMission (plan);
@@ -19,7 +22,50 @@ public class Mission_RevealAssetInWorld : Mission {
 
 					if (aSlot.m_state == Site.AssetSlot.State.Hidden) {
 
-						hiddenAssets.Add (aSlot);
+						// lower rank assets are more likely to be discovered
+
+						int numTimesToAdd = 1;
+
+						switch (aSlot.m_asset.m_rank) {
+						case 1:
+							numTimesToAdd = 4;
+							break;
+						case 2:
+							numTimesToAdd = 3;
+							break;
+						case 3:
+							numTimesToAdd = 2;
+							break;
+						}
+
+						switch (pair.Value.m_maxAlertLevel) {
+						case 1:
+							numTimesToAdd += 3;
+							break;
+						case 2:
+							numTimesToAdd += 2;
+							break;
+						case 3:
+							numTimesToAdd += 1;
+							break;
+						}
+
+						switch (pair.Value.traits.Count) {
+						case 0:
+							numTimesToAdd += 4;
+							break;
+						case 1:
+							numTimesToAdd += 2;
+							break;
+						case 2:
+							numTimesToAdd += 1;
+							break;
+						}
+							
+						for (int i = 0; i < numTimesToAdd; i++) {
+
+							hiddenAssets.Add (aSlot);
+						}
 					}
 				}
 			}
@@ -28,14 +74,30 @@ public class Mission_RevealAssetInWorld : Mission {
 
 				//				title = "Asset Revealed";
 
-				int rand = Random.Range (0, hiddenAssets.Count);
+				List<Site.AssetSlot> pickedAssets = new List<Site.AssetSlot> ();
 
-				Site.AssetSlot aSlot = hiddenAssets [rand];
+				for (int i = 0; i < m_numAssets; i++) {
 
-				Action_RevealAsset revealAsset = new Action_RevealAsset ();
-				revealAsset.m_playerID = 0;
-				revealAsset.m_assetSlot = aSlot;
-				GameController.instance.ProcessAction (revealAsset);
+					if (i == 0 || Random.Range (0.0f, 1.0f) <= m_revealChance) {
+						
+						int rand = Random.Range (0, hiddenAssets.Count);
+						Site.AssetSlot aSlot = hiddenAssets [rand];
+
+						if (!pickedAssets.Contains (aSlot)) {
+
+							pickedAssets.Add (aSlot);
+						}
+					}
+				}
+
+				foreach (Site.AssetSlot aSlot in pickedAssets) {
+
+					Action_RevealAsset revealAsset = new Action_RevealAsset ();
+					revealAsset.m_playerID = 0;
+					revealAsset.m_missionID = plan.m_missionID;
+					revealAsset.m_assetSlot = aSlot;
+					GameController.instance.ProcessAction (revealAsset);
+				}
 
 				//				aSlot.m_state = Site.AssetSlot.State.Revealed;
 

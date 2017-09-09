@@ -46,7 +46,22 @@ public class Action_EvaluateMission : Action {
 
 			m_missionPlan.m_currentMission.CompleteMission (m_missionPlan);
 
-			// clear / reset mission parameters
+			// add to completed mission list
+
+			MissionSummary newMissionSummary = new MissionSummary ();
+			newMissionSummary.m_missionID = m_missionPlan.m_missionID;
+			newMissionSummary.m_mission = m_missionPlan.m_currentMission;
+			newMissionSummary.m_missionResult = m_missionPlan.m_result;
+
+			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
+
+				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+
+					newMissionSummary.m_participatingActors.Add (aSlot.m_actor);
+				}
+			}
+
+			player.missionsCompletedThisTurn.Add (newMissionSummary);
 
 			// update infamy and site alert level
 
@@ -97,6 +112,7 @@ public class Action_EvaluateMission : Action {
 				alertLevel.m_playerID = 0;
 				alertLevel.m_siteID = m_missionPlan.m_missionSite.id;
 				alertLevel.m_amount = alertGain;
+				alertLevel.m_missionID = m_missionPlan.m_missionID;
 				GameController.instance.ProcessAction (alertLevel);
 			}
 
@@ -105,6 +121,7 @@ public class Action_EvaluateMission : Action {
 				Action_GainInfamy gainInfamy = new Action_GainInfamy ();
 				gainInfamy.m_playerID = 0;
 				gainInfamy.m_amount = infamyGain;
+				gainInfamy.m_missionID = m_missionPlan.m_missionID;
 				GameController.instance.ProcessAction (gainInfamy);
 			}
 
@@ -120,6 +137,7 @@ public class Action_EvaluateMission : Action {
 					Action_RemoveAsset removeAsset = new Action_RemoveAsset ();
 					removeAsset.m_playerID = 0;
 					removeAsset.m_assetSlot = aSlot;
+					removeAsset.m_missionID = m_missionPlan.m_missionID;
 					GameController.instance.ProcessAction (removeAsset);
 
 				} else {
@@ -139,16 +157,22 @@ public class Action_EvaluateMission : Action {
 
 			if (m_missionPlan.m_floorSlot != null) {
 
-				m_missionPlan.m_currentMission = null;
+				if (!m_missionPlan.m_doRepeat) {
+					m_missionPlan.m_currentMission = null;
+				}
+
 				m_missionPlan.m_result = MissionPlan.Result.None;
 				m_missionPlan.m_floorSlot.m_state = Lair.FloorSlot.FloorState.Idle;
 			}
 
 			// reset plan to default values
 
-			m_missionPlan.m_actorSlots.Clear ();
-			m_missionPlan.m_missionSite = null;
-			m_missionPlan.m_currentAsset = null;
+			if (!m_missionPlan.m_doRepeat) {
+				
+				m_missionPlan.m_actorSlots.Clear ();
+				m_missionPlan.m_missionSite = null;
+				m_missionPlan.m_currentAsset = null;
+			}
 			m_missionPlan.m_new = false;
 			m_missionPlan.m_successChance = 0;
 			m_missionPlan.m_turnNumber = 0;
@@ -159,22 +183,24 @@ public class Action_EvaluateMission : Action {
 
 		} else {
 
-			string title = "Mission Continues";
+			string title = "Mission Report";
 			string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is in progress.";
 
-			if (m_missionPlan.m_turnNumber == 1) {
+//			if (m_missionPlan.m_turnNumber == 1) {
+//
+//				title = "New Mission Begins";
+//				message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is underway.";
+//			}
 
-				title = "New Mission Begins";
-				message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is underway.";
-			}
+			message += "(" + m_missionPlan.m_turnNumber.ToString () + "/" + m_missionPlan.m_currentMission.m_duration.ToString () + ")";
 
-			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions);
+			player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, false, m_missionID);
 
 			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
 
 				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
 
-					aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions);
+					aSlot.m_actor.notifications.AddNotification(GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, false, m_missionID);
 				}
 			}
 		}

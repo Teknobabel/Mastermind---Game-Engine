@@ -15,13 +15,15 @@ public class Mission_StealAndRevealAssets : Mission {
 
 			Player player = GameEngine.instance.game.playerList [0];
 
+			Asset asset = plan.m_currentAsset.m_asset;
+
 			if (plan.m_currentAsset.m_site != null) {
 
 				plan.m_currentAsset.m_site.RemoveAsset (plan.m_currentAsset);
 			}
 
 			Action_GainAsset gainAsset = new Action_GainAsset ();
-			gainAsset.m_asset = plan.m_currentAsset.m_asset;
+			gainAsset.m_asset = asset;
 			gainAsset.m_player = player;
 			GameController.instance.ProcessAction (gainAsset);
 

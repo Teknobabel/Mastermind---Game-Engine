@@ -20,5 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
   m_infamy: 0
   m_cost: 5
-  m_duration: 7
+  m_duration: 5
+  m_minFloorLevel: 2
   m_floor: {fileID: 11400000, guid: cfbea1dd336fa43c288f26baad79c76a, type: 2}

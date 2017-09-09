@@ -37,6 +37,7 @@ public class Mission_RevealAsset : Mission {
 
 				Action_RevealAsset revealAsset = new Action_RevealAsset ();
 				revealAsset.m_playerID = 0;
+				revealAsset.m_missionID = plan.m_missionID;
 				revealAsset.m_assetSlot = aSlot;
 				GameController.instance.ProcessAction (revealAsset);
 
@@ -48,7 +49,7 @@ public class Mission_RevealAsset : Mission {
 
 				string title = "No Assets Found";
 				string message = "There are no hidden Assets to reveal";
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.World);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.World, false, plan.m_missionID);
 			}
 
 		} 

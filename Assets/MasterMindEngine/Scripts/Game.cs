@@ -16,6 +16,8 @@ public class Game  {
 
 	private int m_currentTurn = 0;
 
+	private int m_currentMissionID = 0;
+
 	public void AddDirector (Director director)
 	{
 		m_director = director;
@@ -77,6 +79,12 @@ public class Game  {
 	public void IncrementTurn ()
 	{
 		m_currentTurn++;
+	}
+
+	public int GetMissionID ()
+	{
+		m_currentMissionID++;
+		return m_currentMissionID;
 	}
 
 	public Dictionary<int, Player> playerList {get{ return m_playerList; }}

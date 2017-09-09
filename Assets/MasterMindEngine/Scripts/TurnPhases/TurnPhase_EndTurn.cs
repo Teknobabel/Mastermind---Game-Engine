@@ -19,7 +19,7 @@ public class TurnPhase_EndTurn : TurnPhase {
 
 		Player player = GameEngine.instance.game.playerList [0];
 
-		float newHenchmenAppearanceChance = 0.35f;
+		float newHenchmenAppearanceChance = 0.55f;
 		float henchmenForHireLeaveChance = 0.3f;
 		float turnsToWaitBeforeLeaveChance = 4;
 
@@ -64,6 +64,10 @@ public class TurnPhase_EndTurn : TurnPhase {
 		// evaluate any event triggers
 
 		// check if intel should be spawned
+
+
+
+//		player.missionsCompletedThisTurn.Clear ();
 
 //		GameEngine.instance.NextTurnPhase ();
 		Debug.Log ("Ending End Turn Phase");

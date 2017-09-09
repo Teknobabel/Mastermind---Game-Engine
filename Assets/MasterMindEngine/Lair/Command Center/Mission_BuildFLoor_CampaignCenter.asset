@@ -19,5 +19,5 @@ MonoBehaviour:
   m_requiredAssets: []
   m_infamy: 0
   m_cost: 3
-  m_duration: 3
+  m_duration: 2
   m_floor: {fileID: 11400000, guid: e8f33598fb4224a1299f7d7893982d3a, type: 2}

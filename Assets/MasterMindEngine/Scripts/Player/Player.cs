@@ -125,34 +125,30 @@ public class Player: IBaseObject, ISubject {
 
 	private int m_id = -1;
 
-	// lair
-
 	private Lair m_lair;
 
-	// hiring pool
 	private HiringPool m_hiringPool;
 
 	// current henchmen
 	private HenchmenPool m_henchmenPool;
 
-	// command pool
 	private CommandPool m_commandPool;
 
-	// omega plan
 	private OmegaPlanSlot m_omegaPlanSlot;
 
-	// assets
 	private List<Site.AssetSlot> m_assets = new List<Site.AssetSlot>();
 
-	// notifications
 	private NotificationCenter m_notifications = new NotificationCenter();
 
 	private List<MissionPlan> m_currentMissions = new List<MissionPlan> ();
 
+	private List<MissionSummary> m_missionsCompletedThisTurn = new List<MissionSummary> ();
+
 	private MessageCenter m_messageCenter = new MessageCenter();
 
 	private int m_infamy = 0,
-	m_baseAssetSlots = 0;
+	m_baseAssetSlots = 0,
+	m_numFloorSlots = 0;
 
 	public void SpendCommandPoints (int amt)
 	{
@@ -248,6 +244,12 @@ public class Player: IBaseObject, ISubject {
 		return numSlots;
 	}
 
+	public int NumFloorSlots ()
+	{
+		int numSlots = GameEngine.instance.game.director.m_startingFloorSlots + m_numFloorSlots;
+		return numSlots;
+	}
+
 	public void AddMission (MissionPlan plan)
 	{
 		m_currentMissions.Add (plan);
@@ -297,4 +299,7 @@ public class Player: IBaseObject, ISubject {
 
 	public int baseAssetSlots {get{ return m_baseAssetSlots; } set{ m_baseAssetSlots = value; }}
 
+	public int numFloorSlots {get{ return m_numFloorSlots; }set{ m_numFloorSlots = value; }}
+
+	public List<MissionSummary> missionsCompletedThisTurn {get{return m_missionsCompletedThisTurn; }set{m_missionsCompletedThisTurn = value;}}
 }

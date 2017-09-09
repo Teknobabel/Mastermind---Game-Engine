@@ -18,7 +18,8 @@ public class Mission_BuildFloor : Mission {
 			}
 		}
 
-		return true;
+		bool meetsLevelReq = base.IsValid (plan);
+		return meetsLevelReq;
 	}
 
 	public override void CompleteMission (MissionPlan plan)
@@ -29,6 +30,7 @@ public class Mission_BuildFloor : Mission {
 
 			Action_BuildNewFloor buildFloor = new Action_BuildNewFloor ();
 			buildFloor.m_floor = m_floor;
+			buildFloor.m_missionID = plan.m_missionID;
 			buildFloor.m_player = GameEngine.instance.game.playerList [0];
 			GameController.instance.ProcessAction (buildFloor);
 

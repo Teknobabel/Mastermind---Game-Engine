@@ -13,6 +13,8 @@ public class Floor : ScriptableObject {
 
 	private List<Mission> m_completedUpgrades = new List<Mission> ();
 
+	private int m_level = 1;
+
 	public virtual void Initialize (){
 	}
 
@@ -20,5 +22,6 @@ public class Floor : ScriptableObject {
 	}
 
 	public List<Mission> completedUpgrades {get{return m_completedUpgrades;} set{ m_completedUpgrades = value; }}
+	public int level {get{ return m_level; }set{ m_level = value; }}
 
 }

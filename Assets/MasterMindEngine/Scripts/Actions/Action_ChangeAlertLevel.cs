@@ -25,7 +25,7 @@ public class Action_ChangeAlertLevel : Action {
 			message += "decreased by " + m_amount.ToString () + ".";
 		}
 
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.World);
+		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.World, false, m_missionID);
 	}
 
 }

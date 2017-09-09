@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Action {
 
+	public int m_missionID = -1;
+
 	public virtual void ExecuteAction ()
 	{
 

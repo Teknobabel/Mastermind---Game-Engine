@@ -62,6 +62,7 @@ public class OmegaPlan : ScriptableObject, IObserver {
 				newGoal.m_mandatoryAssets = goal.m_mandatoryAssets;
 				newGoal.plan = new MissionPlan ();
 				newGoal.plan.m_goal = newGoal;
+				newGoal.plan.m_allowRepeat = false;
 
 				//				for (int j = 0; j < 3; j++) {
 				//
@@ -85,6 +86,30 @@ public class OmegaPlan : ScriptableObject, IObserver {
 		}
 
 		GameController.instance.AddObserver (this);
+	}
+
+	public List<Asset> GetNeededAssets ()
+	{
+		List<Asset> neededAssets = new List<Asset> ();
+
+		foreach (Phase phase in m_phases) {
+
+			foreach (OPGoal goal in phase.m_goals) {
+
+				if (goal.m_state != OPGoal.State.Complete) {
+
+					foreach (Asset a in goal.m_mission.m_requiredAssets) {
+
+						if (!neededAssets.Contains (a)) {
+
+							neededAssets.Add (a);
+						}
+					}
+				}
+			}
+		}
+
+		return neededAssets;
 	}
 
 	public void OnNotify (ISubject subject, GameEvent thisGameEvent)
@@ -115,7 +140,7 @@ public class OmegaPlan : ScriptableObject, IObserver {
 
 				string title = "Phase Completed";
 				string message = "Omega Plan Phase " + (m_currentPhase+1).ToString() + " Completed!";
-				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.OmegaPlan);
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.OmegaPlan, false, -1);
 
 				if (m_currentPhase + 1 < m_phases.Count) {
 
@@ -130,7 +155,7 @@ public class OmegaPlan : ScriptableObject, IObserver {
 
 					title = "Phase Unlocked";
 					message = "Omega Plan Phase " + (m_currentPhase+1).ToString() + " has been unlocked.";
-					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.OmegaPlan);
+					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.OmegaPlan, false, -1);
 
 					GameController.instance.Notify (player, GameEvent.Player_OmegaPlanChanged);
 

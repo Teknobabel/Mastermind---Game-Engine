@@ -19,4 +19,5 @@ MonoBehaviour:
   m_requiredAssets: []
   m_infamy: 0
   m_cost: 3
-  m_duration: 3
+  m_duration: 1
+  m_minFloorLevel: 2
