@@ -19,4 +19,8 @@ public class Trait : ScriptableObject {
 	public string m_name;
 
 	public Type m_type = Type.None;
+
+	public int m_rank = 1;
+
+	public Trait m_linkedSkill;
 }

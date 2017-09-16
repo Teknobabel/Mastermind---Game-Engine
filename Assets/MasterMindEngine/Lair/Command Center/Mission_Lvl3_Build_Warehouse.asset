@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
-  m_Name: Mission_BuildFloor_Barracks
+  m_Name: Mission_Lvl3_Build_Warehouse
   m_EditorClassIdentifier: 
-  m_name: 'Build Floor: Barracks'
-  m_description: Increases the number of Henchmen you can have employed concurrently.
+  m_name: 'Build Facility: Warehouse'
+  m_description: Allows your Lair to hold additional Assets.
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
@@ -21,5 +21,5 @@ MonoBehaviour:
   m_infamy: 0
   m_cost: 4
   m_duration: 3
-  m_minFloorLevel: 2
-  m_floor: {fileID: 11400000, guid: 2bcafc1f3e10e4efbbc71ca0079fcafa, type: 2}
+  m_minFloorLevel: 3
+  m_floor: {fileID: 11400000, guid: cfbea1dd336fa43c288f26baad79c76a, type: 2}

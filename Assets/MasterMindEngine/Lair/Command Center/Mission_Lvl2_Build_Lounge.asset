@@ -9,15 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
-  m_Name: Mission_BuildFLoor_DataNexus
+  m_Name: Mission_Lvl2_Build_Lounge
   m_EditorClassIdentifier: 
-  m_name: 'Build Floor: Data Nexus'
-  m_description: Allows Hackers to plan missions for uncovering Assets.
+  m_name: 'Build Facility: Lounge'
+  m_description: Increase the number of Henchmen available to hire.
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
-  m_requiredAssets: []
+  m_requiredAssets:
+  - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
   m_infamy: 0
-  m_cost: 3
-  m_duration: 2
-  m_floor: {fileID: 11400000, guid: 38bbe4c30015948cb9375887bafab0c7, type: 2}
+  m_cost: 4
+  m_duration: 3
+  m_minFloorLevel: 2
+  m_floor: {fileID: 11400000, guid: 34c79422668874dc2a819cefa1aa3e78, type: 2}

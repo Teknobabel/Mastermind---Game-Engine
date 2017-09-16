@@ -67,6 +67,15 @@ public class TurnPhase_EndTurn : TurnPhase {
 
 
 
+
+		// update effect durations
+
+		foreach (KeyValuePair<int, Player> pair in GameController.instance.game.playerList) {
+
+			pair.Value.effectPool.UpdateDuration ();
+		}
+
+
 //		player.missionsCompletedThisTurn.Clear ();
 
 //		GameEngine.instance.NextTurnPhase ();

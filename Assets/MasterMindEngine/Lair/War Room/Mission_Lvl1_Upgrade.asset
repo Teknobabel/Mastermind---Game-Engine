@@ -8,16 +8,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
-  m_Name: Mission_BuildFLoor_CampaignCenter
+  m_Script: {fileID: 11500000, guid: 5f38bc985ef564b19ba0e00d360c4801, type: 3}
+  m_Name: Mission_Lvl1_Upgrade
   m_EditorClassIdentifier: 
-  m_name: 'Build Floor: Campaign Center'
-  m_description: Allows Bureaucrats to plan missions for diplomacy with Sites.
+  m_name: Upgrade Alpha
+  m_description: An addition Henchmen can participate in Missions on this Floor.
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
   m_requiredAssets: []
   m_infamy: 0
-  m_cost: 3
-  m_duration: 2
-  m_floor: {fileID: 11400000, guid: e8f33598fb4224a1299f7d7893982d3a, type: 2}
+  m_cost: 4
+  m_duration: 3
+  m_minFloorLevel: 1
+  m_numSlots: 1

@@ -9,17 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
-  m_Name: Mission_BuildFLoor_Workshop
+  m_Name: Mission_Lvl3_Build_CampaignCenter
   m_EditorClassIdentifier: 
-  m_name: 'Build Facility: Workshop'
-  m_description: Allows Engineers to build advanced facilities.
+  m_name: 'Build Facility: Campaign Center'
+  m_description: Allows Bureaucrats to plan missions for diplomacy with Sites.
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
-  m_requiredAssets:
-  - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+  m_requiredAssets: []
   m_infamy: 0
-  m_cost: 5
-  m_duration: 5
+  m_cost: 3
+  m_duration: 2
   m_minFloorLevel: 3
-  m_floor: {fileID: 11400000, guid: 005843a6044004d7aada0c4ad0ef52e1, type: 2}
+  m_floor: {fileID: 11400000, guid: e8f33598fb4224a1299f7d7893982d3a, type: 2}

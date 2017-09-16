@@ -146,6 +146,8 @@ public class Player: IBaseObject, ISubject {
 
 	private MessageCenter m_messageCenter = new MessageCenter();
 
+	private EffectPool m_effectPool = new EffectPool();
+
 	private int m_infamy = 0,
 	m_baseAssetSlots = 0,
 	m_numFloorSlots = 0;
@@ -188,7 +190,7 @@ public class Player: IBaseObject, ISubject {
 	{
 		Site.AssetSlot aSlot = new Site.AssetSlot ();
 		aSlot.m_asset = newAsset;
-		aSlot.m_state = Site.AssetSlot.State.Hidden;
+		aSlot.m_state = Site.AssetSlot.State.Revealed;
 		aSlot.m_new = true;
 		m_assets.Add (aSlot);
 
@@ -302,4 +304,6 @@ public class Player: IBaseObject, ISubject {
 	public int numFloorSlots {get{ return m_numFloorSlots; }set{ m_numFloorSlots = value; }}
 
 	public List<MissionSummary> missionsCompletedThisTurn {get{return m_missionsCompletedThisTurn; }set{m_missionsCompletedThisTurn = value;}}
+
+	public EffectPool effectPool {get{ return m_effectPool; }}
 }

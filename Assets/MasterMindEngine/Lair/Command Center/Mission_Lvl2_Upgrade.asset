@@ -8,18 +8,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
-  m_Name: Mission_BuildFLoor_Lounge
+  m_Script: {fileID: 11500000, guid: 5f38bc985ef564b19ba0e00d360c4801, type: 3}
+  m_Name: Mission_Lvl2_Upgrade
   m_EditorClassIdentifier: 
-  m_name: 'Build Floor: Lounge'
-  m_description: Increase the number of Henchmen available to hire.
+  m_name: Upgrade to Level 3
+  m_description: Unlock an additional Henchmen Slot and new Missions
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
   m_requiredAssets:
   - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+  - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
   m_infamy: 0
   m_cost: 4
   m_duration: 3
   m_minFloorLevel: 2
-  m_floor: {fileID: 11400000, guid: 34c79422668874dc2a819cefa1aa3e78, type: 2}
+  m_numSlots: 1

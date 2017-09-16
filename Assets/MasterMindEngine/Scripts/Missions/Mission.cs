@@ -87,4 +87,87 @@ public class Mission : ScriptableObject {
 			}
 		}
 	}
+
+	public void CheckForLearningTraits (MissionPlan plan)
+	{
+		float baseLearnChance = 0.1f;
+		float rank1TraitBonus = 0.1f;
+		float rank2TraitBonus = -0.05f;
+		float rank3TraitBonus = -0.1f;
+		float rank4TraitBonus = -0.2f;
+		float linkedSkillBonus = 0.1f; // if the henchmen has the skill linked to the trait
+		float assistanceBonus = 0.1f; // granted if another participating henchmen has the trait
+		float missionFailureBonus = 0.05f;
+
+		foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
+
+			foreach (Trait t in plan.m_requiredTraits) {
+
+				if (!aSlot.m_actor.traits.Contains (t)) {
+
+					float learnChance = baseLearnChance;
+
+					// check rank of trait
+
+					switch (t.m_rank) {
+
+					case 1:
+						learnChance += rank1TraitBonus;
+						break;
+					case 2:
+						learnChance += rank2TraitBonus;
+						break;
+					case 3:
+						learnChance += rank3TraitBonus;
+						break;
+					case 4:
+						learnChance += rank4TraitBonus;
+						break;
+					}
+
+					// see if henchmen has the linked skill
+
+					if (t.m_linkedSkill != null && aSlot.m_actor.traits.Contains (t.m_linkedSkill)) {
+
+						learnChance += linkedSkillBonus;
+					}
+
+					// see if another participating henchmen has the skill
+
+					foreach (Player.ActorSlot aSlot2 in plan.m_actorSlots) {
+
+						if (aSlot2.m_actor.traits.Contains (t)) {
+
+							learnChance += assistanceBonus;
+						}
+					}
+
+					// see if mission was a failure
+
+					if (plan.m_result == MissionPlan.Result.Fail) {
+
+						learnChance += missionFailureBonus;
+					}
+
+					if (learnChance > 0.0f) {
+						
+						Debug.Log ("Learn Trait Chance: " + learnChance);
+
+						if (Random.Range (0.0f, 1.0f) <= learnChance) {
+
+							Action_GainTrait newTrait = new Action_GainTrait ();
+							newTrait.m_playerID = 0;
+							newTrait.m_newTrait = t;
+							newTrait.m_actor = aSlot.m_actor;
+							newTrait.m_missionID = plan.m_missionID;
+							GameController.instance.ProcessAction (newTrait);
+						}
+					}
+				}
+
+			}
+		}
+
+	}
+
 }

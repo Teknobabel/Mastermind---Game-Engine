@@ -15,12 +15,10 @@ MonoBehaviour:
   m_startingHenchmenSlots: 1
   m_missions:
   - {fileID: 11400000, guid: b5ec5224c8cbe4b9c8754f7cdcb9c202, type: 2}
-  - {fileID: 11400000, guid: cf2ca819ecfd84640aaeec404a978f3b, type: 2}
-  - {fileID: 11400000, guid: 998d5af3d655649378c296d02a45f060, type: 2}
-  - {fileID: 11400000, guid: 18a89c1f496a14bb1b0b1c5116f1e205, type: 2}
   - {fileID: 11400000, guid: 1319dbae9163041e2927a82774cc3082, type: 2}
-  - {fileID: 11400000, guid: da3ee191530334cb4b0b2352407a4427, type: 2}
-  - {fileID: 11400000, guid: 8fa9a5b9d984544abbdde4b9eac5a16b, type: 2}
-  - {fileID: 11400000, guid: eba92cdfb86b944f6a57778f0f73a48f, type: 2}
   - {fileID: 11400000, guid: 10af8c4af72de40b2a1147dd40f63e05, type: 2}
+  - {fileID: 11400000, guid: cf2ca819ecfd84640aaeec404a978f3b, type: 2}
+  - {fileID: 11400000, guid: 18a89c1f496a14bb1b0b1c5116f1e205, type: 2}
   - {fileID: 11400000, guid: 038f8bdc2e5004679a9cb35392428af7, type: 2}
+  - {fileID: 11400000, guid: 998d5af3d655649378c296d02a45f060, type: 2}
+  - {fileID: 11400000, guid: b3194e99ee2284b3e98933712abb1ad3, type: 2}

@@ -8,15 +8,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef084dc3d4d644f5be195868698019b, type: 3}
-  m_Name: Mission_Mercenary_StealAsset
+  m_Script: {fileID: 11500000, guid: 864e2abe897514759915ecaea7ab6c6a, type: 3}
+  m_Name: Mission_Lvl1_StealAsset_Thief
   m_EditorClassIdentifier: 
-  m_name: Night Raid
-  m_description: Attempt to steal target Asset
-  m_targetType: 2
+  m_name: Infiltration
+  m_description: Steal a random Revealed Asset at the target Site.
+  m_targetType: 1
   m_requiredTraits:
-  - {fileID: 11400000, guid: 3e9e65fa5e5de47c89b6caf3433efa07, type: 2}
+  - {fileID: 11400000, guid: 4b9a34e25d0e94c8b9d942e91992d4b8, type: 2}
   m_requiredAssets: []
   m_infamy: 1
   m_cost: 5
   m_duration: 1
+  m_minFloorLevel: 1

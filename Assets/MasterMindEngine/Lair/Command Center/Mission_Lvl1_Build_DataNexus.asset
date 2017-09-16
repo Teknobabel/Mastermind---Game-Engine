@@ -8,16 +8,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f38bc985ef564b19ba0e00d360c4801, type: 3}
-  m_Name: Mission_DataNexus_Upgrade01
+  m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
+  m_Name: Mission_Lvl1_Build_DataNexus
   m_EditorClassIdentifier: 
-  m_name: Upgrade to Level 2
-  m_description: Unlock an additional Henchmen Slot and new Missions
+  m_name: 'Build Facility: Data Nexus'
+  m_description: Allows Hackers to plan missions for uncovering Assets.
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
   m_requiredAssets: []
   m_infamy: 0
-  m_cost: 4
-  m_duration: 3
+  m_cost: 3
+  m_duration: 2
   m_minFloorLevel: 1
+  m_floor: {fileID: 11400000, guid: 38bbe4c30015948cb9375887bafab0c7, type: 2}

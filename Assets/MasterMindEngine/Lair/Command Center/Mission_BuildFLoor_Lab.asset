@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
   m_Name: Mission_BuildFLoor_Lab
   m_EditorClassIdentifier: 
-  m_name: 'Build Floor: Lab'
+  m_name: 'Build Facility: Lab'
   m_description: Allows Scientists to plan missions for research and development.
   m_targetType: 3
   m_requiredTraits:

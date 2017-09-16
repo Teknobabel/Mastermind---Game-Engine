@@ -8,16 +8,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f38bc985ef564b19ba0e00d360c4801, type: 3}
-  m_Name: Mission_ConferenceRoom_Upgrade01
+  m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
+  m_Name: Mission_Lvl1_Build_Barracks
   m_EditorClassIdentifier: 
-  m_name: Upgrade to Level 2
-  m_description: Unlock an additional Henchmen Slot and new Missions
+  m_name: 'Build Facility: Barracks'
+  m_description: Increases the number of Henchmen you can have employed concurrently.
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
-  m_requiredAssets: []
+  m_requiredAssets:
+  - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
   m_infamy: 0
   m_cost: 4
   m_duration: 2
   m_minFloorLevel: 1
+  m_floor: {fileID: 11400000, guid: 2bcafc1f3e10e4efbbc71ca0079fcafa, type: 2}

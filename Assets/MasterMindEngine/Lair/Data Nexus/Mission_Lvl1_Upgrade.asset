@@ -9,16 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f38bc985ef564b19ba0e00d360c4801, type: 3}
-  m_Name: Mission_CommandCenter_Upgrade02
+  m_Name: Mission_Lvl1_Upgrade
   m_EditorClassIdentifier: 
-  m_name: Upgrade to Level 3
+  m_name: Upgrade to Level 2
   m_description: Unlock an additional Henchmen Slot and new Missions
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
-  m_requiredAssets:
-  - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
+  m_requiredAssets: []
   m_infamy: 0
   m_cost: 4
-  m_duration: 3
-  m_minFloorLevel: 2
+  m_duration: 2
+  m_minFloorLevel: 1
+  m_numSlots: 1

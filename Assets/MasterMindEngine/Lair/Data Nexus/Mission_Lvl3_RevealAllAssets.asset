@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6103d32f7202a4617b18a91a77e9e509, type: 3}
-  m_Name: Mission_Hacker_RevealAllAssets
+  m_Name: Mission_Lvl3_RevealAllAssets
   m_EditorClassIdentifier: 
   m_name: Crash the System
   m_description: Reveal all Assets at the target Site
@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76ccdbf62fcf54b69a62322c51f6228c, type: 2}
   m_infamy: 2
   m_cost: 5
-  m_duration: 4
+  m_duration: 3
   m_minFloorLevel: 3
   m_numAssets: 9
   m_revealChance: 1

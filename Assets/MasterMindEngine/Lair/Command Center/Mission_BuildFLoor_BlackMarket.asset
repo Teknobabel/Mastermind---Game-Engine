@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
   m_Name: Mission_BuildFLoor_BlackMarket
   m_EditorClassIdentifier: 
-  m_name: 'Build Floor: Black Market'
+  m_name: 'Build Facility: Black Market'
   m_description: Allows Thieves buy and sell various Assets.
   m_targetType: 3
   m_requiredTraits:

@@ -9,13 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef084dc3d4d644f5be195868698019b, type: 3}
-  m_Name: Mission_Thief_StealAsset
+  m_Name: Mission_Lvl3_StealAsset_Mercenary
   m_EditorClassIdentifier: 
-  m_name: Infiltration
+  m_name: Night Raid
   m_description: Attempt to steal target Asset
   m_targetType: 2
   m_requiredTraits:
-  - {fileID: 11400000, guid: 4b9a34e25d0e94c8b9d942e91992d4b8, type: 2}
+  - {fileID: 11400000, guid: 3e9e65fa5e5de47c89b6caf3433efa07, type: 2}
+  - {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
   m_requiredAssets: []
   m_infamy: 1
   m_cost: 5

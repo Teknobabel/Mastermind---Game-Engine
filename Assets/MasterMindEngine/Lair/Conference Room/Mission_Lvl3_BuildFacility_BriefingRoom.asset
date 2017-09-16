@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
-  m_Name: Mission_BuildFLoor_Warehouse
+  m_Name: Mission_Lvl3_BuildFacility_BriefingRoom
   m_EditorClassIdentifier: 
-  m_name: 'Build Floor: Warehouse'
-  m_description: Allows your Lair to hold 5 more Assets.
+  m_name: 'Build Facility: Briefing Room'
+  m_description: A Briefing Room allows you to increase your maximum Command Pool.
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
@@ -20,6 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
   m_infamy: 0
   m_cost: 5
-  m_duration: 5
-  m_minFloorLevel: 2
-  m_floor: {fileID: 11400000, guid: cfbea1dd336fa43c288f26baad79c76a, type: 2}
+  m_duration: 3
+  m_minFloorLevel: 3
+  m_floor: {fileID: 11400000, guid: 381869ea3ce8e46e18777cc63ce21e95, type: 2}

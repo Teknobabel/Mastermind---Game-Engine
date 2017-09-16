@@ -15,9 +15,10 @@ MonoBehaviour:
   m_startingHenchmenSlots: 1
   m_missions:
   - {fileID: 11400000, guid: 108e5b3fa45524eee908d6173a0c1272, type: 2}
-  - {fileID: 11400000, guid: 35a33f494859c4a96bf00506d16ca498, type: 2}
-  - {fileID: 11400000, guid: 3f24195a4f27d4c369e29c476b8a79b6, type: 2}
-  - {fileID: 11400000, guid: f057c46c91c464c96be1644682052529, type: 2}
   - {fileID: 11400000, guid: 1a74c75fd1374437da14cf00360fb366, type: 2}
   - {fileID: 11400000, guid: 697c0f45714fc41739cb137a5f134880, type: 2}
+  - {fileID: 11400000, guid: 35a33f494859c4a96bf00506d16ca498, type: 2}
+  - {fileID: 11400000, guid: 3f24195a4f27d4c369e29c476b8a79b6, type: 2}
   - {fileID: 11400000, guid: 5bbc72ef181e949929b366d9056d35f5, type: 2}
+  - {fileID: 11400000, guid: 506590ab7b7ef4cb8839babc04de315c, type: 2}
+  - {fileID: 11400000, guid: f057c46c91c464c96be1644682052529, type: 2}

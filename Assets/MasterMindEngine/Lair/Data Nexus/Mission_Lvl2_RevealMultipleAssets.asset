@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6103d32f7202a4617b18a91a77e9e509, type: 3}
-  m_Name: Mission_Hacker_RevealMultipleAssets
+  m_Name: Mission_Lvl2_RevealMultipleAssets
   m_EditorClassIdentifier: 
   m_name: Mainframe Intrusion
   m_description: Chance to reveal up to 3 Assets at the target Site
@@ -21,7 +21,7 @@ MonoBehaviour:
   m_requiredAssets: []
   m_infamy: 1
   m_cost: 4
-  m_duration: 3
+  m_duration: 2
   m_minFloorLevel: 2
   m_numAssets: 3
   m_revealChance: 0.6

@@ -8,17 +8,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f38bc985ef564b19ba0e00d360c4801, type: 3}
-  m_Name: Mission_DataNexus_Upgrade02
+  m_Script: {fileID: 11500000, guid: 1437fc19b2e3d467b96125e1bd0c5984, type: 3}
+  m_Name: Mission_Lvl1_RevealMultipleAssetsInWorld
   m_EditorClassIdentifier: 
-  m_name: Upgrade to Level 3
-  m_description: Unlock an additional Henchmen Slot and new Missions
+  m_name: Hack Telecoms
+  m_description: Reveal up to 3 hidden Assets in the World.
   m_targetType: 3
   m_requiredTraits:
-  - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
   - {fileID: 11400000, guid: cc61c91c3717c45bd92a5453346da037, type: 2}
+  - {fileID: 11400000, guid: dc6ba3273859c4d4d99f44f5ccac3eb8, type: 2}
   m_requiredAssets: []
-  m_infamy: 0
-  m_cost: 6
-  m_duration: 5
-  m_minFloorLevel: 2
+  m_infamy: 1
+  m_cost: 3
+  m_duration: 2
+  m_minFloorLevel: 1
+  m_numAssets: 3
+  m_revealChance: 0.7

@@ -20,6 +20,26 @@ public class Action_BuildNewFloor : Action {
 		Floor newFloor = (Floor)Object.Instantiate (m_floor);
 		m_player.lair.AddFloor (newFloor);
 
+		// alert player of new missions
+
+		List<Mission> newMissions = new List<Mission> ();
+
+		foreach (Mission m in newFloor.m_missions) {
+
+			if (m.m_minFloorLevel == newFloor.level) {
+
+				newMissions.Add (m);
+			}
+		}
+
+		foreach (Mission m in newMissions) {
+
+			title = "New Mission Available";
+			message = "Mission: " + m.m_name + " is now available";
+			m_player.notifications.AddNotification (GameController.instance.game.currentTurn, title, message, EventLocation.Lair, false, m_missionID);
+
+		}
+
 		// notify UI for updating
 
 		GameController.instance.Notify (m_player, GameEvent.Player_LairChanged);

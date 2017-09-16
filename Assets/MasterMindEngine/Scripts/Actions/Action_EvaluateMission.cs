@@ -146,6 +146,10 @@ public class Action_EvaluateMission : Action {
 				}
 			}
 
+			// check for learning new traits
+
+			m_missionPlan.m_currentMission.CheckForLearningTraits (m_missionPlan);
+
 			// free up participating henchmen
 
 			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
