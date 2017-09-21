@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Floor : ScriptableObject {
+public class Floor : ScriptableObject, IEffectable {
 
 	public string m_name = "Null";
 
@@ -15,6 +15,8 @@ public class Floor : ScriptableObject {
 
 	private int m_level = 1;
 
+	private EffectPool m_effectPool = new EffectPool();
+
 	public virtual void Initialize (){
 	}
 
@@ -23,5 +25,5 @@ public class Floor : ScriptableObject {
 
 	public List<Mission> completedUpgrades {get{return m_completedUpgrades;} set{ m_completedUpgrades = value; }}
 	public int level {get{ return m_level; }set{ m_level = value; }}
-
+	public EffectPool effectPool {get{return m_effectPool;}}
 }

@@ -25,7 +25,14 @@ public class Lair {
 
 	private List<FloorSlot> m_floorSlots = new List<FloorSlot>();
 
-	private int m_floorID = 0;
+	private int 
+	m_floorID = 0,
+	m_maxFloors = 10;
+
+	public void Initialize (int maxFloors)
+	{
+		m_maxFloors = maxFloors;
+	}
 
 	public void AddFloor (Floor newFloor)
 	{
@@ -52,4 +59,5 @@ public class Lair {
 	}
 
 	public List<FloorSlot> floorSlots {get{ return m_floorSlots;}}
+	public int maxFloors {get{ return m_maxFloors; }set{ m_maxFloors = value; }}
 }

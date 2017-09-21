@@ -14,8 +14,11 @@ MonoBehaviour:
   m_name: Black Market
   m_startingHenchmenSlots: 1
   m_missions:
-  - {fileID: 11400000, guid: 80a745673b4204d8482a121f4459e183, type: 2}
   - {fileID: 11400000, guid: b5a45e870238a4fd8b216c5f8c59ba61, type: 2}
-  - {fileID: 11400000, guid: 10b6407dc29d54ee195bb8190cb90a0a, type: 2}
+  - {fileID: 11400000, guid: ea9be6f1237184ba2b1a771a04278e3a, type: 2}
+  - {fileID: 11400000, guid: 3c05eefd7a9ad41de8ce5276f8b161d0, type: 2}
+  - {fileID: 11400000, guid: 889adcca8f46b489ba65ba4233033462, type: 2}
   - {fileID: 11400000, guid: fd5c3ad4b0ec74e4fb9319db13978a01, type: 2}
+  - {fileID: 11400000, guid: 5d7803f4002434a1ab3013f54e567cfd, type: 2}
   - {fileID: 11400000, guid: a1af63798309d4d43bf2e7b1e3d0ef2a, type: 2}
+  - {fileID: 11400000, guid: 10b6407dc29d54ee195bb8190cb90a0a, type: 2}

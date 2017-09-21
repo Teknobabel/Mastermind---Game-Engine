@@ -20,6 +20,5 @@ public class Mission_GainAsset : Mission {
 			GameController.instance.ProcessAction (gainAsset);
 
 		}
-
 	}
 }

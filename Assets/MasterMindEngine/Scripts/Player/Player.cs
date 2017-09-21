@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player: IBaseObject, ISubject {
+public class Player: IBaseObject, ISubject, IEffectable {
 
 	public class CommandPool
 	{

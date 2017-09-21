@@ -4,22 +4,49 @@ using UnityEngine;
 
 public class EffectPool {
 
-	public List<Effect> m_effectPool = new List<Effect>();
+	public class EffectSlot
+	{
+		public Effect m_effect;
+		public int m_currentDuration = 1;
+		public bool m_new = true;
+	}
+
+	public List<EffectSlot> m_effectPool = new List<EffectSlot>();
 
 	public void AddEffect (Effect e)
 	{
-		m_effectPool.Add (e);
+		Debug.Log ("Gaining new effect: " + e.m_effectName);
+
+		EffectSlot eSlot = new EffectSlot ();
+		eSlot.m_effect = e;
+		eSlot.m_currentDuration = e.m_duration;
+		m_effectPool.Add (eSlot);
+	}
+
+	public List<EffectSlot> GetEffects (Effect.EffectType type)
+	{
+		List<EffectSlot> effects = new List<EffectSlot> ();
+
+		foreach (EffectSlot eSlot in m_effectPool) {
+
+			if (eSlot.m_effect.m_effectType == type) {
+
+				effects.Add (eSlot);
+			}
+		}
+
+		return effects;
 	}
 
 	public int GetValue (Effect.EffectType type)
 	{
 		int value = 0;
 
-		foreach (Effect e in m_effectPool) {
+		foreach (EffectSlot eSlot in m_effectPool) {
 
-			if (e.m_effectType == type) {
+			if (eSlot.m_effect.m_effectType == type) {
 
-				value += e.GetValue ();
+				value += eSlot.m_effect.GetValue ();
 			}
 		}
 
@@ -28,24 +55,31 @@ public class EffectPool {
 
 	public void UpdateDuration ()
 	{
-		List<Effect> oldEffects = new List<Effect> ();
+		List<EffectSlot> oldEffects = new List<EffectSlot> ();
 
-		foreach (Effect e in m_effectPool) {
+		foreach (EffectSlot eSlot in m_effectPool) {
 
-			e.m_duration--;
+			if (eSlot.m_new) {
 
-			if (e.m_duration <= 0) {
+				eSlot.m_new = false;
 
-				oldEffects.Add (e);
+			} else {
+				
+				eSlot.m_currentDuration--;
+
+				if (eSlot.m_currentDuration <= 0) {
+
+					oldEffects.Add (eSlot);
+				}
 			}
 		}
 
 		while (oldEffects.Count > 0) {
 
-			Effect e = oldEffects [0];
+			EffectSlot eSlot = oldEffects [0];
+			eSlot.m_effect = null;
 			oldEffects.RemoveAt (0);
-
-			m_effectPool.Remove (e);
+			m_effectPool.Remove (eSlot);
 		}
 	}
 }

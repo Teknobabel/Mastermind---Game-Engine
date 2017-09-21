@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c1ee5ef5bea4cbfb04a15adc3a9b76, type: 3}
+  m_Name: Mission_Lvl1_GainRandomAsset
+  m_EditorClassIdentifier: 
+  m_name: Pillage
+  m_description: Gain a random Level 1 Asset
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 3e9e65fa5e5de47c89b6caf3433efa07, type: 2}
+  - {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  m_requiredAssets: []
+  m_infamy: 1
+  m_cost: 4
+  m_duration: 3
+  m_minFloorLevel: 1
+  m_assets:
+  - {fileID: 11400000, guid: f3f15a0f229884817905cd7df738b0db, type: 2}
+  - {fileID: 11400000, guid: 595f40f21ddce46e5a8f8d839365da07, type: 2}
+  - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
+  - {fileID: 11400000, guid: 9cf76c575e6de40e0bc29059fa8e37e4, type: 2}
+  - {fileID: 11400000, guid: dc00e00df2bb54a4396a5b482ad83684, type: 2}
+  - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+  m_numAssets: 1

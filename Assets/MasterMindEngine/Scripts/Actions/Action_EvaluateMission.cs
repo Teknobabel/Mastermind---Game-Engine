@@ -182,6 +182,9 @@ public class Action_EvaluateMission : Action {
 			m_missionPlan.m_turnNumber = 0;
 			m_missionPlan.m_requiredTraits.Clear ();
 			m_missionPlan.m_matchingTraits.Clear ();
+			m_missionPlan.m_matchingFloors.Clear ();
+			m_missionPlan.m_requiredFloors.Clear ();
+			m_missionPlan.m_effects.Clear ();
 
 			GameController.instance.Notify (player, GameEvent.Player_MissionCompleted);
 

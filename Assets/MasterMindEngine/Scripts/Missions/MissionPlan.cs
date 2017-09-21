@@ -56,6 +56,11 @@ public class MissionPlan {
 	public List<Asset> m_requiredAssets = new List<Asset> ();
 	public List<Site.AssetSlot> m_linkedPlayerAssets = new List<Site.AssetSlot> (); // keeps a ref to assets used so other missions don't use them
 
+	public List<Floor> m_requiredFloors = new List<Floor>();
+	public List<Lair.FloorSlot> m_matchingFloors = new List<Lair.FloorSlot>();
+
+	public List<EffectPool.EffectSlot> m_effects = new List<EffectPool.EffectSlot>();
+
 	public int m_successChance = -1;
 	public int m_turnNumber = 0;
 

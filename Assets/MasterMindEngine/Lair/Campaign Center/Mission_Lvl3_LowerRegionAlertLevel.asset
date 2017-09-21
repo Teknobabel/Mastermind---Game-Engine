@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1260273d955f34f95854290b0afed145, type: 3}
+  m_Name: Mission_Lvl3_LowerRegionAlertLevel
+  m_EditorClassIdentifier: 
+  m_name: Propaganda Campaign
+  m_description: Attempt to lower the Alert Level across the world.
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 623d1d424d81f49f3b83c27c07649bbd, type: 2}
+  - {fileID: 11400000, guid: 0bd423edde1ea4e9ab916c68cae28740, type: 2}
+  - {fileID: 11400000, guid: 8ea12b34aecf546419deec32406a7f2d, type: 2}
+  m_requiredAssets:
+  - {fileID: 11400000, guid: 01bf54017c5ad4d00bd8422497e132a7, type: 2}
+  m_requiredFloors: []
+  m_infamy: 2
+  m_cost: 5
+  m_duration: 3
+  m_minFloorLevel: 3
+  m_alertChange: -1
+  m_alertChangeChance: 0.4

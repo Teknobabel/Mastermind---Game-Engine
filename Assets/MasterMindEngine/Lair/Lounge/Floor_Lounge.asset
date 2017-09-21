@@ -14,6 +14,11 @@ MonoBehaviour:
   m_name: Lounge
   m_startingHenchmenSlots: 1
   m_missions:
+  - {fileID: 11400000, guid: 55fc0a4070aa444f0b1a0670e0b08cec, type: 2}
+  - {fileID: 11400000, guid: af232133053de406697e3d0591524a99, type: 2}
   - {fileID: 11400000, guid: cc5d77810a478470094d51616bf6a100, type: 2}
+  - {fileID: 11400000, guid: 8ba291d1826f449a98c3400317b3bb20, type: 2}
+  - {fileID: 11400000, guid: 9d5a30c5117924f39acd7d71d35618b2, type: 2}
   - {fileID: 11400000, guid: d05f73fef1f914d5d8fdbad09610bd21, type: 2}
+  - {fileID: 11400000, guid: eba92cdfb86b944f6a57778f0f73a48f, type: 2}
   m_numSlots: 1

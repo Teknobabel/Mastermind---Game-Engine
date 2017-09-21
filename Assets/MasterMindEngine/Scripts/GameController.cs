@@ -260,7 +260,7 @@ public class GameController : MonoBehaviour, ISubject {
 			Player player = GameEngine.instance.game.playerList [playerNum];
 
 			if (player.notifications.notificationsByMissionID.ContainsKey (missionID)) {
-				
+
 				notifications = player.notifications.notificationsByMissionID [missionID];
 
 			} else {
@@ -328,44 +328,51 @@ public class GameController : MonoBehaviour, ISubject {
 
 	public void CompileMission (MissionPlan plan)
 	{
-		//		if (plan.m_missionSite == null || plan.m_currentMission == null) {
-		//
-		//			bool henchmenPresent = false;
-		//
-		//			foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
-		//
-		//				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
-		//
-		//					henchmenPresent = true;
-		//					break;
-		//				}
-		//			}
-		//
-		//			if (!henchmenPresent) {
-		//
-		//				plan.m_successChance = 0;
-		//				plan.m_requiredTraits.Clear ();
-		//				plan.m_matchingTraits.Clear ();
-		//				return;
-		//			}
-		//		}
-
 		if (plan.m_currentMission == null) {
 
 			return;
 		}
+
+		Lair lair = GameController.instance.GetLair (0);
+		Player player = GameController.instance.game.playerList [0];
 
 		List<Trait> requiredTraits = new List<Trait> ();
 		List<Trait> presentTraits = new List<Trait> ();
 
 		List<Asset> requiredAssets = new List<Asset> ();
 
+		List<Floor> requiredFloors = new List<Floor> ();
+		List<Lair.FloorSlot> matchingFloors = new List<Lair.FloorSlot> ();
+
 		int skillWeight = 3; // higher=more weight in determining overal mission success % 
+		int floorWeight = 2;
 
 		int numTraitsModified = 0;
 		int numAssetsModified = 0;
+		int numFloorsModified = 0;
 		float successModifier = 0;
-		//		int successChance = 0;
+
+		// get any success modifiers due to Effects
+
+		List<EffectPool.EffectSlot> playerEffects = player.effectPool.GetEffects (Effect.EffectType.SuccessChanceModifier);
+
+		foreach (EffectPool.EffectSlot eSlot in playerEffects) {
+
+			successModifier += eSlot.m_effect.GetValue ();
+			plan.m_effects.Add (eSlot);
+		}
+
+		if (plan.m_floorSlot != null) {
+
+			List<EffectPool.EffectSlot> effects = plan.m_floorSlot.m_floor.effectPool.GetEffects (Effect.EffectType.SuccessChanceModifier);
+
+			foreach (EffectPool.EffectSlot eSlot in effects) {
+
+				successModifier += eSlot.m_effect.GetValue ();
+				plan.m_effects.Add (eSlot);
+			}
+		}
+
 
 		// get traits from mission
 
@@ -381,6 +388,15 @@ public class GameController : MonoBehaviour, ISubject {
 				}
 			}
 		}
+
+		// get floors from mission
+
+		foreach (Floor f in plan.m_currentMission.m_requiredFloors) {
+
+			requiredFloors.Add (f);
+			numFloorsModified += floorWeight;
+		}
+
 
 		// get assets from mission
 
@@ -464,6 +480,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 		int numTraitsPresentModified = 0;
 		int numAssetsPresentModified = 0;
+		int numFloorsPresentModified = 0;
 
 		// make sure all participating henchmen are free
 
@@ -517,7 +534,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 					numAssetsPresentModified += a.m_rank;
 					matchingAssets.Add (aSlot);
-//					aSlot.m_state = Site.AssetSlot.State.InUse;
+					//					aSlot.m_state = Site.AssetSlot.State.InUse;
 					playerAssets.RemoveAt (i);
 					i = 99;
 					break;
@@ -525,20 +542,36 @@ public class GameController : MonoBehaviour, ISubject {
 			}
 		}
 
+		// check for matching floors
+
+		foreach (Floor f in requiredFloors) {
+
+			foreach (Lair.FloorSlot fSlot in lair.floorSlots) {
+
+				if (fSlot.m_floor.m_name == f.m_name && !matchingFloors.Contains (fSlot))
+				{
+					matchingFloors.Add (fSlot);
+					numFloorsPresentModified += floorWeight;
+					break;
+				}
+			}
+		}
 
 
-		// see how many matching traits and assets there are and calculate success chance
+		// see how many matching traits, assets, and floors there are and calculate success chance
 
 		//		float totalTraits = (float)requiredTraits.Count;
 		//		float matchingTraits = (float)presentTraits.Count;
-		float total = (float)numTraitsModified + (float)numAssetsModified;
-		float matching = (float)numTraitsPresentModified + (float)numAssetsPresentModified;
+		float total = (float)numTraitsModified + (float)numAssetsModified + (float)numFloorsModified;
+		float matching = (float)numTraitsPresentModified + (float)numAssetsPresentModified + (float)numFloorsPresentModified;
 		float success = Mathf.Clamp( (matching / total * 100) + successModifier, 0.0f, 100.0f);
 
 		plan.m_requiredAssets = requiredAssets;
 		plan.m_requiredTraits = requiredTraits;
 		plan.m_matchingTraits = presentTraits;
 		plan.m_linkedPlayerAssets = matchingAssets;
+		plan.m_requiredFloors = requiredFloors;
+		plan.m_matchingFloors = matchingFloors;
 		plan.m_successChance = (int)success;
 	}
 

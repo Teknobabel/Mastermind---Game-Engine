@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d403849ea55e4b0c89d5268ba98e769, type: 3}
+  m_Name: Mission_Lvl1_GainTrait_SharpShooter
+  m_EditorClassIdentifier: 
+  m_name: 'Gain Trait: Sharp Shooter'
+  m_description: Null
+  m_targetType: 4
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 1e8f21bdd31e045a3a160daeca047865, type: 2}
+  - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
+  m_requiredAssets:
+  - {fileID: 11400000, guid: dc00e00df2bb54a4396a5b482ad83684, type: 2}
+  m_infamy: 0
+  m_cost: 3
+  m_duration: 3
+  m_minFloorLevel: 1
+  m_trait: {fileID: 11400000, guid: 1e8f21bdd31e045a3a160daeca047865, type: 2}

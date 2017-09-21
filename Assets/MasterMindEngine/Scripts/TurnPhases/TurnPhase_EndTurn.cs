@@ -73,6 +73,11 @@ public class TurnPhase_EndTurn : TurnPhase {
 		foreach (KeyValuePair<int, Player> pair in GameController.instance.game.playerList) {
 
 			pair.Value.effectPool.UpdateDuration ();
+
+			foreach (Lair.FloorSlot fSlot in pair.Value.lair.floorSlots) {
+
+				fSlot.m_floor.effectPool.UpdateDuration ();
+			}
 		}
 
 

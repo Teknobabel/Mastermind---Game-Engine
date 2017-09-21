@@ -33,6 +33,7 @@ public class Action_StartNewGame : Action {
 		// create lair
 
 		Lair newLair = new Lair ();
+		newLair.Initialize (director.m_startingFloorSlots);
 		newPlayer.AddLair (newLair);
 
 		// add any starting floors

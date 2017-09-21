@@ -31,6 +31,7 @@ public class Mission : ScriptableObject {
 
 	public Trait[] m_requiredTraits;
 	public Asset[] m_requiredAssets;
+	public Floor[] m_requiredFloors;
 
 	public InfamyLevel m_infamy = InfamyLevel.Low;
 

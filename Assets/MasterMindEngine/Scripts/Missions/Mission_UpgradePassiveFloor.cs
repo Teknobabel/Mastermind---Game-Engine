@@ -30,9 +30,9 @@ public class Mission_UpgradePassiveFloor : Mission {
 		if (plan.m_result == MissionPlan.Result.Success) {
 
 			plan.m_floorSlot.m_floor.Initialize ();
-			plan.m_floorSlot.m_floor.level++;
 			plan.m_floorSlot.m_floor.completedUpgrades.Add (this);
 
 		}
 	}
+
 }

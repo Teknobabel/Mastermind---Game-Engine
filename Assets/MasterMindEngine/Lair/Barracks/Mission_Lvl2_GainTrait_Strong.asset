@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d403849ea55e4b0c89d5268ba98e769, type: 3}
+  m_Name: Mission_Lvl2_GainTrait_Strong
+  m_EditorClassIdentifier: 
+  m_name: 'Gain Trait: Strong'
+  m_description: Null
+  m_targetType: 4
+  m_requiredTraits:
+  - {fileID: 11400000, guid: 354e29702c0e04126baf55b5d8df1349, type: 2}
+  - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
+  - {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  m_requiredAssets: []
+  m_infamy: 0
+  m_cost: 3
+  m_duration: 3
+  m_minFloorLevel: 2
+  m_trait: {fileID: 11400000, guid: 354e29702c0e04126baf55b5d8df1349, type: 2}

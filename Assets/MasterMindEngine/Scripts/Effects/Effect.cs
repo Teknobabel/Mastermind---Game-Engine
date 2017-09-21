@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect {
+[CreateAssetMenu]
+public class Effect : ScriptableObject {
 
 	public enum EffectType
 	{
@@ -11,16 +12,17 @@ public class Effect {
 	}
 
 	public EffectType m_effectType = EffectType.None;
-
+	public string m_effectName = "Null";
 	public int m_duration = 1;
 
-	public virtual void Initialize ()
-	{
-
-	}
-
+	public int m_value = 1;
+//	public virtual void Initialize ()
+//	{
+//
+//	}
+//
 	public virtual int GetValue ()
 	{
-		return 0;
+		return m_value;
 	}
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d50b2b3629194a26ab9cc02448c1b75, type: 3}
+  m_Name: Mission_Lvl1_Upgrade
+  m_EditorClassIdentifier: 
+  m_name: Upgrade Facility
+  m_description: Upgrade the Facility to Level 2
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
+  m_requiredAssets: []
+  m_infamy: 0
+  m_cost: 4
+  m_duration: 3
+  m_minFloorLevel: 1

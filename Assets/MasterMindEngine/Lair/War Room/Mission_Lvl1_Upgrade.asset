@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Mission_Lvl1_Upgrade
   m_EditorClassIdentifier: 
   m_name: Upgrade Alpha
-  m_description: An addition Henchmen can participate in Missions on this Floor.
+  m_description: Upgrade the Facility to Level 2
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
