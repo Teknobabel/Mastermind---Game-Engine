@@ -21,7 +21,7 @@ public class MissionPlan {
 
 	public List<Player.ActorSlot> m_actorSlots = new List<Player.ActorSlot>();
 
-	public List<Mission> m_missionOptions = new List<Mission>();
+	public List<Lair.FloorSlot> m_missionOptions = new List<Lair.FloorSlot>();
 
 	public int m_maxActorSlots = 1;
 

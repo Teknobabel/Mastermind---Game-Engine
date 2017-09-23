@@ -46,9 +46,29 @@ public class Mission : ScriptableObject {
 			return true;
 		} else if (plan.m_goal != null) {
 			return true;
-		} else {
-			return false;
+		} else if (plan.m_missionOptions.Count > 0) {
+
+			foreach (Lair.FloorSlot fslot in plan.m_missionOptions) {
+
+				foreach (Mission m in fslot.m_floor.m_missions) {
+
+					if (m.m_name == m_name) {
+
+						if (fslot.m_floor.level >= m_minFloorLevel) {
+
+							return true;
+
+						} else {
+
+							return false;
+						}
+
+					}
+				}
+			}
+
 		}
+		return false;
 	}
 
 	public virtual void CompleteMission (MissionPlan plan)
