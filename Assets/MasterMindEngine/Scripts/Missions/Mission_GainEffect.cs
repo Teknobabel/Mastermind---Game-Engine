@@ -18,7 +18,7 @@ public class Mission_GainEffect : Mission {
 	{
 		base.CompleteMission (plan);
 
-		if (plan.m_result == MissionPlan.Result.Success && m_effectTarget != null) {
+		if (plan.m_result == MissionPlan.Result.Success) {
 
 			Player player = GameEngine.instance.game.playerList [0];
 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1a62b3315714f09872e385c6704460, type: 3}
+  m_Name: Mission_Lvl3_BuildFacility_Armory
+  m_EditorClassIdentifier: 
+  m_name: 'Build Facility: Armory'
+  m_description: Allows Mercenaries and Engineers to build an army.
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
+  - {fileID: 11400000, guid: 4acf9e0be35cd4dbb9991d98430d605d, type: 2}
+  m_requiredAssets:
+  - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+  - {fileID: 11400000, guid: dc00e00df2bb54a4396a5b482ad83684, type: 2}
+  m_requiredFloors: []
+  m_infamy: 1
+  m_cost: 5
+  m_duration: 3
+  m_minFloorLevel: 3
+  m_floor: {fileID: 11400000, guid: d6421da572a9942278a45df8c2cec237, type: 2}

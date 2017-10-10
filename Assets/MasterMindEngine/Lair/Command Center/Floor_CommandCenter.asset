@@ -14,11 +14,14 @@ MonoBehaviour:
   m_name: Command Center
   m_startingHenchmenSlots: 1
   m_missions:
-  - {fileID: 11400000, guid: b5ec5224c8cbe4b9c8754f7cdcb9c202, type: 2}
-  - {fileID: 11400000, guid: 1319dbae9163041e2927a82774cc3082, type: 2}
+  - {fileID: 11400000, guid: 093ea948fbad341dbbda992934aed48d, type: 2}
+  - {fileID: 11400000, guid: a946823acab4f49879715e416975f315, type: 2}
   - {fileID: 11400000, guid: 10af8c4af72de40b2a1147dd40f63e05, type: 2}
-  - {fileID: 11400000, guid: cf2ca819ecfd84640aaeec404a978f3b, type: 2}
-  - {fileID: 11400000, guid: 18a89c1f496a14bb1b0b1c5116f1e205, type: 2}
+  - {fileID: 11400000, guid: 4b364031ee9164aa1a1a50aa04003bc7, type: 2}
+  - {fileID: 11400000, guid: 16bc470a6d19f4255bf8fb48af34b553, type: 2}
   - {fileID: 11400000, guid: 038f8bdc2e5004679a9cb35392428af7, type: 2}
-  - {fileID: 11400000, guid: b3194e99ee2284b3e98933712abb1ad3, type: 2}
+  - {fileID: 11400000, guid: a5c1c98173c4d47bab19e8cc2b280190, type: 2}
+  - {fileID: 11400000, guid: 2f40b736d6c704a59959faf31f5c630b, type: 2}
+  - {fileID: 11400000, guid: db151b5794aac49fea788387e6293c68, type: 2}
   - {fileID: 11400000, guid: 0edaafe25e751407c80909b5241310b3, type: 2}
+  - {fileID: 11400000, guid: 61174a6573dac4fab8df6f843acea31d, type: 2}

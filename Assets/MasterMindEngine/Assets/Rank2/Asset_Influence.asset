@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Influence
   m_rank: 2
+  m_preferedSiteType: 1
   m_requiredTraits:
   - {fileID: 11400000, guid: 623d1d424d81f49f3b83c27c07649bbd, type: 2}

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Data
   m_rank: 2
+  m_preferedSiteType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: dc6ba3273859c4d4d99f44f5ccac3eb8, type: 2}

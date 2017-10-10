@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6972a9ca53d4585a51e0d44f9e59f0, type: 3}
+  m_Name: Floor_Builder
+  m_EditorClassIdentifier: 
+  m_name: Builder
+  m_startingHenchmenSlots: 3
+  m_missions:
+  - {fileID: 11400000, guid: 1319dbae9163041e2927a82774cc3082, type: 2}
+  - {fileID: 11400000, guid: b5ec5224c8cbe4b9c8754f7cdcb9c202, type: 2}
+  - {fileID: 11400000, guid: 18a89c1f496a14bb1b0b1c5116f1e205, type: 2}
+  - {fileID: 11400000, guid: cf2ca819ecfd84640aaeec404a978f3b, type: 2}
+  - {fileID: 11400000, guid: eba92cdfb86b944f6a57778f0f73a48f, type: 2}
+  - {fileID: 11400000, guid: 998d5af3d655649378c296d02a45f060, type: 2}
+  - {fileID: 11400000, guid: b3194e99ee2284b3e98933712abb1ad3, type: 2}
+  - {fileID: 11400000, guid: 999815704f77e4e7ea88dceda76c052f, type: 2}
+  - {fileID: 11400000, guid: 506590ab7b7ef4cb8839babc04de315c, type: 2}
+  - {fileID: 11400000, guid: ff0e5d70d421f4712afc37cfd16354c6, type: 2}

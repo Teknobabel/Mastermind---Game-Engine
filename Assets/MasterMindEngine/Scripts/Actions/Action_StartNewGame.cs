@@ -32,20 +32,24 @@ public class Action_StartNewGame : Action {
 
 		// create lair
 
-		Lair newLair = new Lair ();
-		newLair.Initialize (director.m_startingFloorSlots);
-		newPlayer.AddLair (newLair);
+//		Lair newLair = new Lair ();
+//		newLair.Initialize (director.m_startingFloorSlots);
+//		newPlayer.AddLair (newLair);
 
 		// add any starting floors
 
-		foreach (Floor f in director.m_startingFloors) {
+//		foreach (Floor f in director.m_startingFloors) {
+//
+//			Action_BuildNewFloor buildFloor = new Action_BuildNewFloor ();
+//			buildFloor.m_player = newPlayer;
+//			buildFloor.m_floor = f;
+//			GameController.instance.ProcessAction (buildFloor);
+//		}
 
-			Action_BuildNewFloor buildFloor = new Action_BuildNewFloor ();
-			buildFloor.m_player = newPlayer;
-			buildFloor.m_floor = f;
-			GameController.instance.ProcessAction (buildFloor);
-		}
-			
+		Lair newLair = (Lair)Object.Instantiate (director.m_startingLair);
+		newPlayer.AddLair (newLair);
+		newLair.Initialize ();
+
 		// add any starting assets
 
 		foreach (Asset a in director.m_startingAssets) {
@@ -92,13 +96,13 @@ public class Action_StartNewGame : Action {
 		int siteID = 0;
 
 		for (int i = 0; i < GameEngine.instance.m_regions.Count; i++) {
-		
+
 			Region newRegion = (Region)Object.Instantiate (GameEngine.instance.m_regions [i]);
 			newRegion.id = i;
 
 			for (int j = 0; j < newRegion.m_startingSites.Count; j++) {
 
-//				Site s = newRegion.m_sites [j];
+				//				Site s = newRegion.m_sites [j];
 
 				Site s = (Site)Object.Instantiate (newRegion.m_startingSites [j]);
 				s.id = siteID;
@@ -244,6 +248,112 @@ public class Action_StartNewGame : Action {
 			}
 		}
 
+
+		// distribute assets from asset bank
+
+		foreach (Director.AssetBank aBank in director.m_assetBank) {
+
+			int maxRank1SiteAssets = 2;
+			int maxRank2SiteAssets = 3;
+			int maxRank3SiteAssets = 4;
+			int maxRank4SiteAssets = 5;
+			int maxRank5SiteAssets = 6;
+
+			foreach (Asset asset in aBank.m_assets) {
+
+				List<Site> validSites = new List<Site> ();
+
+				foreach (KeyValuePair<int, Site> pair in newGame.siteList) {
+
+					// check if site has enough room for another asset
+
+					bool hasRoom = false;
+					int numTimes = 0;
+
+					if (pair.Value.assets.Count == 0) {
+
+						numTimes += 3;
+					}
+
+					switch (pair.Value.m_maxAlertLevel) {
+
+					case 1:
+
+						if (pair.Value.assets.Count < maxRank1SiteAssets) {
+
+							hasRoom = true;
+						}
+						break;
+					case 2:
+
+						if (pair.Value.assets.Count < maxRank2SiteAssets) {
+
+							hasRoom = true;
+						}
+						break;
+					case 3:
+
+						if (pair.Value.assets.Count < maxRank3SiteAssets) {
+
+							hasRoom = true;
+						}
+						break;
+					case 4:
+
+						if (pair.Value.assets.Count < maxRank4SiteAssets) {
+
+							hasRoom = true;
+						}
+						break;
+					case 5:
+
+						if (pair.Value.assets.Count < maxRank5SiteAssets) {
+
+							hasRoom = true;
+						}
+						break;
+
+					}
+
+					if (hasRoom)
+					{
+
+						// more likely if site is of a matching type
+
+						if (asset.m_preferedSiteType == pair.Value.m_type || asset.m_preferedSiteType == Site.Type.None) {
+
+							numTimes += 10;
+						}
+
+						// more likely if site is of an appropriate level
+
+						if (asset.m_rank <= pair.Value.m_maxAlertLevel) {
+
+							numTimes += 5;
+						}
+					}
+
+					for (int i = 0; i < numTimes; i++) {
+
+						validSites.Add (pair.Value);
+					}
+
+				}
+
+				if (validSites.Count > 0) {
+
+					int r = Random.Range (0, validSites.Count);
+
+					Site thisSite = validSites [r];
+					thisSite.AddAsset (asset);
+
+
+				} else {
+
+					Debug.Log ("No valid site found for asset");
+				}
+			}
+		}
 
 	}
 }

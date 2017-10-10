@@ -30,19 +30,24 @@ public class Action_StartNewMission : Action {
 			}
 		}
 
-		if (m_missionPlan.m_floorSlot != null) {
-			
-			foreach (Player.ActorSlot aSlot in m_missionPlan.m_floorSlot.m_actorSlots) {
+		foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
 
-				aSlot.m_state = Player.ActorSlot.ActorSlotState.OnMission;
-			}
-		} else {
-
-			foreach (Player.ActorSlot aSlot in m_missionPlan.m_goal.plan.m_actorSlots) {
-
-				aSlot.m_state = Player.ActorSlot.ActorSlotState.OnMission;
-			}
+			aSlot.m_state = Player.ActorSlot.ActorSlotState.OnMission;
 		}
+
+//		if (m_missionPlan.m_floorSlot != null) {
+//			
+//			foreach (Player.ActorSlot aSlot in m_missionPlan.m_floorSlot.m_actorSlots) {
+//
+//				aSlot.m_state = Player.ActorSlot.ActorSlotState.OnMission;
+//			}
+//		} else {
+//
+//			foreach (Player.ActorSlot aSlot in m_missionPlan.m_goal.plan.m_actorSlots) {
+//
+//				aSlot.m_state = Player.ActorSlot.ActorSlotState.OnMission;
+//			}
+//		}
 
 		m_missionPlan.m_new = true;
 

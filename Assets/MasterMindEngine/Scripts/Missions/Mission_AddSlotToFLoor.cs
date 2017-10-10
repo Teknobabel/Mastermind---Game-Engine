@@ -33,7 +33,7 @@ public class Mission_AddSlotToFLoor : Mission {
 		if (plan.m_result == MissionPlan.Result.Success) {
 
 			plan.m_floorSlot.m_numActorSlots += m_numSlots;
-			plan.m_floorSlot.m_floor.level++;
+//			plan.m_floorSlot.m_floor.level++;
 
 			string title = "Floor Level Increased";
 			string message = plan.m_floorSlot.m_floor.m_name + " is now Level " + plan.m_floorSlot.m_floor.level.ToString ();

@@ -46,9 +46,9 @@ public class Site : ScriptableObject, IBaseObject {
 
 	public int m_maxAlertLevel = 5;
 
-	public Asset[] m_startingAssets;
-
-	public List<RandomAssetList> m_randomStartingAssets = new List<RandomAssetList>();
+//	public Asset[] m_startingAssets;
+//
+//	public List<RandomAssetList> m_randomStartingAssets = new List<RandomAssetList>();
 
 	public SiteTrait[] m_startingTraits;
 
@@ -64,25 +64,27 @@ public class Site : ScriptableObject, IBaseObject {
 
 	private int m_regionID = -1;
 
+	private int m_alertLevelChange = 0; // how much the alert level will change at the end of the turn
+
 	public void Initialize ()
 	{
-		foreach (Asset a in m_startingAssets) {
-
-			AddAsset (a);
-		}
-
-		foreach (RandomAssetList ral in m_randomStartingAssets) {
-
-			if (ral.m_assets.Count > 0) {
-
-				int rand = Random.Range (0, ral.m_assets.Count);
-				Asset a = ral.m_assets [rand];
-
-				if (a.m_name != "Blank") {
-					AddAsset (a);
-				}
-			}
-		}
+//		foreach (Asset a in m_startingAssets) {
+//
+//			AddAsset (a);
+//		}
+//
+//		foreach (RandomAssetList ral in m_randomStartingAssets) {
+//
+//			if (ral.m_assets.Count > 0) {
+//
+//				int rand = Random.Range (0, ral.m_assets.Count);
+//				Asset a = ral.m_assets [rand];
+//
+//				if (a.m_name != "Blank") {
+//					AddAsset (a);
+//				}
+//			}
+//		}
 
 		foreach (SiteTrait t in m_startingTraits) {
 
@@ -148,9 +150,16 @@ public class Site : ScriptableObject, IBaseObject {
 		m_currentAlertLevel = Mathf.Clamp (m_currentAlertLevel + amount, 0, m_maxAlertLevel);
 	}
 
+	public void EndTurn ()
+	{
+		UpdateAlert (m_alertLevelChange);
+		m_alertLevelChange = 0;
+	}
+
 	public int id {get{ return m_id; } set{ m_id = value; }}
 	public int currentAlertLevel {get{ return m_currentAlertLevel; }}
 	public List<SiteTrait> traits { get { return m_traits; } }
 	public List<AssetSlot> assets {get{ return m_assets; }}
 	public int regionID {get{ return m_regionID; }set{ m_regionID = value; }}
+	public int alertLevelChange {get{ return m_alertLevelChange; } set{m_alertLevelChange = value;}}
 }

@@ -17,6 +17,25 @@ public class Action_FireAgent : Action {
 
 			Player player = GameEngine.instance.game.playerList [m_playerNumber];
 
+			// remove from any in planning missions
+
+			foreach (Lair.FloorSlot fSlot in player.lair.floorSlots) {
+
+				if (fSlot.m_state != Lair.FloorSlot.FloorState.MissionInProgress) {
+
+					for (int i = 0; i < fSlot.m_missionPlan.m_actorSlots.Count; i++) {
+
+						Player.ActorSlot aSlot = fSlot.m_missionPlan.m_actorSlots[i];
+
+						if (aSlot.m_actor.id == m_henchmenID) {
+
+							fSlot.m_missionPlan.m_actorSlots.RemoveAt (i);
+							break;
+						}
+					}
+				}
+			}
+
 			// remove from henchmen pool
 
 			foreach (Player.ActorSlot newHenchmenSlot in player.henchmenPool.m_henchmenSlots) {

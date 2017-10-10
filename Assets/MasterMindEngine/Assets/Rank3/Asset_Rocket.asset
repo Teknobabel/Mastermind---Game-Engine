@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Rocket
   m_rank: 3
+  m_preferedSiteType: 2
   m_requiredTraits:
   - {fileID: 11400000, guid: 4acf9e0be35cd4dbb9991d98430d605d, type: 2}

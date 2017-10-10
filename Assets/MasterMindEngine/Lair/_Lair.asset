@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c31fa3e761794b0d93f79d812399ef0, type: 3}
+  m_Name: _Lair
+  m_EditorClassIdentifier: 
+  m_startingFloors:
+  - {fileID: 11400000, guid: bb9ea54c29df04c05950c9624588c9ab, type: 2}
+  - {fileID: 11400000, guid: 472285e26814a4ae180a8e27e4102ea4, type: 2}
+  m_builderFloor: {fileID: 11400000, guid: b0747d25fdad24acd9f2613eb3ddfc20, type: 2}
+  m_maxStartingFloors: 6

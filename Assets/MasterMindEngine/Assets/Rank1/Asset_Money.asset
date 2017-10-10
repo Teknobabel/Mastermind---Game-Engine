@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Money
   m_rank: 1
+  m_preferedSiteType: 1
   m_requiredTraits: []

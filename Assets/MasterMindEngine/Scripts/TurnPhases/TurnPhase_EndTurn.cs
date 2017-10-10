@@ -5,12 +5,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class TurnPhase_EndTurn : TurnPhase {
 
-//	public override IEnumerator StartTurnPhase ()
-//	{
-//		Debug.Log ("Starting End Turn Phase");
-//		yield return null;
-//	}
-
 	public override void DoTurnPhase ()
 	{
 		Debug.Log ("Starting End Turn Phase");
@@ -80,10 +74,14 @@ public class TurnPhase_EndTurn : TurnPhase {
 			}
 		}
 
+		// do site end turn
 
-//		player.missionsCompletedThisTurn.Clear ();
+		foreach (KeyValuePair<int, Site> pair in GameController.instance.game.siteList) {
 
-//		GameEngine.instance.NextTurnPhase ();
+			pair.Value.EndTurn ();
+		}
+
+
 		Debug.Log ("Ending End Turn Phase");
 
 	}

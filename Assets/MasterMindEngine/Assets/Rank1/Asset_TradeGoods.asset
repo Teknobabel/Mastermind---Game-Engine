@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Trade Goods
   m_rank: 1
+  m_preferedSiteType: 3
   m_requiredTraits: []

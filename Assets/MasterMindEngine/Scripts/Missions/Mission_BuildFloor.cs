@@ -10,12 +10,34 @@ public class Mission_BuildFloor : Mission {
 	{
 		Lair l = GameController.instance.GetLair (0);
 
+		bool hasFoor = false;
+		bool isUnlocked = false;
+
+		// make sure player doesn't already have floor 
+
 		foreach (Lair.FloorSlot fSlot in l.floorSlots) {
 
 			if (fSlot.m_state != Lair.FloorSlot.FloorState.Empty && fSlot.m_floor.m_name == m_floor.m_name) {
 
-				return false;
+				hasFoor = true;
+				break;
 			}
+		}
+
+		// make sure player has unlocked plan
+
+		foreach (Mission m in l.unlockedFacilities) {
+
+			if (m.m_name == m_name) {
+
+				isUnlocked = true;
+				break;
+			}
+		}
+
+		if (hasFoor || !isUnlocked) {
+
+			return false;
 		}
 
 		bool meetsLevelReq = base.IsValid (plan);

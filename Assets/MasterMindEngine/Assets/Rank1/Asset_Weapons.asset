@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Weapons
   m_rank: 1
+  m_preferedSiteType: 2
   m_requiredTraits: []

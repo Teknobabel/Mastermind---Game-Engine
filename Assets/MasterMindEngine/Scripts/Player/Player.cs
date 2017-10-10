@@ -248,7 +248,7 @@ public class Player: IBaseObject, ISubject, IEffectable {
 
 	public int NumFloorSlots ()
 	{
-		int numSlots = GameEngine.instance.game.director.m_startingFloorSlots + m_numFloorSlots;
+		int numSlots = m_lair.maxFloors + m_numFloorSlots;
 		return numSlots;
 	}
 

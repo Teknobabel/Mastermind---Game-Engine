@@ -17,6 +17,7 @@ public class Mission_GainAsset : Mission {
 			Action_GainAsset gainAsset = new Action_GainAsset ();
 			gainAsset.m_asset = m_asset;
 			gainAsset.m_player = player;
+			gainAsset.m_missionID = plan.m_missionID;
 			GameController.instance.ProcessAction (gainAsset);
 
 		}

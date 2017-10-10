@@ -20,5 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8ba291d1826f449a98c3400317b3bb20, type: 2}
   - {fileID: 11400000, guid: 9d5a30c5117924f39acd7d71d35618b2, type: 2}
   - {fileID: 11400000, guid: d05f73fef1f914d5d8fdbad09610bd21, type: 2}
-  - {fileID: 11400000, guid: eba92cdfb86b944f6a57778f0f73a48f, type: 2}
+  - {fileID: 11400000, guid: 4f2c768c666064d4c829019f25f52577, type: 2}
+  - {fileID: 11400000, guid: ccaf11105067041379d23060e7e1f6c6, type: 2}
+  - {fileID: 11400000, guid: 85487d8419f294a6392d87ed0aaf463f, type: 2}
   m_numSlots: 1

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9172c70b4481e42789535a67fc4c8539, type: 3}
+  m_Name: Mission_Lvl3_Unlock_Warehouse
+  m_EditorClassIdentifier: 
+  m_name: 'Resarch New Facility: Warehouse'
+  m_description: Allows your Lair to hold additional Assets.
+  m_targetType: 3
+  m_requiredTraits:
+  - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
+  m_requiredAssets:
+  - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+  m_requiredFloors: []
+  m_infamy: 0
+  m_cost: 4
+  m_duration: 3
+  m_minFloorLevel: 3
+  m_floorPlan: {fileID: 11400000, guid: b3194e99ee2284b3e98933712abb1ad3, type: 2}

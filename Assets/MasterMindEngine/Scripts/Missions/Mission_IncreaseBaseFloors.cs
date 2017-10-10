@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mission_IncreaseBaseFloors : Mission {
 
-	int m_numFloors = 1;
+	public int m_numFloors = 1;
 
 	public override bool IsValid (MissionPlan plan)
 	{

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Tanks
   m_rank: 2
+  m_preferedSiteType: 2
   m_requiredTraits:
   - {fileID: 11400000, guid: 3e9e65fa5e5de47c89b6caf3433efa07, type: 2}

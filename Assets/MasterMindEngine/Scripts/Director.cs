@@ -12,6 +12,12 @@ public class Director : ScriptableObject {
 		public Trait[] m_traitList;
 	}
 
+	[System.Serializable]
+	public class AssetBank {
+
+		public Asset[] m_assets;
+	}
+
 	public Actor[] m_startingHenchmen;
 
 	public Actor[] m_startingHireableHenchmen;
@@ -20,14 +26,16 @@ public class Director : ScriptableObject {
 
 	public Asset[] m_startingAssets;
 
-	public Floor[] m_startingFloors;
+	public Lair m_startingLair;
 
 	public AlertData[] m_alertData;
+
+	public AssetBank[] m_assetBank;
 
 	public int 
 	m_startingHireSlots = 3,
 	m_startingHenchmenSlots = 3,
 	m_startingCommandPool = 10,
-	m_startingAssetSlots = 5,
-	m_startingFloorSlots = 6;
+	m_startingAssetSlots = 5;
+//	m_startingFloorSlots = 6;
 }

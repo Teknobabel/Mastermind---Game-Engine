@@ -12,4 +12,5 @@ public enum EventLocation {
 	Contacts,
 	World,
 	Lair,
+	Settings,
 }

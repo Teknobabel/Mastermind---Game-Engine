@@ -76,6 +76,7 @@ public class OmegaPlan : ScriptableObject, IObserver {
 				if (i != m_currentPhase) {
 
 					newGoal.m_state = OPGoal.State.Locked;
+					newGoal.m_new = false;
 				}
 
 				newPhase.m_goals.Add (newGoal);
@@ -149,7 +150,8 @@ public class OmegaPlan : ScriptableObject, IObserver {
 					Phase newPhase = m_phases [m_currentPhase];
 
 					foreach (OPGoal g in newPhase.m_goals) {
-
+						
+						g.m_new = true;
 						g.m_state = OPGoal.State.Incomplete;
 					}
 

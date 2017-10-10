@@ -9,6 +9,8 @@ public class Asset : ScriptableObject {
 
 	public int m_rank = 0;
 
+	public Site.Type m_preferedSiteType = Site.Type.None;
+
 	public Trait[] m_requiredTraits;
 
 }

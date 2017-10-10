@@ -44,9 +44,10 @@ public class MissionPlan {
 	public int m_missionID = -1;
 
 	public bool 
-	m_new = true,
+	m_new = false,
 	m_allowRepeat = true,
-	m_doRepeat = false;
+	m_doRepeat = false,
+	m_displayAdvancedFloors = false;
 
 	// info returned from compiling mission
 

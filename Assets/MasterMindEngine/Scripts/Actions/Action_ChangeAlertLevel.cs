@@ -13,7 +13,8 @@ public class Action_ChangeAlertLevel : Action {
 		Player player = GameEngine.instance.game.playerList [m_playerID];
 
 		Site site = GameController.instance.GetSite (m_siteID);
-		site.UpdateAlert(m_amount);
+//		site.UpdateAlert(m_amount);
+		site.alertLevelChange += m_amount;
 
 		string title = "Alert Level Changed";
 		string message = "The Alert Level in " + site.m_siteName + " has ";
