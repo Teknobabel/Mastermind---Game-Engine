@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
   m_requiredFloors: []
   m_infamy: 0
-  m_cost: 4
-  m_duration: 2
+  m_cost: 3
+  m_duration: 1
   m_minFloorLevel: 1
   m_floorPlan: {fileID: 11400000, guid: 1319dbae9163041e2927a82774cc3082, type: 2}

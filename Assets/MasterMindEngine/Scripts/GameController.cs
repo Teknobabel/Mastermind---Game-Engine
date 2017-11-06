@@ -163,6 +163,10 @@ public class GameController : MonoBehaviour, ISubject {
 
 			actor = GameEngine.instance.game.henchmenList [actorID];
 
+		} else if (GameEngine.instance.game.agentList.ContainsKey (actorID)) {
+
+			actor = GameEngine.instance.game.agentList [actorID];
+
 		} else {
 
 			Debug.Log ("Actor ID not found");
@@ -338,6 +342,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 		List<Trait> requiredTraits = new List<Trait> ();
 		List<Trait> presentTraits = new List<Trait> ();
+		List<Trait> dynamicTraits = new List<Trait> ();
 
 		List<Asset> requiredAssets = new List<Asset> ();
 
@@ -360,6 +365,17 @@ public class GameController : MonoBehaviour, ISubject {
 
 			successModifier += eSlot.m_effect.GetValue ();
 			plan.m_effects.Add (eSlot);
+		}
+
+		if (plan.m_missionSite != null) {
+
+			List<EffectPool.EffectSlot> siteEffects = plan.m_missionSite.effectPool.GetEffects (Effect.EffectType.SuccessChanceModifier);
+
+			foreach (EffectPool.EffectSlot eSlot in siteEffects) {
+
+				successModifier += eSlot.m_effect.GetValue ();
+				plan.m_effects.Add (eSlot);
+			}
 		}
 
 		if (plan.m_floorSlot != null) {
@@ -412,7 +428,7 @@ public class GameController : MonoBehaviour, ISubject {
 
 			foreach (SiteTrait st in plan.m_missionSite.traits) {
 
-				if (!requiredTraits.Contains (st.m_requiredTrait)) {
+				if (st.m_requiredTrait != null && !requiredTraits.Contains (st.m_requiredTrait)) {
 
 					requiredTraits.Add (st.m_requiredTrait);
 
@@ -505,7 +521,11 @@ public class GameController : MonoBehaviour, ISubject {
 
 				foreach (Trait t in aSlot.m_actor.traits) {
 
-					if (!presentTraits.Contains (t) && requiredTraits.Contains(t)) {
+					if (t.m_type == Trait.Type.Dynamic) {
+
+						dynamicTraits.Add (t);
+
+					} else if (!presentTraits.Contains (t) && requiredTraits.Contains(t)) {
 
 						presentTraits.Add (t);
 
@@ -564,6 +584,20 @@ public class GameController : MonoBehaviour, ISubject {
 		//		float matchingTraits = (float)presentTraits.Count;
 		float total = (float)numTraitsModified + (float)numAssetsModified + (float)numFloorsModified;
 		float matching = (float)numTraitsPresentModified + (float)numAssetsPresentModified + (float)numFloorsPresentModified;
+
+		// check dynamic traits
+
+		foreach (Trait t in dynamicTraits) {
+
+			int bonus = t.GetBonus (plan);
+
+			if (bonus != 0) {
+
+				successModifier += bonus;
+				presentTraits.Add (t);
+			}
+		}
+			
 		float success = Mathf.Clamp( (matching / total * 100) + successModifier, 0.0f, 100.0f);
 
 		plan.m_requiredAssets = requiredAssets;

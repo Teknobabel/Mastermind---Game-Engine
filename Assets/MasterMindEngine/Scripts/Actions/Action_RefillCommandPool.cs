@@ -10,7 +10,7 @@ public class Action_RefillCommandPool : Action {
 	{
 		Player player = GameEngine.instance.game.playerList [m_playerID];
 
-		player.commandPool.m_currentPool = player.commandPool.m_basePool;
+		player.commandPool.UpdateCommandPool (player.commandPool.m_income);
 
 		GameController.instance.Notify (player, GameEvent.Player_CommandPoolChanged);
 	}

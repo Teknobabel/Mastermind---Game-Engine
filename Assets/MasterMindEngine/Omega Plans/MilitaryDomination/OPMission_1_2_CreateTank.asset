@@ -16,12 +16,13 @@ MonoBehaviour:
   m_targetType: 3
   m_requiredTraits:
   - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
-  - {fileID: 11400000, guid: 4acf9e0be35cd4dbb9991d98430d605d, type: 2}
   m_requiredAssets:
-  - {fileID: 11400000, guid: 89216fffb19ef4ffa91a4270c52b883e, type: 2}
+  - {fileID: 11400000, guid: 5c7864cb4e332491f990d7eb967eb402, type: 2}
   - {fileID: 11400000, guid: dc00e00df2bb54a4396a5b482ad83684, type: 2}
   - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
+  m_requiredFloors: []
   m_infamy: 0
   m_cost: 3
   m_duration: 4
+  m_minFloorLevel: 1
   m_asset: {fileID: 11400000, guid: 5eb68bf29e2c9438ba8c0497d0209340, type: 2}

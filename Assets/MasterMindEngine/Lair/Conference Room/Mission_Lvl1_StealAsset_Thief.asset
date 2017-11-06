@@ -17,7 +17,8 @@ MonoBehaviour:
   m_requiredTraits:
   - {fileID: 11400000, guid: 4b9a34e25d0e94c8b9d942e91992d4b8, type: 2}
   m_requiredAssets: []
+  m_requiredFloors: []
   m_infamy: 1
-  m_cost: 5
+  m_cost: 2
   m_duration: 1
   m_minFloorLevel: 1

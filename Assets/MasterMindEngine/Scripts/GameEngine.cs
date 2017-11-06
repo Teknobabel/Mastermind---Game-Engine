@@ -15,7 +15,11 @@ public class GameEngine : MonoBehaviour {
 
 	public Actor[] m_henchmenList;
 
+	public Actor[] m_agentList;
+
 	public Director[] m_directorList;
+
+	public StatusTrait[] m_statusTraits;
 
 	private Game m_game;
 

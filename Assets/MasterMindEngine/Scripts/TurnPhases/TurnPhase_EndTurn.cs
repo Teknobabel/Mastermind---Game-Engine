@@ -57,9 +57,22 @@ public class TurnPhase_EndTurn : TurnPhase {
 
 		// evaluate any event triggers
 
+
+
+
 		// check if intel should be spawned
 
+		int turnNumber = GameController.instance.game.currentTurn;
+		int intelSpawnRate = GameController.instance.game.director.m_intelSpawnRate;
 
+		if ((turnNumber % intelSpawnRate) == 0) {
+
+			// spawn intel
+
+			Action_PlaceIntel placeIntel = new Action_PlaceIntel ();
+			placeIntel.m_playerID = 0;
+			GameController.instance.ProcessAction (placeIntel);
+		}
 
 
 		// update effect durations
@@ -74,6 +87,81 @@ public class TurnPhase_EndTurn : TurnPhase {
 			}
 		}
 
+		foreach (KeyValuePair<int, Site> pair in GameController.instance.game.siteList) {
+
+			pair.Value.effectPool.UpdateDuration ();
+		}
+
+		// update affinity for employed henchmen
+
+		List<Player.ActorSlot> hiredHenchmen = GameController.instance.GetHiredHenchmen (0);
+
+		foreach (Player.ActorSlot aSlot in hiredHenchmen) {
+
+
+			// get a list of other henchmen to potentially interact with
+
+			List<Player.ActorSlot> validTargets = new List<Player.ActorSlot> ();
+
+			if (aSlot.m_state == Player.ActorSlot.ActorSlotState.Active) {
+
+				foreach (Player.ActorSlot vtSlot in hiredHenchmen) {
+
+					if (vtSlot.m_state == Player.ActorSlot.ActorSlotState.Active && vtSlot.m_actor.id != aSlot.m_actor.id) {
+
+						validTargets.Add (vtSlot);
+					}
+				}
+			}
+
+			// choose henchmen to interact with
+
+			if (validTargets.Count > 0)
+			{
+				Player.ActorSlot targetSlot = validTargets[Random.Range(0, validTargets.Count)];
+
+				float affinityIncreaseChance = 0.5f;
+
+				// determine if interaction leads to affinity increase or decrease
+
+				// chance of increase / decrease affected by henchmens current affinity score w target
+
+				int affinityScore = aSlot.m_actor.GetAffinityScore (targetSlot.m_actor.id, (IAffinity)targetSlot.m_actor);
+
+				if (affinityScore >= 40) {
+
+					affinityIncreaseChance += 0.2f;
+
+				} else if (affinityScore <= -40) {
+
+					affinityIncreaseChance += 0.2f;
+				}
+
+				// chance of increase / decrease affected by target henchmens current affinity score w henchmen
+
+				int targetsAffinityScore = targetSlot.m_actor.GetAffinityScore (aSlot.m_actor.id, (IAffinity)aSlot.m_actor);
+
+				if (targetsAffinityScore >= 40) {
+
+					affinityIncreaseChance += 0.2f;
+
+				} else if (targetsAffinityScore <= -40) {
+
+					affinityIncreaseChance += 0.2f;
+				}
+
+				if (Random.Range (0.0f, 1.0f) <= affinityIncreaseChance) {
+
+					aSlot.m_actor.UpdateAffinity (targetSlot.m_actor.id, 10, (IAffinity) targetSlot.m_actor);
+
+				} else {
+
+					aSlot.m_actor.UpdateAffinity (targetSlot.m_actor.id, -10, (IAffinity) targetSlot.m_actor);
+				}
+			}
+		}
+
+
 		// do site end turn
 
 		foreach (KeyValuePair<int, Site> pair in GameController.instance.game.siteList) {
@@ -86,9 +174,9 @@ public class TurnPhase_EndTurn : TurnPhase {
 
 	}
 
-//	public override IEnumerator EndTurnPhase ()
-//	{
-//		Debug.Log ("Ending End Turn Phase");
-//		yield return null;
-//	}
+	//	public override IEnumerator EndTurnPhase ()
+	//	{
+	//		Debug.Log ("Ending End Turn Phase");
+	//		yield return null;
+	//	}
 }

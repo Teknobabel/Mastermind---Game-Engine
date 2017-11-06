@@ -7,20 +7,38 @@ public class EffectPool {
 	public class EffectSlot
 	{
 		public Effect m_effect;
-		public int m_currentDuration = 1;
+		public int m_currentDuration = 1,
+		m_effectID = -1;
 		public bool m_new = true;
+
 	}
 
 	public List<EffectSlot> m_effectPool = new List<EffectSlot>();
 
-	public void AddEffect (Effect e)
+	public int AddEffect (Effect e)
 	{
 		Debug.Log ("Gaining new effect: " + e.m_effectName);
 
 		EffectSlot eSlot = new EffectSlot ();
 		eSlot.m_effect = e;
 		eSlot.m_currentDuration = e.m_duration;
+		eSlot.m_effectID = GameController.instance.game.GetID ();
 		m_effectPool.Add (eSlot);
+
+		return eSlot.m_effectID;
+	}
+
+	public void RemoveEffect (int effectID)
+	{
+		for (int i = 0; i < m_effectPool.Count; i++) {
+
+			EffectSlot eSlot = m_effectPool [i];
+			if (eSlot.m_effectID == effectID) {
+
+				m_effectPool.RemoveAt (i);
+				return;
+			}
+		}
 	}
 
 	public List<EffectSlot> GetEffects (Effect.EffectType type)

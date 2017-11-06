@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Site : ScriptableObject, IBaseObject {
+public class Site : ScriptableObject, IBaseObject, IAffinity, IEffectable {
 
 	public enum Type {
 		None,
@@ -46,10 +46,6 @@ public class Site : ScriptableObject, IBaseObject {
 
 	public int m_maxAlertLevel = 5;
 
-//	public Asset[] m_startingAssets;
-//
-//	public List<RandomAssetList> m_randomStartingAssets = new List<RandomAssetList>();
-
 	public SiteTrait[] m_startingTraits;
 
 	public List<RandomTraitList> m_randomStartingTraits = new List<RandomTraitList>();
@@ -58,6 +54,8 @@ public class Site : ScriptableObject, IBaseObject {
 
 	private List<SiteTrait> m_traits = new List<SiteTrait>();
 
+	private List<Player.ActorSlot> m_agents = new List<Player.ActorSlot>();
+
 	private int m_id = -1;
 
 	private int m_currentAlertLevel = 0;
@@ -65,6 +63,10 @@ public class Site : ScriptableObject, IBaseObject {
 	private int m_regionID = -1;
 
 	private int m_alertLevelChange = 0; // how much the alert level will change at the end of the turn
+
+	private Dictionary<int, AffinitySlot> m_affinityList = new Dictionary<int, AffinitySlot>();
+
+	private EffectPool m_effectPool = new EffectPool();
 
 	public void Initialize ()
 	{
@@ -104,12 +106,18 @@ public class Site : ScriptableObject, IBaseObject {
 				}
 			}
 		}
+
+//		SiteTrait_LowerMissionSuccess newTrait = new SiteTrait_LowerMissionSuccess ();
+//		newTrait.m_name = "Test Trait";
+//		newTrait.m_type = Trait.Type.Site;
+//		AddTrait (newTrait);
 	}
 
 	public void AddTrait (SiteTrait newTrait)
 	{
 //		Debug.Log ("Site " + m_id + " Adds " + newTrait.m_name);
 		m_traits.Add (newTrait);
+		newTrait.TraitAdded (this);
 	}
 
 	public void RemoveTrait (SiteTrait oldTrait)
@@ -117,17 +125,19 @@ public class Site : ScriptableObject, IBaseObject {
 		if (m_traits.Contains (oldTrait)) {
 
 			m_traits.Remove (oldTrait);
+			oldTrait.TraitRemoved (this);
 		}
 	}
 
-	public void AddAsset (Asset newAsset)
+	public AssetSlot AddAsset (Asset newAsset)
 	{
 		AssetSlot aSlot = new AssetSlot ();
 		aSlot.m_asset = newAsset;
 		aSlot.m_state = AssetSlot.State.Hidden;
 		aSlot.m_site = this;
-
 		m_assets.Add (aSlot);
+
+		return aSlot;
 	}
 
 	public void RemoveAsset (AssetSlot aSlot)
@@ -145,6 +155,21 @@ public class Site : ScriptableObject, IBaseObject {
 		}
 	}
 
+	public void AddAgent (Player.ActorSlot agentSlot)
+	{
+		m_agents.Add (agentSlot);
+		agentSlot.m_currentSite = this;
+	}
+
+	public void RemoveAgent (Player.ActorSlot agentSlot)
+	{
+		if (m_agents.Contains (agentSlot)) {
+
+			m_agents.Remove (agentSlot);
+			agentSlot.m_currentSite = null;
+		}
+	}
+
 	public void UpdateAlert (int amount)
 	{
 		m_currentAlertLevel = Mathf.Clamp (m_currentAlertLevel + amount, 0, m_maxAlertLevel);
@@ -156,10 +181,55 @@ public class Site : ScriptableObject, IBaseObject {
 		m_alertLevelChange = 0;
 	}
 
+	public int GetAffinityScore (int targetID, IAffinity target)
+	{
+		if (m_affinityList.ContainsKey (targetID)) {
+
+			AffinitySlot aSlot = m_affinityList [targetID];
+			return aSlot.m_affinityScore;
+
+		} else {
+
+			AffinitySlot aSlot = new AffinitySlot ();
+			aSlot.m_affinityReference = target;
+			m_affinityList.Add (targetID, aSlot);
+			return aSlot.m_affinityScore;
+
+		}
+	}
+
+	public void UpdateAffinity (int targetID, int amount, IAffinity target)
+	{
+		if (m_affinityList.ContainsKey (targetID)) {
+
+			AffinitySlot aSlot = m_affinityList [targetID];
+			aSlot.m_affinityScore = Mathf.Clamp (aSlot.m_affinityScore + amount, -100, 100);
+
+		} else {
+
+			AffinitySlot aSlot = new AffinitySlot ();
+			aSlot.m_affinityReference = target;
+			m_affinityList.Add (targetID, aSlot);
+			aSlot.m_affinityScore = Mathf.Clamp (aSlot.m_affinityScore + amount, -100, 100);
+
+		}
+	}
+
 	public int id {get{ return m_id; } set{ m_id = value; }}
+
 	public int currentAlertLevel {get{ return m_currentAlertLevel; }}
+
 	public List<SiteTrait> traits { get { return m_traits; } }
+
 	public List<AssetSlot> assets {get{ return m_assets; }}
+
+	public List<Player.ActorSlot> agents {get{ return m_agents; }}
+
 	public int regionID {get{ return m_regionID; }set{ m_regionID = value; }}
+
 	public int alertLevelChange {get{ return m_alertLevelChange; } set{m_alertLevelChange = value;}}
+
+	public Dictionary<int, AffinitySlot> affinityList { get { return m_affinityList; }}
+
+	public EffectPool effectPool {get{ return m_effectPool; }}
 }

@@ -37,23 +37,58 @@ public class TurnPhase_PlayerPhase : TurnPhase {
 
 		List<Player.ActorSlot> henchmen = GameController.instance.GetHiredHenchmen (0);
 
-		int upkeepCost = 0;
-
 		foreach (Player.ActorSlot aSlot in henchmen) {
 
 			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
 
-				upkeepCost += aSlot.m_actor.m_turnCost;
+				int cost = aSlot.m_actor.m_turnCost;
+
+				if (cost <= player.commandPool.m_currentPool) {
+
+					// can afford to pay henchmen
+
+					Action_SpendCommandPoints payUpkeep = new Action_SpendCommandPoints ();
+					payUpkeep.m_amount = cost;
+					payUpkeep.m_playerID = 0;
+					GameController.instance.ProcessAction (payUpkeep);
+
+				} else {
+
+					if (player.commandPool.m_currentPool > 0) {
+
+						Action_SpendCommandPoints payUpkeep = new Action_SpendCommandPoints ();
+						payUpkeep.m_amount = player.commandPool.m_currentPool;
+						payUpkeep.m_playerID = 0;
+						GameController.instance.ProcessAction (payUpkeep);
+					}
+
+					// check results of not paying henchmen
+
+					Action_CantPayHenchmen cantPay = new Action_CantPayHenchmen ();
+					cantPay.m_playerID = 0;
+					cantPay.m_henchmen = aSlot.m_actor;
+					GameController.instance.ProcessAction (cantPay);
+				}
 			}
 		}
 
-		if (upkeepCost > 0) {
-
-			Action_SpendCommandPoints payUpkeep = new Action_SpendCommandPoints ();
-			payUpkeep.m_amount = upkeepCost;
-			payUpkeep.m_playerID = 0;
-			GameController.instance.ProcessAction (payUpkeep);
-		}
+//		int upkeepCost = 0;
+//
+//		foreach (Player.ActorSlot aSlot in henchmen) {
+//
+//			if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty) {
+//
+//				upkeepCost += aSlot.m_actor.m_turnCost;
+//			}
+//		}
+//
+//		if (upkeepCost > 0) {
+//
+//			Action_SpendCommandPoints payUpkeep = new Action_SpendCommandPoints ();
+//			payUpkeep.m_amount = upkeepCost;
+//			payUpkeep.m_playerID = 0;
+//			GameController.instance.ProcessAction (payUpkeep);
+//		}
 
 		// pay for any extra Assets over limit
 

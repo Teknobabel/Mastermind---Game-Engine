@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8d6e80ff7d344d3b0b457c485edbd5, type: 3}
   m_Name: Trait_Injured
   m_EditorClassIdentifier: 
-  m_name: Normal
+  m_name: Injured
   m_type: 5
+  m_rank: 1
+  m_linkedSkill: {fileID: 0}
+  m_combatValue: -5
   m_successModifier: -10

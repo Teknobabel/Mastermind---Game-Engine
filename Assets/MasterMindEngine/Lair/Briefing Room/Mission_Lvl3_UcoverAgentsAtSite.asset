@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d426b40b9f171439ab085f156c56a5e0, type: 3}
+  m_Name: Mission_Lvl3_UcoverAgentsAtSite
+  m_EditorClassIdentifier: 
+  m_name: Predict Behavior
+  m_description: Reveal any hidden Agents at the target Site
+  m_targetType: 1
+  m_requiredTraits:
+  - {fileID: 11400000, guid: bec091ad7d7434f7da4662f26c04f4bb, type: 2}
+  - {fileID: 11400000, guid: dc6ba3273859c4d4d99f44f5ccac3eb8, type: 2}
+  - {fileID: 11400000, guid: 4acf9e0be35cd4dbb9991d98430d605d, type: 2}
+  m_requiredAssets:
+  - {fileID: 11400000, guid: 76ccdbf62fcf54b69a62322c51f6228c, type: 2}
+  m_requiredFloors: []
+  m_infamy: 0
+  m_cost: 3
+  m_duration: 2
+  m_minFloorLevel: 3

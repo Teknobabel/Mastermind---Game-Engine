@@ -21,30 +21,27 @@ public class Action_StartNewGame : Action {
 		// create player
 
 		Player newPlayer = new Player ();
-		newPlayer.id = 0;
+		newPlayer.id = newGame.GetID();
 		newGame.AddPlayer (newPlayer);
 
 		// create command pool
 
 		Player.CommandPool commandPool = new Player.CommandPool();
 		commandPool.m_basePool = director.m_startingCommandPool;
+		commandPool.m_income = director.m_startingIncome;
+		commandPool.m_currentPool = commandPool.m_basePool;
 		newPlayer.AddCommandPool (commandPool);
 
+		// create intel
+
+		for (int i=0; i < director.m_startingIntel; i++)
+		{
+			Player.IntelSlot newSlot = new Player.IntelSlot();
+			newSlot.m_intelState = Player.IntelSlot.IntelState.Owned;
+			newPlayer.intel.Add(newSlot);
+		}
+
 		// create lair
-
-//		Lair newLair = new Lair ();
-//		newLair.Initialize (director.m_startingFloorSlots);
-//		newPlayer.AddLair (newLair);
-
-		// add any starting floors
-
-//		foreach (Floor f in director.m_startingFloors) {
-//
-//			Action_BuildNewFloor buildFloor = new Action_BuildNewFloor ();
-//			buildFloor.m_player = newPlayer;
-//			buildFloor.m_floor = f;
-//			GameController.instance.ProcessAction (buildFloor);
-//		}
 
 		Lair newLair = (Lair)Object.Instantiate (director.m_startingLair);
 		newPlayer.AddLair (newLair);
@@ -93,20 +90,17 @@ public class Action_StartNewGame : Action {
 
 		// instantiate regions
 
-		int siteID = 0;
-
 		for (int i = 0; i < GameEngine.instance.m_regions.Count; i++) {
 
 			Region newRegion = (Region)Object.Instantiate (GameEngine.instance.m_regions [i]);
-			newRegion.id = i;
+			newRegion.id = newGame.GetID();
 
 			for (int j = 0; j < newRegion.m_startingSites.Count; j++) {
 
 				//				Site s = newRegion.m_sites [j];
 
 				Site s = (Site)Object.Instantiate (newRegion.m_startingSites [j]);
-				s.id = siteID;
-				siteID++;
+				s.id = newGame.GetID();
 				s.regionID = newRegion.id;
 				s.Initialize ();
 				newRegion.AddSite (s);
@@ -169,7 +163,7 @@ public class Action_StartNewGame : Action {
 
 			Actor a = GameEngine.instance.m_henchmenList [i];
 			Actor newHenchmen = (Actor)Object.Instantiate (a);
-			newHenchmen.id = i;
+			newHenchmen.id = newGame.GetID ();
 			newHenchmen.Initialize ();
 			newGame.AddHenchmen (newHenchmen);
 			hiringPool.m_availableHenchmen.Add (newHenchmen);
@@ -355,5 +349,56 @@ public class Action_StartNewGame : Action {
 			}
 		}
 
+
+
+
+
+
+
+		// initialize agents and agent management systems
+
+		AgentPlayer agentPlayer = new AgentPlayer ();
+		agentPlayer.id = newGame.GetID();
+		agentPlayer.Initialize ();
+		newGame.AddAgentPlayer (agentPlayer);
+
+		// initialize hiring pool
+
+		Player.HiringPool agentHiringPool = new Player.HiringPool ();
+
+		for (int i = 0; i < GameEngine.instance.m_agentList.Length; i++) {
+
+			Player.ActorSlot aSlot = new Player.ActorSlot ();
+			aSlot.m_state = Player.ActorSlot.ActorSlotState.Empty;
+			agentHiringPool.m_hireSlots.Add (aSlot);
+		}
+
+		agentPlayer.AddHiringPool (agentHiringPool);
+
+		// current agent pool
+
+		Player.HenchmenPool agentPool = new Player.HenchmenPool ();
+
+		for (int i = 0; i < GameEngine.instance.m_agentList.Length; i++) {
+
+			Player.ActorSlot aSlot = new Player.ActorSlot ();
+			aSlot.m_state = Player.ActorSlot.ActorSlotState.Empty;
+			agentPool.m_henchmenSlots.Add (aSlot);
+		}
+
+		agentPlayer.AddHenchmenPool (agentPool);
+
+		foreach (Actor agent in GameEngine.instance.m_agentList) {
+
+			Actor newAgent = (Actor)Object.Instantiate (agent);
+			newAgent.id = newGame.GetID ();
+			newAgent.Initialize ();
+			newGame.AddAgent (newAgent);
+
+			Action_MakeHireable canHire = new Action_MakeHireable ();
+			canHire.m_player = agentPlayer;
+			canHire.m_henchmen = newAgent;
+			GameController.instance.ProcessAction (canHire);
+		}
 	}
 }

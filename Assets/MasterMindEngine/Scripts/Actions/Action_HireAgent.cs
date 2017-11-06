@@ -13,9 +13,20 @@ public class Action_HireAgent : Action {
 
 		Debug.Log ("Hiring new Henchmen: " + henchmen.m_actorName);
 
+		Player player = null;
+		bool displayToast = true;
+		bool agent = false;
+
 		if (GameEngine.instance.game.playerList.ContainsKey (m_playerNumber)) {
 
-			Player player = GameEngine.instance.game.playerList [m_playerNumber];
+			player = GameEngine.instance.game.playerList [m_playerNumber];
+		} else if (GameEngine.instance.game.agentPlayerList.ContainsKey (m_playerNumber)) {
+			player = GameEngine.instance.game.agentPlayerList [m_playerNumber];
+			displayToast = false;
+			agent = true;
+		}
+
+		if (player != null) {
 
 			// remove from available pool if present
 
@@ -30,7 +41,7 @@ public class Action_HireAgent : Action {
 
 				if (aSlot.m_state != Player.ActorSlot.ActorSlotState.Empty && aSlot.m_actor.id == m_henchmenID) {
 
-//					Actor thisHenchmen = aSlot.m_actor;
+					//					Actor thisHenchmen = aSlot.m_actor;
 
 					aSlot.RemoveHenchmen ();
 
@@ -43,20 +54,28 @@ public class Action_HireAgent : Action {
 			foreach (Player.ActorSlot newHenchmenSlot in player.henchmenPool.m_henchmenSlots) {
 
 				if (newHenchmenSlot.m_state == Player.ActorSlot.ActorSlotState.Empty) {
-					
+
 					newHenchmenSlot.SetHenchmen (henchmen);
+
+					if (agent) {
+
+						newHenchmenSlot.m_visibilityState = Player.ActorSlot.VisibilityState.Hidden;
+					}
 
 					string title = "New Henchmen Hired";
 					string message = henchmen.m_actorName + " has joined your organization.";
 
-					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts, true, m_missionID);
+					player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts, displayToast, m_missionID);
 					henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts, false, m_missionID);
 
 
 					// notify UI for updating
 
-					GameController.instance.Notify (player, GameEvent.Player_HiringPoolChanged);
-					GameController.instance.Notify (player, GameEvent.Player_HenchmenPoolChanged);
+					if (player.id == 0) {
+
+						GameController.instance.Notify (player, GameEvent.Player_HiringPoolChanged);
+						GameController.instance.Notify (player, GameEvent.Player_HenchmenPoolChanged);
+					}
 
 					break;
 				}

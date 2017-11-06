@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ff28ef637584eddb004a1ae1c9a532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_forceMissionSuccess: 0
   m_turnPhases:
   - {fileID: 11400000, guid: 42240b6e66d8942feb3b29f1b65529a5, type: 2}
   - {fileID: 11400000, guid: a802379a79a374f56ae9e98da38e9521, type: 2}
@@ -132,5 +133,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c35ff12171200420388ae8c8daaf2af4, type: 2}
   - {fileID: 11400000, guid: cf94a474e08d847c1b44cc769ab16bf7, type: 2}
   - {fileID: 11400000, guid: 304fd7ce3d5c94c4d83fa676d8a143e3, type: 2}
+  m_agentList:
+  - {fileID: 11400000, guid: 5de8e886e31ff4dbe9bc2eec9dadc0d6, type: 2}
+  - {fileID: 11400000, guid: d288d3aa9b09e48bc862c51cce38cc60, type: 2}
+  - {fileID: 11400000, guid: 1733edbad89ba4c7384b568147269dc2, type: 2}
+  - {fileID: 11400000, guid: 745c1812a880c4faf812fb2d4ff1bcc5, type: 2}
+  - {fileID: 11400000, guid: eb5f55f09cec84640a8e651ebaef4b1d, type: 2}
+  - {fileID: 11400000, guid: ae646d939925441a39a00c492b98164e, type: 2}
+  - {fileID: 11400000, guid: eebd39850669b4736b4990222f001ba5, type: 2}
+  - {fileID: 11400000, guid: 357803cccd6a34579907886dc959cb44, type: 2}
+  - {fileID: 11400000, guid: 804be6fb9da9a49fdb2ee70c84716c10, type: 2}
+  - {fileID: 11400000, guid: 1887d332ffc054b9bbe78bc9ab6e0a54, type: 2}
   m_directorList:
   - {fileID: 11400000, guid: b14d372f1824a4245a5372e504b65418, type: 2}
+  m_statusTraits:
+  - {fileID: 11400000, guid: c1981ce4abe2246b4bf9f500bc38fc34, type: 2}
+  - {fileID: 11400000, guid: 47af2d9710622445391a08ab484c4e1a, type: 2}
+  - {fileID: 11400000, guid: b11d55ba1ba4e43de8c92ff06418974e, type: 2}

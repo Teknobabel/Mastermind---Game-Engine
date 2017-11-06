@@ -2,18 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player: IBaseObject, ISubject, IEffectable {
+public class Player: IBaseObject, ISubject, IEffectable, IAffinity {
 
 	public class CommandPool
 	{
 		public int 
 		m_basePool,
-		m_currentPool;
+		m_currentPool,
+		m_income;
 
 		public void UpdateBaseCommandPool (int amount)
 		{
 			m_basePool += amount;
 		}
+
+		public void UpdateCommandPool (int amount)
+		{
+			m_currentPool = Mathf.Clamp (m_currentPool + amount, 0, m_basePool);
+		}
+
+		public void UpdateIncome (int amount)
+		{
+			m_income += amount;
+		}
+	}
+
+	public class IntelSlot {
+
+		public enum IntelState
+		{
+			None,
+			Owned,
+			Contested,
+			Stolen,
+		}
+
+		public IntelState m_intelState = IntelState.None;
 	}
 
 	public class ActorSlot
@@ -24,10 +48,19 @@ public class Player: IBaseObject, ISubject, IEffectable {
 			Active,
 			OnMission,
 		}
+
+		public enum VisibilityState
+		{
+			Visible,
+			Hidden,
+		}
+
 		public Actor m_actor;
 		public bool m_new;
 		public ActorSlotState m_state;
+		public VisibilityState m_visibilityState;
 		public int m_turnsPresent = 0;
+		public Site m_currentSite = null;
 
 		public void SetHenchmen (Actor a)
 		{
@@ -127,10 +160,10 @@ public class Player: IBaseObject, ISubject, IEffectable {
 
 	private Lair m_lair;
 
-	private HiringPool m_hiringPool;
+	protected HiringPool m_hiringPool;
 
 	// current henchmen
-	private HenchmenPool m_henchmenPool;
+	protected HenchmenPool m_henchmenPool;
 
 	private CommandPool m_commandPool;
 
@@ -148,9 +181,18 @@ public class Player: IBaseObject, ISubject, IEffectable {
 
 	private EffectPool m_effectPool = new EffectPool();
 
+	private Dictionary<int, AffinitySlot> m_affinityList = new Dictionary<int, AffinitySlot>();
+
 	private int m_infamy = 0,
 	m_baseAssetSlots = 0,
 	m_numFloorSlots = 0;
+
+	private List<IntelSlot> m_intel = new List<IntelSlot> ();
+
+	public virtual void Initialize ()
+	{
+
+	}
 
 	public void SpendCommandPoints (int amt)
 	{
@@ -188,13 +230,35 @@ public class Player: IBaseObject, ISubject, IEffectable {
 
 	public void AddAsset (Asset newAsset)
 	{
-		Site.AssetSlot aSlot = new Site.AssetSlot ();
-		aSlot.m_asset = newAsset;
-		aSlot.m_state = Site.AssetSlot.State.Revealed;
-		aSlot.m_new = true;
-		m_assets.Add (aSlot);
+		// check for Intel recovery
 
-		//		m_assets.Add (newAsset);
+		if (newAsset.m_name == "Intel") {
+
+			foreach (IntelSlot iSlot in m_intel) {
+
+				if (iSlot.m_intelState == IntelSlot.IntelState.Contested) {
+
+					iSlot.m_intelState = IntelSlot.IntelState.Owned;
+					break;
+				}
+			}
+
+			string title = "Intel Recovered";
+			string message = "Your Henchmen have recovered the Intel.";
+
+			m_notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, false, -1);
+
+			GameController.instance.Notify (this, GameEvent.Player_IntelChanged);
+
+		} else {
+
+			Site.AssetSlot aSlot = new Site.AssetSlot ();
+			aSlot.m_asset = newAsset;
+			aSlot.m_state = Site.AssetSlot.State.Revealed;
+			aSlot.m_new = true;
+			m_assets.Add (aSlot);
+		}
+
 	}
 
 	public bool HasAsset (Asset asset)
@@ -269,6 +333,40 @@ public class Player: IBaseObject, ISubject, IEffectable {
 		m_infamy += amount;
 	}
 
+	public int GetAffinityScore (int targetID, IAffinity target)
+	{
+		if (m_affinityList.ContainsKey (targetID)) {
+
+			AffinitySlot aSlot = m_affinityList [targetID];
+			return aSlot.m_affinityScore;
+
+		} else {
+
+			AffinitySlot aSlot = new AffinitySlot ();
+			aSlot.m_affinityReference = target;
+			m_affinityList.Add (targetID, aSlot);
+			return aSlot.m_affinityScore;
+
+		}
+	}
+
+	public void UpdateAffinity (int targetID, int amount, IAffinity target)
+	{
+		if (m_affinityList.ContainsKey (targetID)) {
+
+			AffinitySlot aSlot = m_affinityList [targetID];
+			aSlot.m_affinityScore = Mathf.Clamp (aSlot.m_affinityScore + amount, -100, 100);
+
+		} else {
+
+			AffinitySlot aSlot = new AffinitySlot ();
+			aSlot.m_affinityReference = target;
+			m_affinityList.Add (targetID, aSlot);
+			aSlot.m_affinityScore = Mathf.Clamp (aSlot.m_affinityScore + amount, -100, 100);
+
+		}
+	}
+
 	public void AddObserver (IObserver observer){}
 
 	public void RemoveObserver (IObserver observer){}
@@ -303,7 +401,11 @@ public class Player: IBaseObject, ISubject, IEffectable {
 
 	public int numFloorSlots {get{ return m_numFloorSlots; }set{ m_numFloorSlots = value; }}
 
+	public List<IntelSlot> intel {get{ return m_intel; } set{ m_intel = value; }}
+
 	public List<MissionSummary> missionsCompletedThisTurn {get{return m_missionsCompletedThisTurn; }set{m_missionsCompletedThisTurn = value;}}
 
 	public EffectPool effectPool {get{ return m_effectPool; }}
+
+	public Dictionary<int, AffinitySlot> affinityList { get { return m_affinityList; }}
 }

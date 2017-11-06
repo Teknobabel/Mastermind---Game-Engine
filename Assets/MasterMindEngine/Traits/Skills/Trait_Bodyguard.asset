@@ -13,3 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Bodyguard
   m_type: 1
+  m_rank: 1
+  m_linkedSkill: {fileID: 0}
+  m_combatValue: 10

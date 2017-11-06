@@ -10,9 +10,9 @@ public class Mission_UnlockFloor : Mission {
 	{
 		Lair l = GameController.instance.GetLair (0);
 
-		foreach (Lair.FloorSlot fSlot in l.floorSlots) {
+		foreach (Mission floorPlan in l.unlockedFacilities) {
 
-			if (fSlot.m_state != Lair.FloorSlot.FloorState.Empty && fSlot.m_floor.m_name == m_floorPlan.m_floor.m_name) {
+			if (floorPlan.m_name == m_floorPlan.m_name) {
 
 				return false;
 			}

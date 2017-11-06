@@ -150,6 +150,14 @@ public class Action_EvaluateMission : Action {
 
 			m_missionPlan.m_currentMission.CheckForLearningTraits (m_missionPlan);
 
+			// update affinity
+
+			m_missionPlan.m_currentMission.UpdateAffinity (m_missionPlan);
+
+			// check for new dynamic traits
+
+			m_missionPlan.m_currentMission.CheckForNewDynamicTraits (m_missionPlan);
+
 			// free up participating henchmen
 
 			foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {

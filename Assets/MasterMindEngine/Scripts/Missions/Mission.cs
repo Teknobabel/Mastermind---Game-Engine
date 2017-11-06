@@ -188,7 +188,149 @@ public class Mission : ScriptableObject {
 
 			}
 		}
-
 	}
 
+	public void UpdateAffinity (MissionPlan plan)
+	{
+		// update affinity w player based on mission success
+
+		Player player = GameController.instance.game.playerList [0];
+
+		if (plan.m_result == MissionPlan.Result.Success) {
+
+			foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
+
+				aSlot.m_actor.UpdateAffinity (player.id, 10, (IAffinity)player);
+
+				foreach (Player.ActorSlot targetSlot in plan.m_actorSlots) 
+				{
+					if (targetSlot.m_actor.id != aSlot.m_actor.id) {
+
+						aSlot.m_actor.UpdateAffinity (targetSlot.m_actor.id, 10, (IAffinity)targetSlot.m_actor);
+					}
+				}
+
+				// update site affinity if applicable
+
+				if (plan.m_missionSite != null) {
+
+					plan.m_missionSite.UpdateAffinity(aSlot.m_actor.id, 10, (IAffinity)aSlot.m_actor);
+				}
+
+			}
+
+		} else if (plan.m_result == MissionPlan.Result.Fail) {
+
+			foreach (Player.ActorSlot aSlot in plan.m_actorSlots) {
+
+				aSlot.m_actor.UpdateAffinity (player.id, -10, (IAffinity)player);
+
+				foreach (Player.ActorSlot targetSlot in plan.m_actorSlots) 
+				{
+					if (targetSlot.m_actor.id != aSlot.m_actor.id) {
+
+						aSlot.m_actor.UpdateAffinity (targetSlot.m_actor.id, -10, (IAffinity)targetSlot.m_actor);
+					}
+				}
+
+				// update site affinity if applicable
+
+				if (plan.m_missionSite != null) {
+
+					plan.m_missionSite.UpdateAffinity(aSlot.m_actor.id, -10, (IAffinity)aSlot.m_actor);
+				}
+			}
+		}
+	}
+
+
+	public void CheckForNewDynamicTraits (MissionPlan plan)
+	{
+
+		foreach (Player.ActorSlot aSlot in plan.m_actorSlots)
+		{
+			// check for ally / rival with other participating henchmen
+
+			foreach (Player.ActorSlot targetActorSlot in plan.m_actorSlots) {
+
+				if (targetActorSlot.m_actor.m_actorName != aSlot.m_actor.m_actorName) {
+
+					int affinity = aSlot.m_actor.GetAffinityScore (targetActorSlot.m_actor.id, (IAffinity)targetActorSlot.m_actor);
+
+					if (affinity >= 30 && Random.Range (0.0f, 1.0f) <= 0.25f) {
+
+						// add ally trait
+
+						DynamicTrait_ActorLink newTrait = new DynamicTrait_ActorLink ();
+						newTrait.m_type = Trait.Type.Dynamic;
+						newTrait.m_linkType = DynamicTrait_ActorLink.LinkType.Ally;
+						newTrait.m_linkedActor = targetActorSlot.m_actor;
+
+						Action_GainTrait gainTraitAction = new Action_GainTrait ();
+						gainTraitAction.m_playerID = 0;
+						gainTraitAction.m_actor = aSlot.m_actor;
+						gainTraitAction.m_newTrait = newTrait;
+
+						GameController.instance.ProcessAction (gainTraitAction);
+
+					} else if (affinity <= -30 && Random.Range (0.0f, 1.0f) <= 0.25f) {
+
+						// add rival trait
+
+						DynamicTrait_ActorLink newTrait = new DynamicTrait_ActorLink ();
+						newTrait.m_type = Trait.Type.Dynamic;
+						newTrait.m_linkType = DynamicTrait_ActorLink.LinkType.Rival;
+						newTrait.m_linkedActor = targetActorSlot.m_actor;
+
+						Action_GainTrait gainTraitAction = new Action_GainTrait ();
+						gainTraitAction.m_playerID = 0;
+						gainTraitAction.m_actor = aSlot.m_actor;
+						gainTraitAction.m_newTrait = newTrait;
+
+						GameController.instance.ProcessAction (gainTraitAction);
+					}
+				}
+			}
+
+			// check for citizen / wanted in mission site
+
+			if (plan.m_missionSite != null) {
+
+				int affinity = plan.m_missionSite.GetAffinityScore (aSlot.m_actor.id, (IAffinity)aSlot.m_actor);
+
+				if (affinity <= -30 && Random.Range (0.0f, 1.0f) <= 0.25f) {
+
+					// add wanted trait
+
+					DynamicTrait_LocationLink newTrait = new DynamicTrait_LocationLink ();
+					newTrait.m_type = Trait.Type.Dynamic;
+					newTrait.m_linkType = DynamicTrait_LocationLink.LinkType.Wanted;
+					newTrait.m_linkedSite = plan.m_missionSite;
+
+					Action_GainTrait gainTraitAction = new Action_GainTrait ();
+					gainTraitAction.m_playerID = 0;
+					gainTraitAction.m_actor = aSlot.m_actor;
+					gainTraitAction.m_newTrait = newTrait;
+
+					GameController.instance.ProcessAction (gainTraitAction);
+
+				} else if (affinity >= 30 && Random.Range (0.0f, 1.0f) <= 0.25f) {
+
+					// add citizen trait
+
+					DynamicTrait_LocationLink newTrait = new DynamicTrait_LocationLink ();
+					newTrait.m_type = Trait.Type.Dynamic;
+					newTrait.m_linkType = DynamicTrait_LocationLink.LinkType.Citizen;
+					newTrait.m_linkedSite = plan.m_missionSite;
+
+					Action_GainTrait gainTraitAction = new Action_GainTrait ();
+					gainTraitAction.m_playerID = 0;
+					gainTraitAction.m_actor = aSlot.m_actor;
+					gainTraitAction.m_newTrait = newTrait;
+
+					GameController.instance.ProcessAction (gainTraitAction);
+				}
+			}
+		}
+	}
 }

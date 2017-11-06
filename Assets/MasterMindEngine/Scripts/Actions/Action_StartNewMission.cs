@@ -10,7 +10,7 @@ public class Action_StartNewMission : Action {
 
 	public override void ExecuteAction ()
 	{
-		m_missionPlan.m_missionID = GameEngine.instance.game.GetMissionID ();
+		m_missionPlan.m_missionID = GameEngine.instance.game.GetID ();
 		Player player = GameEngine.instance.game.playerList [m_playerID];
 		player.AddMission (m_missionPlan);
 		m_missionPlan.m_state = MissionPlan.State.Active;

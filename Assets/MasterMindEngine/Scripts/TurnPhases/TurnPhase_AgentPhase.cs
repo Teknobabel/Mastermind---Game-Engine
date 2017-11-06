@@ -17,6 +17,12 @@ public class TurnPhase_AgentPhase : TurnPhase {
 
 		// do AI for agents not on a mission
 
+		foreach (KeyValuePair<int, AgentPlayer> pair in GameController.instance.game.agentPlayerList) {
+
+			pair.Value.DoAgentsTurn ();
+		}
+
+
 		// resolve missions
 
 		List<MissionPlan> completedMissions = new List<MissionPlan> ();
@@ -54,9 +60,32 @@ public class TurnPhase_AgentPhase : TurnPhase {
 			}
 		}
 
-		// spawn new agents if needed
+		foreach (KeyValuePair<int, AgentPlayer> pair in GameEngine.instance.game.agentPlayerList) {
 
-		//		GameEngine.instance.ProgressTurn ();
+			List<MissionPlan> missions = new List<MissionPlan> ();
+
+			foreach (MissionPlan mp in pair.Value.currentMissions) {
+
+				missions.Add (mp);
+			}
+
+			while (missions.Count > 0) {
+
+				MissionPlan thisMP = missions [0];
+				missions.RemoveAt (0);
+
+				thisMP.m_turnNumber++;
+
+				if (thisMP.m_turnNumber >= thisMP.m_currentMission.m_duration) {
+
+					thisMP.m_currentMission.CompleteMission (thisMP);
+					pair.Value.RemoveMission (thisMP);
+					thisMP = null;
+				}
+
+			}
+		}
+
 		Debug.Log ("Ending Agent Phase");
 	}
 

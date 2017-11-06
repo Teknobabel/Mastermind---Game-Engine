@@ -18,9 +18,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc61c91c3717c45bd92a5453346da037, type: 2}
   - {fileID: 11400000, guid: dc6ba3273859c4d4d99f44f5ccac3eb8, type: 2}
   m_requiredAssets: []
+  m_requiredFloors: []
   m_infamy: 1
-  m_cost: 3
-  m_duration: 2
+  m_cost: 2
+  m_duration: 1
   m_minFloorLevel: 1
   m_numAssets: 3
   m_revealChance: 0.7

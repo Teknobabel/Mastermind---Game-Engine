@@ -13,3 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_name: Sharp Shooter
   m_type: 2
+  m_rank: 1
+  m_linkedSkill: {fileID: 0}
+  m_combatValue: 2

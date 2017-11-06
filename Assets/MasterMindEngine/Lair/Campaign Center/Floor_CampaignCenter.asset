@@ -14,7 +14,13 @@ MonoBehaviour:
   m_name: Campaign Center
   m_startingHenchmenSlots: 1
   m_missions:
-  - {fileID: 11400000, guid: 267efb5cfd74041be8572641a0f71262, type: 2}
+  - {fileID: 11400000, guid: bb35e19e97f4b4e628937178bca91277, type: 2}
   - {fileID: 11400000, guid: c1b87ea088f904973b63c6d93f05462a, type: 2}
-  - {fileID: 11400000, guid: ae06fd74365df491ca771de5b3df47f6, type: 2}
+  - {fileID: 11400000, guid: 35b1a2c29f292455696a28f989c894d3, type: 2}
+  - {fileID: 11400000, guid: 10c337614c9cc4a19ba5d2912f78d0bf, type: 2}
+  - {fileID: 11400000, guid: 0a3de2dbb8e0c4e5e900df215db855fd, type: 2}
+  - {fileID: 11400000, guid: 267efb5cfd74041be8572641a0f71262, type: 2}
+  - {fileID: 11400000, guid: 073f5b7fad8e848a8a8030b6b6d090f5, type: 2}
+  - {fileID: 11400000, guid: 39c4d9340aa584c8a8d1a92181d6229b, type: 2}
+  - {fileID: 11400000, guid: 623f1de93689d4952962264716fe61bc, type: 2}
   - {fileID: 11400000, guid: 38dea70092c0f4d15a680112aef58934, type: 2}
