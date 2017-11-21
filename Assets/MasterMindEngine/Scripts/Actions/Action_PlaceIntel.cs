@@ -67,6 +67,12 @@ public class Action_PlaceIntel : Action {
 				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, false, -1);
 
 				GameController.instance.Notify (player, GameEvent.Player_IntelChanged);
+
+				Player.EventSummaryAlert eventSummary = new Player.EventSummaryAlert ();
+				eventSummary.m_eventType = Player.EventSummaryAlert.EventType.IntelStolen;
+				eventSummary.m_title = title;
+				eventSummary.m_message = message;
+				player.thisTurnsAlerts.Add (eventSummary);
 			}
 		}
 	}

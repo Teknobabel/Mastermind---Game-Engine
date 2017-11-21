@@ -38,6 +38,12 @@ public class Action_CantPayHenchmen : Action {
 
 			if (Random.Range(0.0f, 1.0f) <= rogueChance)
 			{
+				title = "Henchmen Goes Rogue";
+				message = m_henchmen.m_actorName + " has betrayed you and is working with the enemy!";
+
+				player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts, false, -1);
+				m_henchmen.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Contacts, false, -1);
+
 				// henchmen leaves player organization
 
 				Action_FireAgent fireAgent = new Action_FireAgent ();
@@ -64,6 +70,19 @@ public class Action_CantPayHenchmen : Action {
 
 				// henchmen added to agents
 
+				// choose a random agent player to join
+
+				List<int> agentPlayerIDs = new List<int> ();
+
+				foreach (KeyValuePair<int, AgentPlayer> pair in GameController.instance.game.agentPlayerList) {
+
+					agentPlayerIDs.Add (pair.Key);
+				}
+
+				Action_HireAgent hireAgent = new Action_HireAgent ();
+				hireAgent.m_henchmenID = m_henchmen.id;
+				hireAgent.m_playerNumber = agentPlayerIDs[Random.Range(0, agentPlayerIDs.Count)];
+				GameController.instance.ProcessAction (hireAgent);
 			}
 
 		} else if (playerAffinity <= -20)

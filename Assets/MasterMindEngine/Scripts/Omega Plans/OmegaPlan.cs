@@ -161,6 +161,12 @@ public class OmegaPlan : ScriptableObject, IObserver {
 
 					GameController.instance.Notify (player, GameEvent.Player_OmegaPlanChanged);
 
+					Player.EventSummaryAlert eventSummary = new Player.EventSummaryAlert ();
+					eventSummary.m_eventType = Player.EventSummaryAlert.EventType.OPPhaseComplete;
+					eventSummary.m_title = title;
+					eventSummary.m_message = message;
+					player.thisTurnsAlerts.Add (eventSummary);
+
 				} else {
 
 				}

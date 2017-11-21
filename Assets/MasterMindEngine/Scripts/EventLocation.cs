@@ -13,4 +13,5 @@ public enum EventLocation {
 	World,
 	Lair,
 	Settings,
+	Home,
 }

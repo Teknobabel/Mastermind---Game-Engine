@@ -40,7 +40,12 @@ public class AgentState_Idle : IAgentState {
 			plan.m_missionSite = aSlot.m_currentSite;
 			plan.m_currentAsset = intel;
 			plan.m_successChance = 100;
-			agentPlayer.AddMission (plan);
+//			agentPlayer.AddMission (plan);
+
+			Action_StartNewMission newMission = new Action_StartNewMission ();
+			newMission.m_missionPlan = plan;
+			newMission.m_playerID = agentPlayer.id;
+			GameController.instance.ProcessAction (newMission);
 
 			return;
 		}
@@ -56,7 +61,12 @@ public class AgentState_Idle : IAgentState {
 			plan.m_targetActor = aSlot;
 			plan.m_currentMission = hideAgent;
 			plan.m_successChance = 100;
-			agentPlayer.AddMission (plan);
+//			agentPlayer.AddMission (plan);
+
+			Action_StartNewMission newMission = new Action_StartNewMission ();
+			newMission.m_missionPlan = plan;
+			newMission.m_playerID = agentPlayer.id;
+			GameController.instance.ProcessAction (newMission);
 
 			return;
 		}
@@ -86,7 +96,12 @@ public class AgentState_Idle : IAgentState {
 			plan.m_currentMission = disruptMission;
 			plan.m_missionSite = missionToDisrupt.m_missionSite;
 			plan.m_successChance = 100;
-			agentPlayer.AddMission (plan);
+//			agentPlayer.AddMission (plan);
+
+			Action_StartNewMission newMission = new Action_StartNewMission ();
+			newMission.m_missionPlan = plan;
+			newMission.m_playerID = agentPlayer.id;
+			GameController.instance.ProcessAction (newMission);
 
 			return;
 		}
@@ -126,7 +141,12 @@ public class AgentState_Idle : IAgentState {
 			plan.m_actorSlots.Add (aSlot);
 			plan.m_missionSite = thisSite;
 			plan.m_successChance = 100;
-			agentPlayer.AddMission (plan);
+//			agentPlayer.AddMission (plan);
+
+			Action_StartNewMission newMission = new Action_StartNewMission ();
+			newMission.m_missionPlan = plan;
+			newMission.m_playerID = agentPlayer.id;
+			GameController.instance.ProcessAction (newMission);
 
 			return;
 		}

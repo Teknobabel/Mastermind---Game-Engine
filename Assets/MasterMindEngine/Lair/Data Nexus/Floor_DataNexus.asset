@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Floor_DataNexus
   m_EditorClassIdentifier: 
   m_name: Data Nexus
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
   - {fileID: 11400000, guid: ca476e6c05d2c408abb33dc8ecec2468, type: 2}
   - {fileID: 11400000, guid: b314124746fde4224bc19a0d28076c96, type: 2}
@@ -20,7 +20,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 20d6abf4269cf4217bc047759b19f9b4, type: 2}
   - {fileID: 11400000, guid: 82f9a40c682f74bb5b41a57db09b2727, type: 2}
   - {fileID: 11400000, guid: 51fb29c4554324feea3d310a56e8f2d4, type: 2}
-  - {fileID: 11400000, guid: 581bf730c7d2b44ad86e72dab58ecd45, type: 2}
   - {fileID: 11400000, guid: 9a910cb07f66040d0913f923c27b4047, type: 2}
-  - {fileID: 11400000, guid: c7c313fa2482245e5899fc3a1b613f9e, type: 2}
   - {fileID: 11400000, guid: 5c45067d763404b0a917cc470158016f, type: 2}

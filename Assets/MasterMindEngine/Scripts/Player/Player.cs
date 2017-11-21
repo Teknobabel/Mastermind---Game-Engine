@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class Player: IBaseObject, ISubject, IEffectable, IAffinity {
 
+	public class EventSummaryAlert
+	{
+		public enum EventType
+		{
+			None,
+			MissionComplete,
+			IntelStolen,
+			HenchmenGoesRogue,
+			OPPhaseComplete,
+		}
+
+		public EventType m_eventType = EventType.None;
+		public MissionSummary m_missionSummary;
+		public string m_title;
+		public string m_message;
+	}
+
 	public class CommandPool
 	{
 		public int 
@@ -158,6 +175,8 @@ public class Player: IBaseObject, ISubject, IEffectable, IAffinity {
 
 	private int m_id = -1;
 
+	private string m_orgName;
+
 	private Lair m_lair;
 
 	protected HiringPool m_hiringPool;
@@ -175,13 +194,15 @@ public class Player: IBaseObject, ISubject, IEffectable, IAffinity {
 
 	private List<MissionPlan> m_currentMissions = new List<MissionPlan> ();
 
-	private List<MissionSummary> m_missionsCompletedThisTurn = new List<MissionSummary> ();
+//	private List<MissionSummary> m_missionsCompletedThisTurn = new List<MissionSummary> ();
 
 	private MessageCenter m_messageCenter = new MessageCenter();
 
 	private EffectPool m_effectPool = new EffectPool();
 
 	private Dictionary<int, AffinitySlot> m_affinityList = new Dictionary<int, AffinitySlot>();
+
+	private List<EventSummaryAlert> m_thisTurnsAlerts = new List<EventSummaryAlert>();
 
 	private int m_infamy = 0,
 	m_baseAssetSlots = 0,
@@ -403,9 +424,13 @@ public class Player: IBaseObject, ISubject, IEffectable, IAffinity {
 
 	public List<IntelSlot> intel {get{ return m_intel; } set{ m_intel = value; }}
 
-	public List<MissionSummary> missionsCompletedThisTurn {get{return m_missionsCompletedThisTurn; }set{m_missionsCompletedThisTurn = value;}}
+//	public List<MissionSummary> missionsCompletedThisTurn {get{return m_missionsCompletedThisTurn; }set{m_missionsCompletedThisTurn = value;}}
+
+	public List<EventSummaryAlert> thisTurnsAlerts {get{return m_thisTurnsAlerts;} set{ m_thisTurnsAlerts = value; }}
 
 	public EffectPool effectPool {get{ return m_effectPool; }}
 
 	public Dictionary<int, AffinitySlot> affinityList { get { return m_affinityList; }}
+
+	public string orgName {get{ return m_orgName; }set{ m_orgName = value; }}
 }

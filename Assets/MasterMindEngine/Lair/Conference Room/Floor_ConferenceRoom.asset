@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Name: Floor_ConferenceRoom
   m_EditorClassIdentifier: 
   m_name: Conference Room
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
   - {fileID: 11400000, guid: 108e5b3fa45524eee908d6173a0c1272, type: 2}
   - {fileID: 11400000, guid: 1a74c75fd1374437da14cf00360fb366, type: 2}
   - {fileID: 11400000, guid: 697c0f45714fc41739cb137a5f134880, type: 2}
   - {fileID: 11400000, guid: 35a33f494859c4a96bf00506d16ca498, type: 2}
-  - {fileID: 11400000, guid: 3f24195a4f27d4c369e29c476b8a79b6, type: 2}
-  - {fileID: 11400000, guid: 5bbc72ef181e949929b366d9056d35f5, type: 2}
-  - {fileID: 11400000, guid: ec8bbb0c315754746b1f885272a5f969, type: 2}
   - {fileID: 11400000, guid: f057c46c91c464c96be1644682052529, type: 2}
+  - {fileID: 11400000, guid: 5bbc72ef181e949929b366d9056d35f5, type: 2}
+  - {fileID: 11400000, guid: 093ea948fbad341dbbda992934aed48d, type: 2}
+  - {fileID: 11400000, guid: db151b5794aac49fea788387e6293c68, type: 2}
+  - {fileID: 11400000, guid: 4b364031ee9164aa1a1a50aa04003bc7, type: 2}

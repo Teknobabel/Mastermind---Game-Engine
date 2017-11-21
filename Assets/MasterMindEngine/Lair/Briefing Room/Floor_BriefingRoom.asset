@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Floor_BriefingRoom
   m_EditorClassIdentifier: 
   m_name: Briefing Room
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
   - {fileID: 11400000, guid: 72e80c4a8eabc4f1682ff0042afb3a8c, type: 2}
   - {fileID: 11400000, guid: bdd8f40aef25b4d9ebbb6bd26f959bec, type: 2}
@@ -20,8 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a5465a7ae2bd47ee98f2076de502008, type: 2}
   - {fileID: 11400000, guid: 631cdc9bcc8a04324bc54c9d81968d1d, type: 2}
   - {fileID: 11400000, guid: 5117034f5fa574be8a082466811c8db3, type: 2}
-  - {fileID: 11400000, guid: b6be26f896d264c589a32b5b882e70a0, type: 2}
   - {fileID: 11400000, guid: 712fc97ddc8a3466bb385437d5a7d00a, type: 2}
-  - {fileID: 11400000, guid: c5b4002bd061e427f804cfd5453895e9, type: 2}
   - {fileID: 11400000, guid: 4918e61bbefe0400585d870d766c7578, type: 2}
   m_bonus: 2

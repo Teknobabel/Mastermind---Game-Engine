@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Floor_Warehouse
   m_EditorClassIdentifier: 
   m_name: Warehouse
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
   - {fileID: 11400000, guid: 9c8c8dd07286e4610966ce4dd08ac69d, type: 2}
   - {fileID: 11400000, guid: 32f8710c900424b86878ff6bd789418a, type: 2}

@@ -73,7 +73,13 @@ public class Mission : ScriptableObject {
 
 	public virtual void CompleteMission (MissionPlan plan)
 	{
-		Player player = GameEngine.instance.game.playerList [0];
+		Player player = null;
+
+		if (GameEngine.instance.game.playerList.ContainsKey (plan.m_playerID)) {
+			player = GameEngine.instance.game.playerList [plan.m_playerID];
+		} else if (GameEngine.instance.game.agentPlayerList.ContainsKey (plan.m_playerID)) {
+			player = GameEngine.instance.game.agentPlayerList [plan.m_playerID];
+		}
 
 		string title = "Mission Completed";
 		string message = "Mission: " + plan.m_currentMission.m_name;

@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Name: Floor_WarRoom
   m_EditorClassIdentifier: 
   m_name: War Room
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
   - {fileID: 11400000, guid: aae0de5df7e27431fbc28cdc3b8d8ce2, type: 2}
   - {fileID: 11400000, guid: 417133c4328e84266b6109f3002048bd, type: 2}
   - {fileID: 11400000, guid: ef0ada82841884d86b240bc442b01782, type: 2}
   - {fileID: 11400000, guid: 47d80f963807641ad8f41d9760de8ba2, type: 2}
   - {fileID: 11400000, guid: a4ac1832795c94dee9e006c7b1e4c8a5, type: 2}
-  - {fileID: 11400000, guid: 2b68eb71cc17849b5b85dbbb0f0e2544, type: 2}
   - {fileID: 11400000, guid: 0212f765cc2b54196acf1e1699692b06, type: 2}
   - {fileID: 11400000, guid: 67883a7b3a5b9438a942298a1866ea6b, type: 2}
-  - {fileID: 11400000, guid: 11591f31531a84daaaeaf4cfab8f952d, type: 2}
   - {fileID: 11400000, guid: 99ddf31636277491e97ce6c25c41aba0, type: 2}

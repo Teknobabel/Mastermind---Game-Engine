@@ -12,6 +12,13 @@ public class Site : ScriptableObject, IBaseObject, IAffinity, IEffectable {
 		Economy,
 	}
 
+	public enum VisibilityState
+	{
+		None,
+		Hidden,
+		Revealed,
+	}
+
 	public class AssetSlot
 	{
 		public enum State
@@ -68,6 +75,8 @@ public class Site : ScriptableObject, IBaseObject, IAffinity, IEffectable {
 
 	private EffectPool m_effectPool = new EffectPool();
 
+	private VisibilityState m_visibility = VisibilityState.None;
+
 	public void Initialize ()
 	{
 //		foreach (Asset a in m_startingAssets) {
@@ -106,6 +115,8 @@ public class Site : ScriptableObject, IBaseObject, IAffinity, IEffectable {
 				}
 			}
 		}
+
+		m_visibility = VisibilityState.Hidden;
 
 //		SiteTrait_LowerMissionSuccess newTrait = new SiteTrait_LowerMissionSuccess ();
 //		newTrait.m_name = "Test Trait";
@@ -232,4 +243,6 @@ public class Site : ScriptableObject, IBaseObject, IAffinity, IEffectable {
 	public Dictionary<int, AffinitySlot> affinityList { get { return m_affinityList; }}
 
 	public EffectPool effectPool {get{ return m_effectPool; }}
+
+	public VisibilityState visibility {get{ return m_visibility; } set{ m_visibility = value; }}
 }

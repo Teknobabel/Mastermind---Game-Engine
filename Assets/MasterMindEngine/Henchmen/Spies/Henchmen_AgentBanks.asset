@@ -15,7 +15,6 @@ MonoBehaviour:
   m_startingTraits:
   - {fileID: 11400000, guid: b236a0df5ee4043eda45eb7f7d024dde, type: 2}
   - {fileID: 11400000, guid: 7d51e0fd373854f98baae47297cd2fc5, type: 2}
-  - {fileID: 11400000, guid: 1e2b0cd761b294123a2ed74a09af1f42, type: 2}
   - {fileID: 11400000, guid: 35ace737fef244e77b9d1ead709b16e4, type: 2}
   - {fileID: 11400000, guid: 4acf9e0be35cd4dbb9991d98430d605d, type: 2}
   - {fileID: 11400000, guid: 7f9ef0f3902d14f849345e0c95ad1009, type: 2}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a235bf3ba523c4e4cb88f2292e3ffb7a, type: 3}
+  m_Name: Henchmen_Echo
+  m_EditorClassIdentifier: 
+  m_actorName: Echo
+  m_startingTraits:
+  - {fileID: 11400000, guid: cc61c91c3717c45bd92a5453346da037, type: 2}
+  - {fileID: 11400000, guid: 9b56630c1046445faa9bb0e26e0250ad, type: 2}
+  - {fileID: 11400000, guid: 354e29702c0e04126baf55b5d8df1349, type: 2}
+  - {fileID: 11400000, guid: f82d9ae6a6632452fa435df8b8e94aa4, type: 2}
+  - {fileID: 11400000, guid: 83237b79d80e24f098c3692cd9cf0bf1, type: 2}
+  m_status: {fileID: 11400000, guid: c1981ce4abe2246b4bf9f500bc38fc34, type: 2}
+  m_startingCost: 4
+  m_turnCost: 2
+  m_rank: 3
+  m_portrait_Compact: {fileID: 0}
+  m_portrait_Large: {fileID: 0}

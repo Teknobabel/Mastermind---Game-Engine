@@ -14,7 +14,6 @@ MonoBehaviour:
   m_actorName: Agent 99
   m_startingTraits:
   - {fileID: 11400000, guid: b236a0df5ee4043eda45eb7f7d024dde, type: 2}
-  - {fileID: 11400000, guid: 4b9a34e25d0e94c8b9d942e91992d4b8, type: 2}
   - {fileID: 11400000, guid: 0bd423edde1ea4e9ab916c68cae28740, type: 2}
   - {fileID: 11400000, guid: 3e40d9fc81d9c4b058fd6b438e0b80f5, type: 2}
   m_status: {fileID: 11400000, guid: c1981ce4abe2246b4bf9f500bc38fc34, type: 2}

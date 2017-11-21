@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Name: Floor_Barracks
   m_EditorClassIdentifier: 
   m_name: Barracks
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
-  - {fileID: 11400000, guid: 78ec30992014f427295c8de80fbdab13, type: 2}
   - {fileID: 11400000, guid: 878d89883d0034247bb4d523420b2a3c, type: 2}
   - {fileID: 11400000, guid: f3746d45e48ae4fc3b2ababade9169d1, type: 2}
-  - {fileID: 11400000, guid: 0f8aafa0099464ca3811190fe6a36576, type: 2}
   - {fileID: 11400000, guid: b91cd4d4732ee40c98a58e9c5a2e31f6, type: 2}
   - {fileID: 11400000, guid: 27ace2b302638457cb06b29aca74fdc2, type: 2}
   - {fileID: 11400000, guid: 945f24c72195a4fa5a6db1ae2d740478, type: 2}

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_actorName: Ms Killgrave
   m_startingTraits:
   - {fileID: 11400000, guid: 623d1d424d81f49f3b83c27c07649bbd, type: 2}
-  - {fileID: 11400000, guid: 5012507d9c84147ffa815f096eab1388, type: 2}
   - {fileID: 11400000, guid: b236a0df5ee4043eda45eb7f7d024dde, type: 2}
   - {fileID: 11400000, guid: 148ce0687488f4a6bb6715fdf8d93900, type: 2}
   - {fileID: 11400000, guid: 8ea12b34aecf546419deec32406a7f2d, type: 2}

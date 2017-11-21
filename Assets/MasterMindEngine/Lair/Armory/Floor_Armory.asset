@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Floor_Armory
   m_EditorClassIdentifier: 
   m_name: Infirmary
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
   - {fileID: 11400000, guid: 78295eeb04f444e71ae042a831cf254d, type: 2}
   - {fileID: 11400000, guid: a652ecf823ffd4cd9ada1d1101f21b90, type: 2}

@@ -13,7 +13,13 @@ public class Action_EvaluateMission : Action {
 
 		m_missionPlan.m_turnNumber++;
 
-		Player player = GameEngine.instance.game.playerList [m_playerID];
+		Player player = null;
+
+		if (GameEngine.instance.game.playerList.ContainsKey (m_playerID)) {
+			player = GameEngine.instance.game.playerList [m_playerID];
+		} else if (GameEngine.instance.game.agentPlayerList.ContainsKey (m_playerID)) {
+			player = GameEngine.instance.game.agentPlayerList [m_playerID];
+		}
 
 		if (m_missionPlan.m_turnNumber >= m_missionPlan.m_currentMission.m_duration) {
 
@@ -61,7 +67,12 @@ public class Action_EvaluateMission : Action {
 				}
 			}
 
-			player.missionsCompletedThisTurn.Add (newMissionSummary);
+//			player.missionsCompletedThisTurn.Add (newMissionSummary);
+
+			Player.EventSummaryAlert eventSummary = new Player.EventSummaryAlert ();
+			eventSummary.m_eventType = Player.EventSummaryAlert.EventType.MissionComplete;
+			eventSummary.m_missionSummary = newMissionSummary;
+			player.thisTurnsAlerts.Add (eventSummary);
 
 			// update infamy and site alert level
 

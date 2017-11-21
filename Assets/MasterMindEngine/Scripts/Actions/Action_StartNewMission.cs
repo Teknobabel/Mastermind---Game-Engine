@@ -11,7 +11,18 @@ public class Action_StartNewMission : Action {
 	public override void ExecuteAction ()
 	{
 		m_missionPlan.m_missionID = GameEngine.instance.game.GetID ();
-		Player player = GameEngine.instance.game.playerList [m_playerID];
+		m_missionPlan.m_playerID = m_playerID;
+
+		Player player = null;
+		bool showAlert = false;
+
+		if (GameEngine.instance.game.playerList.ContainsKey (m_playerID)) {
+			player = GameEngine.instance.game.playerList [m_playerID];
+			showAlert = true;
+		} else if (GameEngine.instance.game.agentPlayerList.ContainsKey (m_playerID)) {
+			player = GameEngine.instance.game.agentPlayerList [m_playerID];
+		}
+			
 		player.AddMission (m_missionPlan);
 		m_missionPlan.m_state = MissionPlan.State.Active;
 
@@ -54,7 +65,7 @@ public class Action_StartNewMission : Action {
 		string title = "New Mission Begins";
 		string message = "Mission: " + m_missionPlan.m_currentMission.m_name + " is now underway.";
 
-		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, true, m_missionPlan.m_missionID);
+		player.notifications.AddNotification (GameController.instance.GetTurnNumber(), title, message, EventLocation.Missions, showAlert, m_missionPlan.m_missionID);
 
 		foreach (Player.ActorSlot aSlot in m_missionPlan.m_actorSlots) {
 

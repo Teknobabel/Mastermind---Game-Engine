@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d3afe077f2d4bd3bb3062dad4fb3af, type: 3}
   m_Name: Trait_Mercenary
   m_EditorClassIdentifier: 
-  m_name: Mercenary
+  m_name: Soldier
   m_type: 1
   m_rank: 1
   m_linkedSkill: {fileID: 0}

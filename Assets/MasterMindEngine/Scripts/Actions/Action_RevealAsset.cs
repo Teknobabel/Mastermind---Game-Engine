@@ -10,6 +10,11 @@ public class Action_RevealAsset : Action {
 	public override void ExecuteAction ()
 	{
 		m_assetSlot.m_state = Site.AssetSlot.State.Revealed;
+
+		if (m_assetSlot.m_site != null) {
+			m_assetSlot.m_site.visibility = Site.VisibilityState.Revealed;
+		}
+
 		Player player = GameEngine.instance.game.playerList [m_playerID];
 
 		string title = "Asset Revealed";

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_actorName: Mr Black
   m_startingTraits:
   - {fileID: 11400000, guid: 623d1d424d81f49f3b83c27c07649bbd, type: 2}
-  - {fileID: 11400000, guid: eba96bd9f53114d57ab478711dd08586, type: 2}
   - {fileID: 11400000, guid: 8ea12b34aecf546419deec32406a7f2d, type: 2}
   - {fileID: 11400000, guid: 1e2b0cd761b294123a2ed74a09af1f42, type: 2}
   - {fileID: 11400000, guid: 57ddbbd690c814688a07fbd31f408814, type: 2}

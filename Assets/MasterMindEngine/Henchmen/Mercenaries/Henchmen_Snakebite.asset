@@ -14,7 +14,6 @@ MonoBehaviour:
   m_actorName: Snakebite
   m_startingTraits:
   - {fileID: 11400000, guid: 3e9e65fa5e5de47c89b6caf3433efa07, type: 2}
-  - {fileID: 11400000, guid: 5012507d9c84147ffa815f096eab1388, type: 2}
   - {fileID: 11400000, guid: 0bd423edde1ea4e9ab916c68cae28740, type: 2}
   - {fileID: 11400000, guid: 1e8f21bdd31e045a3a160daeca047865, type: 2}
   - {fileID: 11400000, guid: dc6ba3273859c4d4d99f44f5ccac3eb8, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Floor_Workshop
   m_EditorClassIdentifier: 
   m_name: Command Center
-  m_startingHenchmenSlots: 1
+  m_startingHenchmenSlots: 3
   m_missions:
   - {fileID: 11400000, guid: dd12349609bef47dcbff35e3fc9980d0, type: 2}
   - {fileID: 11400000, guid: 999815704f77e4e7ea88dceda76c052f, type: 2}

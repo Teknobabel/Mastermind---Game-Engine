@@ -16,7 +16,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e9eed4faed404bc8b12d48f284ce0d1, type: 2}
   m_startingOmegaPlan: {fileID: 11400000, guid: e9c7fe830d84644beb8e82e55a378f4a,
     type: 2}
-  m_startingAssets: []
+  m_startingAssets:
+  - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
   m_startingLair: {fileID: 11400000, guid: 3ada536dfd2db45fd818dafb23880a2d, type: 2}
   m_alertData:
   - m_siteType: 1
@@ -119,4 +120,7 @@ MonoBehaviour:
   m_startingHireSlots: 3
   m_startingHenchmenSlots: 3
   m_startingCommandPool: 10
+  m_startingIncome: 5
   m_startingAssetSlots: 5
+  m_startingIntel: 5
+  m_intelSpawnRate: 10

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Action_StartNewGame : Action {
 
+	public NewGamePrefs m_newGamePrefs = null;
+
 	public override void ExecuteAction ()
 	{
 		Debug.Log ("Starting new game!");
@@ -23,6 +25,11 @@ public class Action_StartNewGame : Action {
 		Player newPlayer = new Player ();
 		newPlayer.id = newGame.GetID();
 		newGame.AddPlayer (newPlayer);
+
+		if (m_newGamePrefs != null) {
+
+			newPlayer.orgName = m_newGamePrefs.m_playerOrgName;
+		}
 
 		// create command pool
 

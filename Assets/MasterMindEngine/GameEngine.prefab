@@ -71,11 +71,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7eb69fb9936e148f58ad71b636ccc36d, type: 2}
   - {fileID: 11400000, guid: 2407c34574595427f9a93883c206816c, type: 2}
   m_regions:
-  - {fileID: 11400000, guid: 3283841b9e0ee4f43be0a91f90ef9e0a, type: 2}
-  - {fileID: 11400000, guid: 31f30ac5650804b54aa0c75014a7d671, type: 2}
-  - {fileID: 11400000, guid: 2284942dd063642ec880888a82f06383, type: 2}
-  - {fileID: 11400000, guid: fa6dd5c1b8808414f81034e4ebb22c35, type: 2}
-  - {fileID: 11400000, guid: 99aa36052cd6a4fe1941f423510fc42f, type: 2}
+  - {fileID: 11400000, guid: 63089a12016e7405992d8862dd857747, type: 2}
   m_omegaPlans:
   - {fileID: 11400000, guid: f8c87ef5692524a21ae59c5da0d140eb, type: 2}
   - {fileID: 11400000, guid: 2f5da0f4fd723402fb34c527bc5df5cf, type: 2}

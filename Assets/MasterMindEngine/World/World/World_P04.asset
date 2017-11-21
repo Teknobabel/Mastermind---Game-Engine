@@ -11,23 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fffd7a6c98794c68b2a3d6727c525a7, type: 3}
   m_Name: World_P04
   m_EditorClassIdentifier: 
-  m_siteName: P04
+  m_siteName: RAND Corporation
   m_type: 1
   m_maxAlertLevel: 2
-  m_startingAssets: []
-  m_randomStartingAssets:
-  - m_assets:
-    - {fileID: 11400000, guid: 473d92fe35446470c890556e42059987, type: 2}
-    - {fileID: 11400000, guid: 473d92fe35446470c890556e42059987, type: 2}
-    - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
-    - {fileID: 11400000, guid: 595f40f21ddce46e5a8f8d839365da07, type: 2}
-    - {fileID: 11400000, guid: 01bf54017c5ad4d00bd8422497e132a7, type: 2}
-  - m_assets:
-    - {fileID: 11400000, guid: 473d92fe35446470c890556e42059987, type: 2}
-    - {fileID: 11400000, guid: 25bec720032b8438a97049c5a9e84c49, type: 2}
-    - {fileID: 11400000, guid: 01bf54017c5ad4d00bd8422497e132a7, type: 2}
-    - {fileID: 11400000, guid: 595f40f21ddce46e5a8f8d839365da07, type: 2}
-    - {fileID: 11400000, guid: 01bf54017c5ad4d00bd8422497e132a7, type: 2}
   m_startingTraits: []
   m_randomStartingTraits:
   - m_traits:

@@ -43,6 +43,8 @@ public class MissionPlan {
 
 	public int m_missionID = -1;
 
+	public int m_playerID = -1;
+
 	public bool 
 	m_new = false,
 	m_allowRepeat = true,
